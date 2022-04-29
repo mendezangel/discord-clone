@@ -13,8 +13,8 @@ class Message(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
 
-    channel = db.Relationship('Channel', back_populates='messages')
-    user = db.Relationship('User', back_populates='messages')
+    channel = db.relationship('Channel', back_populates='messages')
+    user = db.relationship('User', back_populates='messages')
 
     def to_dict(self):
         return {
@@ -24,6 +24,6 @@ class Message(db.Model):
             'content': self.content,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
-            'channel': self.channel,
-            'user': self.user
+            'channel': list(self.channel),
+            'user': list(self.user)
         }
