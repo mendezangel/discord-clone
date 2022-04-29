@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
 
 
     messages = db.relationship('Message', back_populates='user')
-    owned_servers = db.relationship('Server', back_populates='user')
+    owned_servers = db.relationship('Server', back_populates='owner')
 
     # friends = db.Relationship('User', back_populates='friends', secondary='friends')
 

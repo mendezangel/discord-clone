@@ -8,7 +8,7 @@ class Server(db.Model):
     owner_id = db.Column(db.Integer,db.ForeignKey('users.id'), nullable=False)
     name = db.Column(db.String(30), nullable=False)
     image = db.Column(db.String)
-    invite_url = db.Column(db.String, nullable=False, unique=True)
+    invite_url = db.Column(db.String, unique=True)
 
     channels = db.relationship('Channel', back_populates='server')
     owner = db.relationship('User', back_populates='owned_servers')
