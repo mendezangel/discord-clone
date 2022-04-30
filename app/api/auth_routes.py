@@ -1,5 +1,5 @@
-from flask import Blueprint, jsonify, session, request
-from app.models import User, db, Server 
+from flask import Blueprint, jsonify, redirect, session, request
+from app.models import User, db, Server
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -73,7 +73,7 @@ def sign_up():
           owner_id=user.id,
           name='@me',
           image=None, #TODO add image
-          invite_url=None 
+          invite_url=None
         )
         print(user.me_server)
         db.session.add(server)
