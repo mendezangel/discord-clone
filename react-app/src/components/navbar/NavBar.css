@@ -1,18 +1,30 @@
 .splash-nav{
     display: flex;
-    justify-content: flex-end;
-    padding: 0px 20%;
+    padding: 20px 19%;
     background-color: #404eed;
-}
-.splash-nav > ul {
-    margin: 0%;
-    padding-top: 30px;
-    display: flex;
-    gap: 20px;
+    align-items: center;
     list-style: none;
+    margin: 0%;
+    justify-content: space-between;
 }
-li > a {
+
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+a {
     text-decoration: none;
-    color: white;
-    font-weight: bold;
+    color: black;
+    background-color: white;
+    padding: 12px;
+    font-size: 13px;
+    border-radius: 25px;
+    transition: all .2s;
+    justify-self: flex-end;
+}
+
+a:hover{
+    box-shadow: 0px 10px 10px rgba(0,0,0,.18);
+    color:#404eed;
 }
