@@ -1,4 +1,7 @@
 .splash-nav{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0px 20%;
     background-color: #404eed;
 }
 .splash-nav > ul {
