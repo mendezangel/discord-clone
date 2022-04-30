@@ -1,4 +1,12 @@
 .splash-image{
-    height: 600px;
+    height: 580px;
     background-color: #404eed;
+}
+.scrollable-obj {
+    background-color: white;
+    height: 6000px;
+}
+.footer {
+    height: 400px;
+
 }

@@ -18,6 +18,9 @@ const Splash = () => {
             <div className="scrollable-obj">
 
             </div>
+            <div className='footer'>
+
+            </div>
         </div>
     )
 }
