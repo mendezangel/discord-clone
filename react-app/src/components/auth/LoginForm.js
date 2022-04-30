@@ -37,12 +37,14 @@ const LoginForm = () => {
 
   return (
     <div className='login-form-container'>
+      <h1>Welcome back!</h1>
+      <p>We're so excited to see you again!</p>
       <form onSubmit={onLogin}>
-        <div>
+        {/* <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
-        </div>
+        </div> */}
         <div className='form-group'>
           <label htmlFor='email'>Email</label>
           <input

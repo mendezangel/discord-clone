@@ -1,0 +1,15 @@
+.splash-nav{
+    background-color: #404eed;
+}
+.splash-nav > ul {
+    margin: 0%;
+    padding-top: 30px;
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+li > a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
