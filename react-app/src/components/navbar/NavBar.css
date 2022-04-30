@@ -1,0 +1,12 @@
+.splash-nav{
+    position: absolute;
+}
+.splash-nav > ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+li > a {
+    text-decoration: none;
+    color: white;
+}
