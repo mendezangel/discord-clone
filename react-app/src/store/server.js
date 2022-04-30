@@ -68,7 +68,7 @@ export const delServer = (serverId) => async dispatch => {
 
 const ServerReducer = (state = initialState, action) => {
   let newState;
-  
+
   switch (action.type) {
     case CREATE:
       newState = { ...state };
@@ -102,3 +102,5 @@ const ServerReducer = (state = initialState, action) => {
       return state;
   }
 }
+
+export default ServerReducer;
