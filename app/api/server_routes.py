@@ -1,7 +1,9 @@
-from flask import Blueprint, jsonify
+from crypt import methods
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import Server, User, Channel, Message, members, db
 from app.forms import CreateServerForm
+
 
 server_routes = Blueprint('servers', __name__)
 
@@ -26,5 +28,15 @@ def createServer(owner_id):
         db.session.commit()
 
 
-@server_routes.route('/<int:server_id>')
-@login_required
+@server_routes.route('/<int:server_id>/edit', methods=['PATCH'])
+# @login_required
+def updateServer(server_id):
+    data = request.get_json()
+
+    server = Server.query.get(server_id)
+    server.name = data['name']
+    server.image = data['image']
+    server.owner_id = data['owner_id']
+    
+    db.session.commit()
+    print(server.to_dict())

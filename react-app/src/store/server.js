@@ -37,7 +37,7 @@ export const createServer = (server) => async dispatch => {
 
 export const editServer = (server) => async dispatch => {
   const { owner_id, name, image, invite_url } = server;
-  const res = await fetch('api/servers/:id/edit', {
+  const res = await fetch(`api/servers/${server.id}/edit`, {
     method: 'PATCH',
     body: JSON.stringify({ owner_id, name, image, invite_url }),
     headers: {'Content-Type': 'application/json'}
