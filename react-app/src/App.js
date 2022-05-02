@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
 import Splash from './components/splash-page/Splash';
 import LogoutButton from './components/auth/LogoutButton';
+import Main from './components/main/Main';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,7 +39,7 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/@me' exact={true} >
-          <h1>My Home Page</h1>
+          <Main />
           <LogoutButton />
         </ProtectedRoute>
       </Switch>
