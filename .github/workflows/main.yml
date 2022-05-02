@@ -28,11 +28,10 @@ jobs:
       with:
         python-version: '3.9'
         cache: 'pip'
-    - run: pip install pipenv && pip install --upgrade pipenv
+    - run: pip install pipenv
 
-    # pipenv requirements doesn't have the warning sent to STDOUT
-    - name: Update requirements.txt for container install
-      run: pipenv requirements > requirements.txt   # lock -r > requirements.txt
+    - name: Update requirments.txt for container install
+      run: pipenv requirements --hash > requirements.txt
 
     - name: Login to Heroku Container registry
       env: 
