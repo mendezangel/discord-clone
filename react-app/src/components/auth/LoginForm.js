@@ -79,10 +79,10 @@ const LoginForm = () => {
           </form>
         </div>
         <div className='login-form-buttons-container'>
-          <button type='submit' className='login-button'>Login</button>
-          <button className='demo-user-button' onClick={demoUser}>Demo User</button>
-          <p>Need an account? <span><Link to='/sign-up' className='login-form-register-link'> Register</Link></span></p>
+          <button type='submit' className='login-button login-form-button'>Login</button>
+          <button className='demo-user-button login-form-button' onClick={demoUser}>Demo User</button>
         </div>
+        <p className='login-form-register-p'>Need an account? <span><Link to='/sign-up' className='login-form-register-link'> Register</Link></span></p>
       </div>
     </div>
   );
