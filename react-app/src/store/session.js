@@ -41,7 +41,6 @@ export const login = (email, password) => async (dispatch) => {
     })
   });
 
-  console.log('\n\nthis is the response:', response)
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -49,6 +48,7 @@ export const login = (email, password) => async (dispatch) => {
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
+      console.log('this is the data', data.errors)
       return data.errors;
     }
   } else {

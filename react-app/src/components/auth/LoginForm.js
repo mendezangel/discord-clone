@@ -6,7 +6,7 @@ import './LoginForm.css';
 import image from '../../images/login-background.png'
 
 const LoginForm = () => {
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
@@ -15,6 +15,7 @@ const LoginForm = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
+    console.log(data)
     if (data) {
       setErrors(data);
     }
@@ -50,10 +51,10 @@ const LoginForm = () => {
         <div className='login-form-form-container'>
           <form onSubmit={onLogin} className='login-form'>
             {/* <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div> */}
+              {errors.map((error, ind) => (
+                <div key={ind}>{error}</div>
+              ))}
+            </div> */}
             <div className='login-form-input-fields'>
               <div className='form-group'>
                 <label htmlFor='email'>Email</label>
@@ -64,6 +65,9 @@ const LoginForm = () => {
                   value={email}
                   onChange={updateEmail}
                 />
+                {/* {errors?.map(error => {
+                  if (error.includes('email')) return (<p className='signup-error' key={error}>{error}</p>)
+                })} */}
               </div>
               <div className='form-group'>
                 <label htmlFor='password'>Password</label>
@@ -79,7 +83,7 @@ const LoginForm = () => {
           </form>
         </div>
         <div className='login-form-buttons-container'>
-          <button type='submit' className='login-button login-form-button'>Login</button>
+          <button type='submit' className='login-button login-form-button' onClick={onLogin}>Login</button>
           <button className='demo-user-button login-form-button' onClick={demoUser}>Demo User</button>
         </div>
         <p className='login-form-register-p'>Need an account? <span><Link to='/sign-up' className='login-form-register-link'> Register</Link></span></p>
