@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, redirect, session, request
-from app.models import User, db, Server
+from app.models import User, db, Server, members
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from sqlalchemy import insert
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -81,6 +82,11 @@ def sign_up():
         db.session.commit()
 
         user.me_server = server.id
+        db.session.commit()
+
+        new_member = members.insert().values(server_id =server.id,user_id= user.id)
+
+        db.engine.execute(new_member)
         db.session.commit()
 
         login_user(user)
