@@ -14,9 +14,9 @@ jobs:
       with:
         node-version: '16'
         cache: 'npm'
-        cache-dependency-path: frontend/package-lock.json
+        cache-dependency-path: react-app/package-lock.json
     - name: Build React App
-      working-directory: frontend
+      working-directory: react-app
       # CI=false allows the build to ignore any warnings when building
       run: npm install && CI=false npm run build
 
@@ -30,7 +30,7 @@ jobs:
         cache: 'pip'
     - run: pip install pipenv && pip install --upgrade pipenv
 
-	# pipenv requirements doesn't have the warning sent to STDOUT
+    # pipenv requirements doesn't have the warning sent to STDOUT
     - name: Update requirements.txt for container install
       run: pipenv requirements > requirements.txt   # lock -r > requirements.txt
 
