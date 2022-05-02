@@ -144,7 +144,7 @@
 
 .signup-error {
   color: red;
-  opacity: 70%;
+  opacity: .7;
   font-size: small;
   margin: 0;
 }
