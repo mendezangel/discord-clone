@@ -27,9 +27,11 @@ def createServer(owner_id):
         db.session.add(server)
         db.session.commit()
 
+        return server.to_dict()
+
 
 @server_routes.route('/<int:server_id>/edit', methods=['PATCH'])
-# @login_required
+@login_required
 def updateServer(server_id):
     data = request.get_json()
 
@@ -39,4 +41,5 @@ def updateServer(server_id):
     server.owner_id = data['owner_id']
 
     db.session.commit()
-    print(server.to_dict())
+
+    return server.to_dict()
