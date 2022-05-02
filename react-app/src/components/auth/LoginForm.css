@@ -119,6 +119,10 @@
   font-family: inherit;
 }
 
+.login-form-button:hover {
+  opacity: .8;
+}
+
 .login-button {
   margin-right: 25px;
 }
@@ -136,4 +140,11 @@
 .login-form-register-p a:hover {
   text-decoration: underline;
   color: #00AFF4;
+}
+
+.signup-error {
+  color: red;
+  opacity: 70%;
+  font-size: small;
+  margin: 0;
 }
