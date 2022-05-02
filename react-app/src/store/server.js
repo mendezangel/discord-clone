@@ -3,7 +3,6 @@ const SERVERS = '/servers'
 const UPDATE  = '/servers/:id/edit'
 const DELETE  = '/servers/:id/delete'
 
-const initialState = {}
 
 // REGULAR ACTION FUNCTIONS
 const servers = payload => {
@@ -22,6 +21,7 @@ export const getAllServers = () => async dispatch => {
 
   dispatch( servers(serverArray) );
 }
+
 export const createServer = (server) => async dispatch => {
   const { owner_id, name, image, invite_url } = server;
   const res = await fetch('api/servers/new', {
@@ -30,17 +30,11 @@ export const createServer = (server) => async dispatch => {
     headers: {'Content-Type': 'application/json'}
   });
   const data = await res.json();
-  
-
-
-  // For Angel
-
-
-
 
   dispatch( newServer(data) )
   return data;
 }
+
 export const editServer = (server) => async dispatch => {
   const { owner_id, name, image, invite_url } = server;
   const res = await fetch('api/servers/:id/edit', {
@@ -53,6 +47,7 @@ export const editServer = (server) => async dispatch => {
   dispatch( updateServer(data) );
   return data;
 }
+
 export const delServer = (serverId) => async dispatch => {
   const res = await fetch('api/servers/:id/delete', {
     method: 'DELETE',
@@ -65,6 +60,8 @@ export const delServer = (serverId) => async dispatch => {
   return data;
 }
 
+
+const initialState = {}
 
 const ServerReducer = (state = initialState, action) => {
   let newState;
