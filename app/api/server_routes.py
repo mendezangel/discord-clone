@@ -10,7 +10,7 @@ server_routes = Blueprint('servers', __name__)
 @server_routes.route('/<int:user_id>')
 @login_required
 def getAllServers(user_id):
-    servers = User.query.join(members).filter(members.user_id == user_id).all()
+    servers = Server.query.join(members).filter(members.c.user_id == user_id).all()
     return {'servers': [server.to_dict() for server in servers]}
 
 @server_routes.route('/new')
@@ -37,6 +37,6 @@ def updateServer(server_id):
     server.name = data['name']
     server.image = data['image']
     server.owner_id = data['owner_id']
-    
+
     db.session.commit()
     print(server.to_dict())

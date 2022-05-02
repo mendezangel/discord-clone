@@ -15,11 +15,10 @@ const deleteServer = payload => {
   return { type: DELETE, payload }};
 
 //THUNKS
-export const getAllServers = () => async dispatch => {
-  const res = await fetch('api/servers');
+export const getAllServers = (id) => async dispatch => {
+  const res = await fetch(`api/servers/${id}`);
   const serverArray = await res.json();
-
-  dispatch( servers(serverArray) );
+  dispatch( servers(serverArray.servers) );
 }
 
 export const createServer = (server) => async dispatch => {
@@ -73,8 +72,8 @@ const ServerReducer = (state = initialState, action) => {
 
       return newState;
     case SERVERS:
-      newState = { ...state };
-      newState.servers = action.payload;
+      newState = {...state, ...action.payload};
+      // newState.servers = action.payload;
 
       return newState;
     case UPDATE:
