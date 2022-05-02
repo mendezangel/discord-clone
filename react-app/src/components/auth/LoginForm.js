@@ -77,7 +77,7 @@ const LoginForm = () => {
           </div>
           <button type='submit' className='login-button'>Login</button>
           <button className='demo-user-button' onClick={demoUser}>Demo User</button>
-          <p>Need an account? <span><Link to='/signup' className='login-form-register-link'> Register</Link></span></p>
+          <p>Need an account? <span><Link to='/sign-up' className='login-form-register-link'> Register</Link></span></p>
         </form>
       </div>
     </div>
@@ -85,4 +85,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-
