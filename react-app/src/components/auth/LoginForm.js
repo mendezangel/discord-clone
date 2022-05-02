@@ -38,6 +38,11 @@ const LoginForm = () => {
     return <Redirect to='/@me' />;
   }
 
+  const testing = () => {
+    if (errors) return;
+    return 'urmum'
+  }
+
   return (
     <div className='whole-page-div'>
       <div className='background-image-container'>
@@ -57,7 +62,7 @@ const LoginForm = () => {
             </div> */}
             <div className='login-form-input-fields'>
               <div className='form-group'>
-                <label htmlFor='email'>Email</label>
+                <label htmlFor='email'>Email {testing()}</label>
                 <input
                   className='login-form-email-input'
                   name='email'
@@ -65,9 +70,6 @@ const LoginForm = () => {
                   value={email}
                   onChange={updateEmail}
                 />
-                {/* {errors?.map(error => {
-                  if (error.includes('email')) return (<p className='signup-error' key={error}>{error}</p>)
-                })} */}
               </div>
               <div className='form-group'>
                 <label htmlFor='password'>Password</label>
