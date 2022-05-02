@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css';
-import image from '../../../images/login-background.png'
+import image from '../../images/login-background.png'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -43,42 +43,46 @@ const LoginForm = () => {
         <img className='background-image' src={image} />
       </div>
       <div className='login-form-container'>
-        <h1>Welcome back!</h1>
-        <p className='login-form-p'>We're so excited to see you again!</p>
-        <form onSubmit={onLogin}>
-          {/* <div>
+        <div className='login-form-text-container'>
+          <h1>Welcome back!</h1>
+          <p className='login-form-p'>We're so excited to see you again!</p>
+        </div>
+        <div className='login-form-form-container'>
+          <form onSubmit={onLogin} className='login-form'>
+            {/* <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div> */}
-          <div className='login-form-input-fields'>
-            <div className='form-group'>
-              <label htmlFor='email'>Email</label>
-              <input
-                className='login-form-email-input'
-                name='email'
-                type='text'
-                placeholder='Email'
-                value={email}
-                onChange={updateEmail}
-              />
+            <div className='login-form-input-fields'>
+              <div className='form-group'>
+                <label htmlFor='email'>Email</label>
+                <input
+                  className='login-form-email-input'
+                  name='email'
+                  type='text'
+                  value={email}
+                  onChange={updateEmail}
+                />
+              </div>
+              <div className='form-group'>
+                <label htmlFor='password'>Password</label>
+                <input
+                  className='login-form-password-input'
+                  name='password'
+                  type='password'
+                  value={password}
+                  onChange={updatePassword}
+                />
+              </div>
             </div>
-            <div className='form-group'>
-              <label htmlFor='password'>Password</label>
-              <input
-                className='login-form-password-input'
-                name='password'
-                type='password'
-                placeholder='Password'
-                value={password}
-                onChange={updatePassword}
-              />
-            </div>
-          </div>
+          </form>
+        </div>
+        <div className='login-form-buttons-container'>
           <button type='submit' className='login-button'>Login</button>
           <button className='demo-user-button' onClick={demoUser}>Demo User</button>
-          <p>Need an account? <span><Link to='/signup' className='login-form-register-link'> Register</Link></span></p>
-        </form>
+          <p>Need an account? <span><Link to='/sign-up' className='login-form-register-link'> Register</Link></span></p>
+        </div>
       </div>
     </div>
   );
