@@ -47,16 +47,19 @@
 }
 
 .login-form-form-container {
+  border: solid orange 1px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid white 1px;
 }
 
 .login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   margin-top: 15px;
-  border: solid white 1px;
+  border: solid green 1px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,10 +73,6 @@
   margin-top: 50px;
   width: 100%;
   border: solid white 1px;
-}
-
-.login-form-form-container {
-  /* border: solid white 1px; */
 }
 
 .login-form-container .login-form-email-input,
