@@ -43,3 +43,12 @@ def updateServer(server_id):
     db.session.commit()
 
     return server.to_dict()
+
+
+@server_routes.route('/<int:server_id>/delete', methods=['DELETE'])
+@login_required
+def deleteServer(server_id):
+  server = Server.query.get(server_id)
+  db.session.delete(server)
+
+  return server.to_dict()
