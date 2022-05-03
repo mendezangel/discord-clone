@@ -16,7 +16,7 @@ const deleteChannel = payload => {
 
 // THUNKS
 export const getAllChannels = () => async dispatch => {
-  const res = await fetch('api/channels');
+  const res = await fetch('/api/channels');
   const channelArray = await res.json();
 
   dispatch( channels(channelArray) );
@@ -24,7 +24,7 @@ export const getAllChannels = () => async dispatch => {
 
 export const createChannel = (channel) => async dispatch => {
   const { name, server_id } = channel;
-  const res = await fetch('api/channels/new', {
+  const res = await fetch('/api/channels/new', {
     method: 'POST',
     body: JSON.stringify({ name, server_id }),
     headers: {'Content-Type': 'application/json'}
@@ -37,7 +37,7 @@ export const createChannel = (channel) => async dispatch => {
 
 export const editChannel = (channel) => async dispatch => {
   const { name, server_id } = channel;
-  const res = await fetch('api/channels/:id/edit', {
+  const res = await fetch('/api/channels/:id/edit', {
     method: 'PATCH',
     body: JSON.stringify({ name, server_id }),
     headers: {'Content-Type': 'application/json'}
@@ -49,7 +49,7 @@ export const editChannel = (channel) => async dispatch => {
 }
 
 export const delChannel = (channelId) => async dispatch => {
-  const res = await fetch('api/channels/:id/delete', {
+  const res = await fetch('/api/channels/:id/delete', {
     method: 'DELETE',
     body: JSON.stringify(channelId),
     headers: {'Content-Type': 'application/json'}

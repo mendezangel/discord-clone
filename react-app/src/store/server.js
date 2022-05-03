@@ -16,14 +16,14 @@ const deleteServer = payload => {
 
 //THUNKS
 export const getAllServers = (id) => async dispatch => {
-  const res = await fetch(`api/servers/${id}`);
+  const res = await fetch(`/api/servers/${id}`);
   const serverArray = await res.json();
   dispatch( servers(serverArray.servers) );
 }
 
 export const createServer = (server) => async dispatch => {
   const { owner_id, name, image, invite_url } = server;
-  const res = await fetch('api/servers/new', {
+  const res = await fetch('/api/servers/new', {
     method: 'POST',
     body: JSON.stringify({ owner_id, name, image, invite_url }),
     headers: {'Content-Type': 'application/json'}
@@ -36,7 +36,7 @@ export const createServer = (server) => async dispatch => {
 
 export const editServer = (server) => async dispatch => {
   const { owner_id, name, image, invite_url } = server;
-  const res = await fetch(`api/servers/${server.id}/edit`, {
+  const res = await fetch(`/api/servers/${server.id}/edit`, {
     method: 'PATCH',
     body: JSON.stringify({ owner_id, name, image, invite_url }),
     headers: {'Content-Type': 'application/json'}
@@ -48,7 +48,7 @@ export const editServer = (server) => async dispatch => {
 }
 
 export const delServer = (serverId) => async dispatch => {
-  const res = await fetch('api/servers/:id/delete', {
+  const res = await fetch('/api/servers/:id/delete', {
     method: 'DELETE',
     body: JSON.stringify(serverId),
     headers: {'Content-Type': 'application/json'}

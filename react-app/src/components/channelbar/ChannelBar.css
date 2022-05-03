@@ -1,5 +1,6 @@
 .channel-bar{
     height: 100vh;
-    width: 240px;
+    width: 239px;
     background-color: #2f3136;
+    display: flex;
 }
