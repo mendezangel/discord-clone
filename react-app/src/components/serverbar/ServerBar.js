@@ -31,7 +31,9 @@ const ServerBar = ({ servers }) => {
                 }
               }
             })}
-            <NavLink to="/server/new">NEW</NavLink>
+            <NavLink to="/server/new" className="crud_icon">
+            <i className="fas fa-plus"></i>
+            </NavLink>
         </div>
     )
 }
