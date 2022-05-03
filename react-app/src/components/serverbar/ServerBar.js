@@ -1,6 +1,6 @@
 import './ServerBar.css'
 import { useSelector } from "react-redux"
-import { Redirect, NavLink, useHistory } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 
 const ServerBar = ({ servers }) => {
     const history = useHistory();
@@ -31,7 +31,9 @@ const ServerBar = ({ servers }) => {
                 }
               }
             })}
-            <NavLink to="/server/new">NEW</NavLink>
+            <NavLink to="/server/new" className="crud_icon">
+            <i className="fas fa-plus"></i>
+            </NavLink>
         </div>
     )
 }
