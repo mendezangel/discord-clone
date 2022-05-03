@@ -69,9 +69,9 @@ const ServerReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE:
       newState = { ...state };
-      console.log('NEWSTATE: ', newState)
-      console.log('PAYLOAD: ', action.payload)
-      newState.servers = action.payload;
+      // console.log('NEWSTATE: ', newState)
+      // console.log('PAYLOAD: ', action.payload)
+      // newState.servers.push(action.payload);
 
       return newState;
     case SERVERS:

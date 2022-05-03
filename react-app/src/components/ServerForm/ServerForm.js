@@ -32,8 +32,8 @@ const ServerForm = () => {
             // add server inviteurl
         }
         console.log(server)
-        const newServer = await dispatch(createServer(server))
-        return <Redirect to={`/channels/${newServer.id}`} />;
+        /*const newServer = */await dispatch(createServer(server))
+        return <Redirect to='/channels/@me' />;
     }
 
     return (
