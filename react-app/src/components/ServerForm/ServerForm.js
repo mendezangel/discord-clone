@@ -7,7 +7,7 @@ import image from '../../images/login-background.png'
 import { createServer } from '../../store/server';
 
 const ServerForm = () => {
-    const [image, setImage] = useState();
+    const [image, setImage] = useState("");
     const [name, setName] = useState('');
 
     const user = useSelector(state => state.session.user);
@@ -23,15 +23,15 @@ const ServerForm = () => {
 
 
     const onSubmit = async (e) => {
-        e.preventdefault();
+        e.preventDefault();
 
         const server = {
             image,
             name,
-            owner_id: user.id,
+            owner_id: user.id
             // add server inviteurl
         }
-
+        console.log(server)
         const newServer = await dispatch(createServer(server))
         return <Redirect to={`/channels/${newServer.id}`} />;
     }
@@ -70,7 +70,7 @@ const ServerForm = () => {
                 </div>
                 <div className='server-form-buttons-container'>
                     <button className='server-form-back-button'>Back</button>
-                    <button className='server-form-create-button' type="submit">Create</button>
+                    <button className='server-form-create-button' onClick={onSubmit}>Create</button>
                 </div>
 
             </div>
