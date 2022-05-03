@@ -7,7 +7,7 @@ const Splash = () => {
 
 
     if (user) {
-        return <Redirect to='/test/@me' />;
+        return <Redirect to='/channels/@me' />;
     }
 
     return (
