@@ -18,7 +18,8 @@ const deleteServer = payload => {
 export const getAllServers = (id) => async dispatch => {
   const res = await fetch(`/api/servers/${id}`);
   const serverArray = await res.json();
-  dispatch( servers(serverArray.servers) );
+
+  dispatch( servers(serverArray) );
 }
 
 export const createServer = (server) => async dispatch => {
@@ -73,7 +74,6 @@ const ServerReducer = (state = initialState, action) => {
       return newState;
     case SERVERS:
       newState = {...state, ...action.payload};
-      // newState.servers = action.payload;
 
       return newState;
     case UPDATE:
