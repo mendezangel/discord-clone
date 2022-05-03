@@ -4,6 +4,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css';
 import image from '../../images/login-background.png'
+import { createServer } from '../../store/server';
 
 const LoginForm = () => {
     const [image, setImage] = useState();
@@ -12,7 +13,19 @@ const LoginForm = () => {
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
+    const onSubmit = async (e) => {
+        e.preventdefault();
 
+        const server = {
+            image,
+            name,
+            owner_id: user.id,
+            // add server inviteurl
+        }
+
+        const newServer = dispatch(createServer(server))
+        Redirect
+    }
 
     const updateImage = (e) => {
         setImage(e.target.value);
