@@ -6,7 +6,6 @@ const DELETE  = '/servers/:id/delete'
 
 // REGULAR ACTION FUNCTIONS
 const servers = payload => {
-  console.log('---------- INSIDE ACTION: ', payload)
   return { type: SERVERS, payload }};
 const newServer = payload => {
   return { type: CREATE, payload }};
@@ -74,8 +73,6 @@ const ServerReducer = (state = initialState, action) => {
 
       return newState;
     case SERVERS:
-      // newState.servers = action.payload;
-      console.log('---------- INSIDE REDUCER: ', action.payload)
       newState = {...state, ...action.payload};
 
       return newState;
