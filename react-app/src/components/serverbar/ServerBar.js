@@ -9,12 +9,24 @@ const ServerBar = ({ servers }) => {
             { servers.map(server => {
               if (server.id === userServer) {
                 return (
-                  <div className="user_server_icon no_pic" key={server.id}>
-                    B
+                  <div className="server_icon no_pic" key={server.id}>
+                    {server.name[0]}
                   </div>
                 )
               } else {
-                return null;
+                if (server.image) {
+                  return (
+                    <div className="server_icon no_pic" key={server.id}>
+                      {server.name[0]}
+                    </div>
+                  )
+                } else {
+                  return (
+                    <div className="server_icon no_pic" key={server.id}>
+                      {server.name[0]}
+                    </div>
+                  )
+                }
               }
             })}
         </div>
