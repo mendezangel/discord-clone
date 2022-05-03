@@ -12,14 +12,13 @@ const ServerBar = ({ servers }) => {
             { servers.map(server => {
               if (server.id === userServer) {
                 return (
-                  <div className="server_icon no_pic" key={server.id} onClick={() => onServerClick('@me')}>
-                    {server.name[0]}
+                  <div className="server_icon" style={{backgroundImage : `url(${server.image})`}} key={server.id} onClick={() => onServerClick('@me')}>
                   </div>
                 )
               } else {
                 if (server.image) {
                   return (
-                    <div className="server_icon no_pic" key={server.id} onClick={() => onServerClick(server.id)}>
+                    <div className="server_icon" style={{'background-image': `${server.image}`}} key={server.id} onClick={() => onServerClick(server.id)}>
                       {server.name[0]}
                     </div>
                   )
