@@ -9,6 +9,7 @@ import { authenticate } from './store/session';
 import Splash from './components/splash-page/Splash';
 import LogoutButton from './components/auth/LogoutButton';
 import Main from './components/main/Main';
+import ServerForm from './components/ServerForm/ServerForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,7 +39,10 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/channels/@me' exact={true} >
+        <Route path='/server/new' exact={true}>
+          <ServerForm />
+        </Route>
+        <ProtectedRoute path='/channels' >
           <Main />
         </ProtectedRoute>
       </Switch>
