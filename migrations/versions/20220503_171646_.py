@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: f9af2ec6526a
+Revision ID: 1aee5bbe5d73
 Revises: 
-Create Date: 2022-04-29 18:42:33.948392
+Create Date: 2022-05-03 17:16:46.389117
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'f9af2ec6526a'
+revision = '1aee5bbe5d73'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -35,7 +35,7 @@ def upgrade():
     sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=30), nullable=False),
     sa.Column('image', sa.String(), nullable=True),
-    sa.Column('invite_url', sa.String(), nullable=False),
+    sa.Column('invite_url', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('invite_url')
@@ -44,8 +44,6 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=20), nullable=False),
     sa.Column('server_id', sa.Integer(), nullable=False),
-    sa.Column('server2_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['server2_id'], ['servers.id'], ),
     sa.ForeignKeyConstraint(['server_id'], ['servers.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
