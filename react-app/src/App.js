@@ -42,7 +42,7 @@ function App() {
         <Route path='/servers/new' exact={true}>
           <ServerForm />
         </Route>
-        <ProtectedRoute path='/channels' >
+        <ProtectedRoute path='/channels/@me' exact={true} >
           <Main />
         </ProtectedRoute>
       </Switch>

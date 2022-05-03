@@ -11,9 +11,7 @@ server_routes = Blueprint('servers', __name__)
 @server_routes.route('/<int:user_id>')
 @login_required
 def getAllServers(user_id):
-  print('\n\nyou are in this route', user_id)
   servers = Server.query.filter_by(owner_id = user_id).all()
-  print('\n\n\nthese are the servers\n\n\n', servers)
     # servers = Server.query.join(members).filter(members.c.user_id == user_id).all()
     # servers = [server.to_dict() for server in servers]
 
@@ -29,7 +27,7 @@ def getAllServers(user_id):
     # print('---------------------', members_expanded)
 
     # return {'servers': servers, 'members': members_expanded}
-    # print({'servers': [server.to_dict() for server in servers]})
+  print([server.to_dict() for server in servers])
   return {'servers': [server.to_dict() for server in servers]}
 
 @server_routes.route('/new', methods=['POST'])
