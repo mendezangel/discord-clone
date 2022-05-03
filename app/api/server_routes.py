@@ -35,10 +35,9 @@ def createServer():
 
   form = CreateServerForm()
   data = request.get_json()
-  print("===================", data)
-
+  print('this is the boolean\n\n\n', form.data)
   if form.validate_on_submit():
-    print('inside if')
+    print('\n\n\n\ninside if')
     server = Server(
         image=data['image'],
         owner_id =data['owner_id'],

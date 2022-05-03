@@ -33,8 +33,11 @@ export const createServer = (server) => async dispatch => {
     body: JSON.stringify({ owner_id, name, image, invite_url }),
     headers: { 'Content-Type': 'application/json' }
   });
+  console.log(res)
   const data = await res.json();
+  console.log('this is the data', data)
   dispatch(newServer(data))
+  console.log('dispatch was successful\n\n')
   return data;
 }
 

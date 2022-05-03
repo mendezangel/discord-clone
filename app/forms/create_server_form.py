@@ -5,7 +5,3 @@ from app.models import User
 
 class CreateServerForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
-    
-    
-
-    
