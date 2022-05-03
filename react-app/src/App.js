@@ -40,7 +40,6 @@ function App() {
         </Route>
         <ProtectedRoute path='/channels/@me' exact={true} >
           <Main />
-          <LogoutButton />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
