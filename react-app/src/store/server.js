@@ -1,37 +1,43 @@
-const CREATE  = '/servers/new'
+const CREATE = '/servers/new'
 const SERVERS = '/servers'
-const UPDATE  = '/servers/:id/edit'
-const DELETE  = '/servers/:id/delete'
+const UPDATE = '/servers/:id/edit'
+const DELETE = '/servers/:id/delete'
 
 
 // REGULAR ACTION FUNCTIONS
 const servers = payload => {
-  return { type: SERVERS, payload }};
+  return { type: SERVERS, payload }
+};
 const newServer = payload => {
-  return { type: CREATE, payload }};
+  return { type: CREATE, payload }
+};
 const updateServer = payload => {
-  return { type: UPDATE, payload }};
+  return { type: UPDATE, payload }
+};
 const deleteServer = payload => {
-  return { type: DELETE, payload }};
+  return { type: DELETE, payload }
+};
 
 //THUNKS
 export const getAllServers = (id) => async dispatch => {
   const res = await fetch(`/api/servers/${id}`);
-  const serverArray = await res.json();
+  const { servers: serversArray } = await res.json();
 
-  dispatch( servers(serverArray) );
+  dispatch(servers(serversArray));
 }
 
 export const createServer = (server) => async dispatch => {
   const { owner_id, name, image, invite_url } = server;
   const res = await fetch('/api/servers/new', {
     method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ owner_id, name, image, invite_url }),
-    headers: {'Content-Type': 'application/json'}
   });
+  console.log(res)
   const data = await res.json();
-
-  dispatch( newServer(data) )
+  console.log('this is the data', data)
+  dispatch(newServer(data))
+  console.log('dispatch was successful\n\n')
   return data;
 }
 
@@ -40,11 +46,11 @@ export const editServer = (server) => async dispatch => {
   const res = await fetch(`/api/servers/${server.id}/edit`, {
     method: 'PATCH',
     body: JSON.stringify({ owner_id, name, image, invite_url }),
-    headers: {'Content-Type': 'application/json'}
+    headers: { 'Content-Type': 'application/json' }
   });
   const data = await res.json();
 
-  dispatch( updateServer(data) );
+  dispatch(updateServer(data));
   return data;
 }
 
@@ -52,16 +58,16 @@ export const delServer = (serverId) => async dispatch => {
   const res = await fetch('/api/servers/:id/delete', {
     method: 'DELETE',
     body: JSON.stringify(serverId),
-    headers: {'Content-Type': 'application/json'}
+    headers: { 'Content-Type': 'application/json' }
   });
   const data = await res.json();
 
-  dispatch( deleteServer(data) );
+  dispatch(deleteServer(data));
   return data;
 }
 
 
-const initialState = { servers: {}, members: {} }
+const initialState = { servers: [] }
 
 const ServerReducer = (state = initialState, action) => {
   let newState;
@@ -69,19 +75,21 @@ const ServerReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE:
       newState = { ...state };
-      // console.log('NEWSTATE: ', newState)
-      // console.log('PAYLOAD: ', action.payload)
-      // newState.servers.push(action.payload);
+      newState.servers.push(action.payload);
+      newState[action.payload.id] = action.payload;
 
       return newState;
     case SERVERS:
-      newState = {...state, ...action.payload};
+      newState = { ...state, servers: [...action.payload] };
+      action.payload.forEach(server => {
+        newState[server.id] = server
+      })
 
       return newState;
     case UPDATE:
       newState = { ...state };
-      newState.servers = newState.servers.map( server => {
-        if ( server.id === action.payload.id ) {
+      newState.servers = newState.servers.map(server => {
+        if (server.id === action.payload.id) {
           return action.payload;
         } else {
           return server;
@@ -91,8 +99,8 @@ const ServerReducer = (state = initialState, action) => {
       return newState;
     case DELETE:
       newState = { ...state };
-      newState.servers = newState.servers.filter( server => {
-        if ( server.id !== action.payload ) {
+      newState.servers = newState.servers.filter(server => {
+        if (server.id !== action.payload) {
           return server;
         } else {
           return null;

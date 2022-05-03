@@ -3,39 +3,39 @@ import { useSelector } from "react-redux"
 import { NavLink, useHistory } from 'react-router-dom'
 
 const ServerBar = ({ servers }) => {
-    const history = useHistory();
-    const userServer = useSelector(state => state.session.user.me_server)
+  const history = useHistory();
+  const userServer = useSelector(state => state.session.user.me_server)
 
-    const onServerClick = (id) => history.push(`/channels/${id}`)
-    return (
-        <div className="server_bar">
-            { servers.map(server => {
-              if (server.id === userServer) {
-                return (
-                  <div className="server_icon" style={{backgroundImage : `url(${server.image})`}} key={server.id} onClick={() => onServerClick('@me')}>
-                  </div>
-                )
-              } else {
-                if (server.image) {
-                  return (
-                    <div className="server_icon" style={{'background-image': `${server.image}`}} key={server.id} onClick={() => onServerClick(server.id)}>
-                      {server.name[0]}
-                    </div>
-                  )
-                } else {
-                  return (
-                    <div className="server_icon no_pic" key={server.id} onClick={() => onServerClick(server.id)}>
-                      {server.name[0]}
-                    </div>
-                  )
-                }
-              }
-            })}
-            <NavLink to="/server/new" className="crud_icon">
-            <i className="fas fa-plus"></i>
-            </NavLink>
-        </div>
-    )
+  const onServerClick = (id) => history.push(`/channels/${id}`)
+  return (
+    <div className="server_bar">
+      {servers.map(server => {
+        if (server.id === userServer) {
+          return (
+            <div className="server_icon" style={{ backgroundImage: `url(${server.image})` }} key={server.id} onClick={() => onServerClick('@me')}>
+            </div>
+          )
+        } else {
+          if (server.image) {
+            return (
+              <div className="server_icon" style={{ 'background-image': `${server.image}` }} key={server.id} onClick={() => onServerClick(server.id)}>
+                {server.name[0]}
+              </div>
+            )
+          } else {
+            return (
+              <div className="server_icon no_pic" key={server.id} onClick={() => onServerClick(server.id)}>
+                {server.name[0]}
+              </div>
+            )
+          }
+        }
+      })}
+      <NavLink to="/servers/new" className="crud_icon">
+        <i className="fas fa-plus"></i>
+      </NavLink>
+    </div>
+  )
 }
 
 export default ServerBar

@@ -11,31 +11,18 @@ server_routes = Blueprint('servers', __name__)
 @server_routes.route('/<int:user_id>')
 @login_required
 def getAllServers(user_id):
-    servers = Server.query.join(members).filter(members.c.user_id == user_id).all()
-    servers = [server.to_dict() for server in servers]
+  servers = Server.query.filter_by(owner_id = user_id).all()
+  return {'servers': [server.to_dict() for server in servers]}
 
-    members_list = [db.session.query(members).filter(members.c.server_id == server['id']).all() for server in servers]
-    members_expanded = []
-    for server in members_list:
-      server_members = []
-      for member in server:
-        server_members.append( User.query.filter(User.id == member[1]).one().to_dict() )
-      members_expanded.append( server_members )
-    
-    # print('---------------------', servers)
-    # print('---------------------', members_expanded)
-
-    return {'servers': servers, 'members': members_expanded}
-    # return {'servers': [server.to_dict() for server in servers]}
-
-@server_routes.route('/new', methods=['POST'])
+@server_routes.route('/new', methods=["POST"])
 @login_required
 def createServer():
 
-    form = CreateServerForm()
-    data = request.get_json()
-    print("===================", data)
-    
+  form = CreateServerForm()
+  data = request.get_json()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  if form.validate_on_submit():
+    print('\n\n\n\ninside if')
     server = Server(
         image=data['image'],
         owner_id =data['owner_id'],
@@ -46,6 +33,8 @@ def createServer():
     db.session.commit()
     
     return server.to_dict()
+  else:
+    return 'testing'
 
 @server_routes.route('/<int:server_id>/edit', methods=['PATCH'])
 @login_required

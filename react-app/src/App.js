@@ -31,7 +31,7 @@ function App() {
       <Switch>
         <Route path='/' exact={true}>
           <NavBar />
-          <Splash/>
+          <Splash />
         </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -39,10 +39,10 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <Route path='/server/new' exact={true}>
+        <Route path='/servers/new' exact={true}>
           <ServerForm />
         </Route>
-        <ProtectedRoute path='/channels' >
+        <ProtectedRoute path='/channels'>
           <Main />
         </ProtectedRoute>
       </Switch>
