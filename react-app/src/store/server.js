@@ -21,9 +21,9 @@ const deleteServer = payload => {
 //THUNKS
 export const getAllServers = (id) => async dispatch => {
   const res = await fetch(`/api/servers/${id}`);
-  const serverArray = await res.json();
+  const { servers: serversArray } = await res.json();
 
-  dispatch(servers(serverArray));
+  dispatch(servers(serversArray));
 }
 
 export const createServer = (server) => async dispatch => {
@@ -34,9 +34,7 @@ export const createServer = (server) => async dispatch => {
     headers: { 'Content-Type': 'application/json' }
   });
   const data = await res.json();
-  console.log('before new server dispatch \n\n')
   dispatch(newServer(data))
-  console.log('after new server dispatch\n\n\n')
   return data;
 }
 
@@ -66,7 +64,7 @@ export const delServer = (serverId) => async dispatch => {
 }
 
 
-const initialState = { servers: {}, members: {} }
+const initialState = { servers: [] }
 
 const ServerReducer = (state = initialState, action) => {
   let newState;
@@ -74,17 +72,15 @@ const ServerReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE:
       newState = { ...state };
-<<<<<<< HEAD
-      newState.servers = newState.servers.concat(action.payload);
-=======
-      console.log('NEWSTATE: ', newState)
-      console.log('PAYLOAD: ', action.payload)
-      newState.servers = action.payload;
->>>>>>> main
+      newState.servers.push(action.payload);
+      newState[action.payload.id] = action.payload;
 
       return newState;
     case SERVERS:
-      newState = { ...state, ...action.payload };
+      newState = { ...state, servers: [...action.payload] };
+      action.payload.forEach(server => {
+        newState[server.id] = server
+      })
 
       return newState;
     case UPDATE:
