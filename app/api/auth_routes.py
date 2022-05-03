@@ -75,7 +75,7 @@ def sign_up():
         server = Server(
           owner_id=user.id,
           name='@me',
-          image=None, #TODO add image
+          image='https://discord-imgs.s3.us-east-2.amazonaws.com/discord-server.png',
           invite_url=None
         )
         user.profile_pic = f'https://discord-imgs.s3.us-east-2.amazonaws.com/{int(user.username[-4:])%6}-discord.png'
