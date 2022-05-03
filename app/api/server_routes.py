@@ -32,22 +32,24 @@ def getAllServers(user_id):
 @login_required
 def createServer():
 
-   form = CreateServerForm()
-   data = request.get_json()
-   print("===================", data)
-   if form.validate_on_submit():
-        server = Server(
-            image=data['image'],
-            owner_id =data['owner_id'],
-            name=data['name'],
+  form = CreateServerForm()
+  data = request.get_json()
+  print("===================", data)
 
-        )
-        db.session.add(server)
-        db.session.commit()
+  if form.validate_on_submit():
+    print('inside if')
+    server = Server(
+        image=data['image'],
+        owner_id =data['owner_id'],
+        name=data['name'],
+
+    )
+    db.session.add(server)
+    db.session.commit()
         
-        return server.to_dict()
-    else:
-        print("=====================", server.to_dict())
+    return server.to_dict()
+  else:
+    return 'this sucks camel dicks'
 
 @server_routes.route('/<int:server_id>/edit', methods=['PATCH'])
 @login_required

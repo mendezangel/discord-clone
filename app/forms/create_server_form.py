@@ -4,8 +4,7 @@ from wtforms.validators import DataRequired, Email, Length
 from app.models import User
 
 class CreateServerForm(FlaskForm):
-    image = StringField('image')
-    name = StringField('name', validators=[DataRequired(), Length(min = 3, max = 30)])
+    name = StringField('name', validators=[DataRequired()])
     
     
 

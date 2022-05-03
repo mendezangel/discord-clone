@@ -1,25 +1,29 @@
-const CREATE  = '/servers/new'
+const CREATE = '/servers/new'
 const SERVERS = '/servers'
-const UPDATE  = '/servers/:id/edit'
-const DELETE  = '/servers/:id/delete'
+const UPDATE = '/servers/:id/edit'
+const DELETE = '/servers/:id/delete'
 
 
 // REGULAR ACTION FUNCTIONS
 const servers = payload => {
-  return { type: SERVERS, payload }};
+  return { type: SERVERS, payload }
+};
 const newServer = payload => {
-  return { type: CREATE, payload }};
+  return { type: CREATE, payload }
+};
 const updateServer = payload => {
-  return { type: UPDATE, payload }};
+  return { type: UPDATE, payload }
+};
 const deleteServer = payload => {
-  return { type: DELETE, payload }};
+  return { type: DELETE, payload }
+};
 
 //THUNKS
 export const getAllServers = (id) => async dispatch => {
   const res = await fetch(`/api/servers/${id}`);
   const serverArray = await res.json();
 
-  dispatch( servers(serverArray) );
+  dispatch(servers(serverArray));
 }
 
 export const createServer = (server) => async dispatch => {
@@ -27,11 +31,12 @@ export const createServer = (server) => async dispatch => {
   const res = await fetch('/api/servers/new', {
     method: 'POST',
     body: JSON.stringify({ owner_id, name, image, invite_url }),
-    headers: {'Content-Type': 'application/json'}
+    headers: { 'Content-Type': 'application/json' }
   });
   const data = await res.json();
-
-  dispatch( newServer(data) )
+  console.log('before new server dispatch \n\n')
+  dispatch(newServer(data))
+  console.log('after new server dispatch\n\n\n')
   return data;
 }
 
@@ -40,11 +45,11 @@ export const editServer = (server) => async dispatch => {
   const res = await fetch(`/api/servers/${server.id}/edit`, {
     method: 'PATCH',
     body: JSON.stringify({ owner_id, name, image, invite_url }),
-    headers: {'Content-Type': 'application/json'}
+    headers: { 'Content-Type': 'application/json' }
   });
   const data = await res.json();
 
-  dispatch( updateServer(data) );
+  dispatch(updateServer(data));
   return data;
 }
 
@@ -52,11 +57,11 @@ export const delServer = (serverId) => async dispatch => {
   const res = await fetch('/api/servers/:id/delete', {
     method: 'DELETE',
     body: JSON.stringify(serverId),
-    headers: {'Content-Type': 'application/json'}
+    headers: { 'Content-Type': 'application/json' }
   });
   const data = await res.json();
 
-  dispatch( deleteServer(data) );
+  dispatch(deleteServer(data));
   return data;
 }
 
@@ -69,17 +74,17 @@ const ServerReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE:
       newState = { ...state };
-      newState.servers = newState.servers.concat( action.payload );
+      newState.servers = newState.servers.concat(action.payload);
 
       return newState;
     case SERVERS:
-      newState = {...state, ...action.payload};
+      newState = { ...state, ...action.payload };
 
       return newState;
     case UPDATE:
       newState = { ...state };
-      newState.servers = newState.servers.map( server => {
-        if ( server.id === action.payload.id ) {
+      newState.servers = newState.servers.map(server => {
+        if (server.id === action.payload.id) {
           return action.payload;
         } else {
           return server;
@@ -89,8 +94,8 @@ const ServerReducer = (state = initialState, action) => {
       return newState;
     case DELETE:
       newState = { ...state };
-      newState.servers = newState.servers.filter( server => {
-        if ( server.id !== action.payload ) {
+      newState.servers = newState.servers.filter(server => {
+        if (server.id !== action.payload) {
           return server;
         } else {
           return null;
