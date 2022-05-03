@@ -9,9 +9,8 @@
     justify-content: space-between;
 }
 .profile-pic{
-    height: 35px;
+    height: 32px;
     border-radius: 50%;
-    padding: 0 7px;
 }
 .main-name{
     padding: 0;
@@ -20,6 +19,7 @@
 .name-tag{
     padding: 0;
     margin: 0;
+    font-size: 12px;
 }
 .profile-settings{
     justify-items: flex-end;
@@ -28,4 +28,8 @@
     display: flex;
     align-items: center;
     padding-left:6px;
+    gap: 7px;
+}
+.profile-bar-name{
+    cursor: pointer;
 }
