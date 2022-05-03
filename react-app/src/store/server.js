@@ -66,7 +66,7 @@ export const delServer = (serverId) => async dispatch => {
 }
 
 
-const initialState = {}
+const initialState = { servers: {}, members: {} }
 
 const ServerReducer = (state = initialState, action) => {
   let newState;
@@ -74,7 +74,13 @@ const ServerReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE:
       newState = { ...state };
+<<<<<<< HEAD
       newState.servers = newState.servers.concat(action.payload);
+=======
+      console.log('NEWSTATE: ', newState)
+      console.log('PAYLOAD: ', action.payload)
+      newState.servers = action.payload;
+>>>>>>> main
 
       return newState;
     case SERVERS:
