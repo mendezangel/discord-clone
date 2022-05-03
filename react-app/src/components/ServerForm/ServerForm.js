@@ -2,16 +2,25 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../store/session';
-import './LoginForm.css';
+
 import image from '../../images/login-background.png'
 import { createServer } from '../../store/server';
 
-const LoginForm = () => {
+const ServerForm = () => {
     const [image, setImage] = useState();
     const [name, setName] = useState('');
 
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
+
+    const updateImage = (e) => {
+        setImage(e.target.value);
+    };
+
+    const updateName = (e) => {
+        setName(e.target.value);
+    };
+
 
     const onSubmit = async (e) => {
         e.preventdefault();
@@ -23,19 +32,10 @@ const LoginForm = () => {
             // add server inviteurl
         }
 
-        const newServer = dispatch(createServer(server))
-        Redirect
+        const newServer = await dispatch(createServer(server))
+        return <Redirect to={`/channels/${newServer.id}`} />;
     }
 
-    const updateImage = (e) => {
-        setImage(e.target.value);
-    };
-
-    const updateName = (e) => {
-        setName(e.target.value);
-    };
-
-    
     return (
         <div className='whole-page-div'>
             <div className="server-form-container">
@@ -44,19 +44,28 @@ const LoginForm = () => {
                     <p>Give your new server a personality with a name and an icon. You can always change it later.</p>
                 </div>
                 <div className='server-form-input'>
-                    <form className='server-form'>
-                        <input
-                            type='text'
-                            className='server-form-name-input'
-                            value={name}
-                            onChange={updateName}
-                        />
-                        <input
-                            type='text'
-                            className='server-form-image-url'
-                            value={image}
-                            onChange={updateImage}
-                        />
+                    <form
+                        className='server-form'
+                        onSubmit={onSubmit}
+                    >
+                        <div className='server-form-group'>
+                            <label>Name</label>
+                            <input
+                                type='text'
+                                className='server-form-name-input'
+                                value={name}
+                                onChange={updateName}
+                            />
+                        </div>
+                        <div className='server-form-group'>
+                            <label>Image Url</label>
+                            <input
+                                type='text'
+                                className='server-form-image-url'
+                                value={image}
+                                onChange={updateImage}
+                            />
+                        </div>
                     </form>
                 </div>
                 <div className='server-form-buttons-container'>
@@ -69,4 +78,4 @@ const LoginForm = () => {
     );
 };
 
-export default LoginForm;
+export default ServerForm;
