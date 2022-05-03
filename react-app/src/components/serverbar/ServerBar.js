@@ -1,6 +1,6 @@
 import './ServerBar.css'
 import { useSelector } from "react-redux"
-import { Redirect, NavLink, useHistory } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 
 const ServerBar = ({ servers }) => {
     const history = useHistory();
