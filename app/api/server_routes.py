@@ -28,22 +28,24 @@ def getAllServers(user_id):
     return {'servers': servers, 'members': members_expanded}
     # return {'servers': [server.to_dict() for server in servers]}
 
-@server_routes.route('/new')
+@server_routes.route('/new', methods=['POST'])
 @login_required
-def createServer(owner_id):
-   form = CreateServerForm()
-   if form.validate_on_submit():
-        server = Server(
-            image=form.data['image'],
-            owner_id = owner_id,
-            name=form.data['name'],
+def createServer():
 
-        )
-        db.session.add(server)
-        db.session.commit()
+    form = CreateServerForm()
+    data = request.get_json()
+    print("===================", data)
+    
+    server = Server(
+        image=data['image'],
+        owner_id =data['owner_id'],
+        name=data['name'],
 
-        return server.to_dict()
-
+    )
+    db.session.add(server)
+    db.session.commit()
+    
+    return server.to_dict()
 
 @server_routes.route('/<int:server_id>/edit', methods=['PATCH'])
 @login_required
