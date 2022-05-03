@@ -16,13 +16,13 @@ const Main = () => {
     }
 
     useEffect(() => {
-        dispatch(getAllServers(user.id))
-    }, [dispatch, user.id])
+        dispatch(getAllServers(user?.id))
+    }, [dispatch, user?.id])
 
     return (
         <div className="main">
             <ServerBar servers={normalized_servers}/>
-            <ChannelBar />
+            <ChannelBar user={user}/>
         </div>
     )
 }
