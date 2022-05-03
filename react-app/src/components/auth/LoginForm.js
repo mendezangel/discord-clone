@@ -41,7 +41,7 @@ const LoginForm = () => {
   return (
     <div className='whole-page-div'>
       <div className='background-image-container'>
-        <img className='background-image' src={image} />
+        <img className='background-image' src={image} alt='Discord Background'/>
       </div>
       <div className='login-form-container'>
         <div className='login-form-text-container'>

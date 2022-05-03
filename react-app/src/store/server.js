@@ -90,7 +90,11 @@ const ServerReducer = (state = initialState, action) => {
     case DELETE:
       newState = { ...state };
       newState.servers = newState.servers.filter( server => {
-        if ( server.id !== action.payload ) return server;
+        if ( server.id !== action.payload ) {
+          return server;
+        } else {
+          return null;
+        }
       });
 
       return newState;

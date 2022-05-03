@@ -91,7 +91,11 @@ const ChannelReducer = (state = initialState, action) => {
     case DELETE:
       newState = { ...state };
       newState.channels = newState.channels.filter( channel => {
-        if ( channel.id !== action.payload ) return channel;
+        if ( channel.id !== action.payload ) {
+          return channel;
+        } else {
+          return null;
+        }
       });
 
       return newState;
