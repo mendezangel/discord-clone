@@ -6,9 +6,26 @@
     height: 53px;
     width: 239px;
     align-items: center;
+    justify-content: space-between;
 }
 .profile-pic{
     height: 35px;
     border-radius: 50%;
     padding: 0 7px;
+}
+.main-name{
+    padding: 0;
+    margin: 0;
+}
+.name-tag{
+    padding: 0;
+    margin: 0;
+}
+.profile-settings{
+    justify-items: flex-end;
+}
+.user-info{
+    display: flex;
+    align-items: center;
+    padding-left:6px;
 }

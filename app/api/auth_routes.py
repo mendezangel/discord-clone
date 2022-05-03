@@ -3,7 +3,7 @@ from app.models import User, db, Server, members
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
-from sqlalchemy import insert
+from random import randint
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -65,7 +65,7 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = User(
-            username=form.data['username'],
+            username=form.data['username']+'#'+str(randint(1000, 10000)),
             email=form.data['email'],
             password=form.data['password']
         )
@@ -78,6 +78,7 @@ def sign_up():
           image=None, #TODO add image
           invite_url=None
         )
+        user.profile_pic = f'https://discord-imgs.s3.us-east-2.amazonaws.com/{int(user.username[-4:])%6}-discord.png'
         db.session.add(server)
         db.session.commit()
 
