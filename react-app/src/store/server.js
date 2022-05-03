@@ -6,6 +6,7 @@ const DELETE  = '/servers/:id/delete'
 
 // REGULAR ACTION FUNCTIONS
 const servers = payload => {
+  console.log('---------- INSIDE ACTION: ', payload)
   return { type: SERVERS, payload }};
 const newServer = payload => {
   return { type: CREATE, payload }};
@@ -18,7 +19,8 @@ const deleteServer = payload => {
 export const getAllServers = (id) => async dispatch => {
   const res = await fetch(`api/servers/${id}`);
   const serverArray = await res.json();
-  dispatch( servers(serverArray.servers) );
+
+  dispatch( servers(serverArray) );
 }
 
 export const createServer = (server) => async dispatch => {
@@ -72,8 +74,9 @@ const ServerReducer = (state = initialState, action) => {
 
       return newState;
     case SERVERS:
-      newState = {...state, ...action.payload};
       // newState.servers = action.payload;
+      console.log('---------- INSIDE REDUCER: ', action.payload)
+      newState = {...state, ...action.payload};
 
       return newState;
     case UPDATE:
