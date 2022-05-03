@@ -30,8 +30,8 @@ export const createServer = (server) => async dispatch => {
   const { owner_id, name, image, invite_url } = server;
   const res = await fetch('/api/servers/new', {
     method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ owner_id, name, image, invite_url }),
-    headers: { 'Content-Type': 'application/json' }
   });
   console.log(res)
   const data = await res.json();

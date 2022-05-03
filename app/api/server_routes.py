@@ -12,31 +12,15 @@ server_routes = Blueprint('servers', __name__)
 @login_required
 def getAllServers(user_id):
   servers = Server.query.filter_by(owner_id = user_id).all()
-    # servers = Server.query.join(members).filter(members.c.user_id == user_id).all()
-    # servers = [server.to_dict() for server in servers]
-
-    # members_list = [db.session.query(members).filter(members.c.server_id == server['id']).all() for server in servers]
-    # members_expanded = []
-    # for server in members_list:
-    #   server_members = []
-    #   for member in server:
-    #     server_members.append( User.query.filter(User.id == member[1]).one().to_dict() )
-    #   members_expanded.append( server_members )
-    
-    # print('---------------------', servers)
-    # print('---------------------', members_expanded)
-
-    # return {'servers': servers, 'members': members_expanded}
-  print([server.to_dict() for server in servers])
   return {'servers': [server.to_dict() for server in servers]}
 
-@server_routes.route('/new', methods=['POST'])
+@server_routes.route('/new', methods=["POST"])
 @login_required
 def createServer():
 
   form = CreateServerForm()
   data = request.get_json()
-  print('this is the boolean\n\n\n', form.data)
+  form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
     print('\n\n\n\ninside if')
     server = Server(
@@ -47,7 +31,7 @@ def createServer():
     )
     db.session.add(server)
     db.session.commit()
-        
+    
     return server.to_dict()
   else:
     return 'testing'

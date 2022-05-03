@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 // import { login } from '../../store/session';
 
 // import image from '../../images/login-background.png'
 import { createServer } from '../../store/server';
 
 const ServerForm = () => {
+  const history = useHistory();
   const [image, setImage] = useState("");
   const [name, setName] = useState('');
 
@@ -31,9 +32,8 @@ const ServerForm = () => {
       owner_id: user?.id
       // add server inviteurl
     }
-    console.log(server)
     const newServer = await dispatch(createServer(server))
-    return <Redirect to={`/channels/${newServer.id}`} />;
+    history.push(`/channels/${newServer.id}`);
   }
 
   return (
@@ -46,6 +46,8 @@ const ServerForm = () => {
         <div className='server-form-input'>
           <form
             className='server-form'
+            action='/channels/@me/new'
+            method='POST'
             onSubmit={onSubmit}
           >
             <div className='server-form-group'>
@@ -70,7 +72,7 @@ const ServerForm = () => {
         </div>
         <div className='server-form-buttons-container'>
           <button className='server-form-back-button'>Back</button>
-          <button className='server-form-create-button' onClick={onSubmit}>Create</button>
+          <button className='server-form-create-button' onClick={onSubmit} type='submit'>Create</button>
         </div>
 
       </div>
