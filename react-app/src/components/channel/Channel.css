@@ -8,14 +8,14 @@
   font-weight: 500;
 }
 
-i {
+.channel-container i {
   padding-right: 10px ;
   color: rgba(255, 255, 255, 0.473);
   transition-property: color;
   transition-duration: .5s;
 }
 
-i:hover {
+.channel-container i:hover {
   color: white ;
 }
 
