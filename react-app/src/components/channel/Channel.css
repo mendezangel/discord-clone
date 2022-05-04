@@ -1,0 +1,29 @@
+.channel-container {
+  display: flex;
+  height: 20px;
+  width: 92%;
+  padding: 9px;
+  justify-content: space-between;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+i {
+  padding-right: 10px ;
+  color: rgba(255, 255, 255, 0.473);
+  transition-property: color;
+  transition-duration: .5s;
+}
+
+i:hover {
+  color: white ;
+}
+
+.channel-container:hover {
+  background-color:rgb(66,70,77);
+  cursor: pointer;
+}
+
+.channel-bar-p {
+  
+}
