@@ -9,11 +9,8 @@ import { authenticate } from './store/session';
 import Splash from './components/splash-page/Splash';
 import Main from './components/main/Main';
 import ServerForm from './components/ServerForm/ServerForm';
-<<<<<<< HEAD
 import ServerEditForm from './components/ServerEditForm/ServerEditForm';
-=======
 import ChannelForm from './components/ChannelForm/ChannelForm';
->>>>>>> e0e8c8964952af4d6b09180046d9d128523ee21f
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -46,13 +43,11 @@ function App() {
         <Route path='/servers/new' exact={true}>
           <ServerForm />
         </Route>
-<<<<<<< HEAD
         <Route path='/channels/:serverId/edit' exact={true}>
           <ServerEditForm />
-=======
+        </Route>
         <Route path='/channels/new' exact={true}>
           <ChannelForm />
->>>>>>> e0e8c8964952af4d6b09180046d9d128523ee21f
         </Route>
         <ProtectedRoute path='/channels/:server_id'>
           <Main />

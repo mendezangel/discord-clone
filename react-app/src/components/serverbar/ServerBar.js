@@ -8,13 +8,13 @@ const ServerBar = ({ servers }) => {
 
   const onServerClick = (id) => history.push(`/channels/${id}`)
   const randomColor = () => {
-    let colors = ['#5865f2','#57f287','#fee75c','#eb459e','#ed4245']
+    let colors = ['#5865f2', '#57f287', '#fee75c', '#eb459e', '#ed4245']
     let number = Math.floor(Math.random() * 5)
     return colors[number]
   }
   return (
     <div className="server_bar">
-      {servers.map(server => {
+      {servers?.map(server => {
         if (server.id === userServer) {
           return (
             <div className="server_icon"
@@ -34,7 +34,7 @@ const ServerBar = ({ servers }) => {
           } else {
             return (
               <div className="server_icon"
-                style={{ backgroundColor: `${randomColor()}`, color: 'black'  }}
+                style={{ backgroundColor: `${randomColor()}`, color: 'black' }}
                 key={server.id}
                 onClick={() => onServerClick(server.id)}>
                 {server.name[0]}
