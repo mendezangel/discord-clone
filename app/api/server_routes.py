@@ -25,7 +25,6 @@ def createServer():
         image=data['image'],
         owner_id =data['owner_id'],
         name=data['name'],
-
     )
 
     db.session.add(server)

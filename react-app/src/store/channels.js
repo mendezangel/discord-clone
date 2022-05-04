@@ -15,12 +15,12 @@ const deleteChannel = payload => {
   return { type:DELETE, payload }}
 
 // THUNKS
-export const getAllChannels = () => async dispatch => {
-  const res = await fetch('/api/channels');
-  const channelArray = await res.json();
+// export const getAllChannels = (serverId) => async dispatch => {
+//   const res = await fetch(`/api/channels/${serverId}`);
+//   const channelArray = await res.json();
 
-  dispatch( channels(channelArray) );
-}
+//   dispatch( channels(channelArray) );
+// }
 
 export const createChannel = (channel) => async dispatch => {
   const { name, server_id } = channel;

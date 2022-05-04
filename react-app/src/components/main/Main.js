@@ -14,6 +14,7 @@ const Main = () => {
     const {server_id} = useParams()
     const user = useSelector(state => state.session.user)
     const servers = useSelector(state => state.server.servers)
+
     let normalized_servers = [];
     if (Array.isArray(servers)) {
       for (let i = 0; i < Object.keys(servers).length; i++) {
