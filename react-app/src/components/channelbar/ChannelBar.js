@@ -12,10 +12,16 @@ const ChannelBar = ({ user }) => {
     const history = useHistory()
     const server = useSelector(state => state.server[server_id])
     console.log(server)
+
     const onDelete = () => {
         dispatch(delServer(server_id))
         history.push('/channels/@me')
     }
+
+    const onClick = () => {
+        history.push('/channels/new')
+    }
+
     return (
         <div className="channel-bar">
             
@@ -29,7 +35,7 @@ const ChannelBar = ({ user }) => {
                 )}
                 <div className='channel-bar-text'>
                     <p className='channel-bar-p'>CHANNELS</p>
-                    <i className="fas fa-plus"></i>
+                    <i className="fas fa-plus" onClick={onClick}></i>
                 </div>
                 <Channel />
             </div>
