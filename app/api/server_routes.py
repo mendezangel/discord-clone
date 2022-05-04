@@ -27,12 +27,19 @@ def createServer():
         name=data['name'],
 
     )
+
     db.session.add(server)
     db.session.commit()
+
+    new_member = members.insert().values(server_id=server.id, user_id= server.owner_id)
+
+    db.engine.execute(new_member)
+    db.session.commit()
+
     return server.to_dict()
   else:
     return {"errors": ["Server name must be between 3 and 35 characters."]}
-    
+
 
 @server_routes.route('/<int:server_id>/edit', methods=['PATCH'])
 @login_required
