@@ -55,7 +55,7 @@ export const editServer = (server) => async dispatch => {
 }
 
 export const delServer = (serverId) => async dispatch => {
-  const res = await fetch('/api/servers/:id/delete', {
+  const res = await fetch('/api/servers/delete', {
     method: 'DELETE',
     body: JSON.stringify(serverId),
     headers: { 'Content-Type': 'application/json' }
@@ -102,7 +102,7 @@ const ServerReducer = (state = initialState, action) => {
       delete newState[action.payload.id];
       for (let i = 0; i < newState.servers.length; i++) {
         const server = newState.servers[i];
-        if (server.id === action.payload.id) newState.splice(i, 1)
+        if (server.id === action.payload.id) newState.servers.splice(i, 1)
       }
       // newState.servers = newState.servers.filter(server => {
       //   if (server.id !== action.payload) {
