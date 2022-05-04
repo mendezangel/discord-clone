@@ -30,7 +30,7 @@ export const createChannel = (channel) => async dispatch => {
     headers: {'Content-Type': 'application/json'}
   });
   const data = await res.json();
-
+  
   dispatch( newChannel(data) );
   return data;
 }
