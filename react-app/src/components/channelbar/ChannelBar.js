@@ -19,7 +19,10 @@ const ChannelBar = ({ user }) => {
     }
 
     const onClick = () => {
-        history.push('/channels/new')
+        history.push({
+          pathname:'/channels/new',
+          server_id
+        })
     }
 
     return (

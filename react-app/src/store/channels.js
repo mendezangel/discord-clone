@@ -61,16 +61,16 @@ export const delChannel = (channelId) => async dispatch => {
 }
 
 
-const initialState = {}
+const initialState = { channels: [] }
 
 const ChannelReducer = (state = initialState, action) => {
   let newState;
 
   switch (action.type) {
     case CREATE:
-      newState = { ...state }
-      newState.channels = newState.channels.concat( action.payload );
-
+      newState = { ...state };
+      newState.channels.push(action.payload);
+      newState[action.payload.id] = action.payload;
       return newState;
     case CHANNELS:
       newState = { ...state };
