@@ -7,7 +7,7 @@ const ServerMembers = ({members}) => {
                 const name = member?.username.split('#')
                 return (
                     <div key={idx} className='member'>
-                        <img className='members-image' src={member.profile_pic} height='32px'/>
+                        <img className='members-image' src={member.profile_pic} height='32px' alt="user profile" />
                         <p>{name[0]}</p>
                     </div>
                 )
