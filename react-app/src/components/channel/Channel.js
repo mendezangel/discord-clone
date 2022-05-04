@@ -6,6 +6,9 @@ const Channel = () => {
     <div className='channel-name'>
       yo bro
     </div>
+    <div className='channel-delete'>
+      <button>delete</button>
+    </div>
   </div>
   )
 }
