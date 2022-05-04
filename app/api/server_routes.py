@@ -25,7 +25,6 @@ def createServer():
         image=data['image'],
         owner_id =data['owner_id'],
         name=data['name'],
-
     )
 
     db.session.add(server)
@@ -56,10 +55,11 @@ def updateServer(server_id):
     return server.to_dict()
 
 
-@server_routes.route('/<int:server_id>/delete', methods=['DELETE'])
+@server_routes.route('/delete', methods=['DELETE'])
 @login_required
-def deleteServer(server_id):
-  server = Server.query.get(server_id)
+def deleteServer():
+  id = request.get_json()
+  server = Server.query.get(id)
   db.session.delete(server)
   db.session.commit()
 
