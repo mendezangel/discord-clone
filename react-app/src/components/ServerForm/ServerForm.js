@@ -8,6 +8,7 @@ const ServerForm = () => {
   const history = useHistory();
   const [image, setImage] = useState("");
   const [name, setName] = useState('');
+  const [errors, setErrors] = useState([])
 
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const ServerForm = () => {
       // add server inviteurl
     }
     const newServer = await dispatch(createServer(server))
-    if (newServer.errors) return console.log(newServer.errors)
+    if (newServer.errors) return setErrors(newServer.errors)
     history.push(`/channels/${newServer.id}`);
   }
 
@@ -57,6 +58,9 @@ const ServerForm = () => {
                 value={name}
                 onChange={updateName}
               />
+              {errors?.map(error => {
+                return (<p className='server-form-error' key={error}>{error}</p>)
+              })}
             </div>
             <div className='server-form-group'>
               <label>Image Url</label>

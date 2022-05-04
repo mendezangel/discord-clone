@@ -31,7 +31,7 @@ def createServer():
     db.session.commit()
     return server.to_dict()
   else:
-    return {"errors": "Server name must be between 3 and 35 characters."}
+    return {"errors": ["Server name must be between 3 and 35 characters."]}
     
 
 @server_routes.route('/<int:server_id>/edit', methods=['PATCH'])
