@@ -13,7 +13,8 @@ const Main = () => {
   const dispatch = useDispatch()
   const { server_id } = useParams()
   const user = useSelector(state => state.session.user)
-  const servers = useSelector(state => state.servers)
+  const servers = useSelector(state => state.server)
+
 
   // let normalized_servers = [];
   // if (Array.isArray(servers)) {
@@ -21,7 +22,7 @@ const Main = () => {
   //     normalized_servers.push(servers[Object.keys(servers)[i]])
   //   }
   // }
-  // const members = useSelector(state => state.server.members)
+  // const members = useSelector(state => state.server.users)
   // let normalized_members = [];
   // if (Array.isArray(members)) {
   //   console.log(members.flat())
@@ -37,9 +38,9 @@ const Main = () => {
   return (
     <div className="main">
 
-      <ServerBar servers={servers?.servers} />
+      <ServerBar servers={servers.servers} />
       <ChannelBar user={user} />
-      {server_id === '@me' ? null : <><ChatBox /><ServerMembers /></>}
+      {server_id === '@me' ? null : <><ChatBox /><ServerMembers members={servers[server_id]?.users} /></>}
     </div>
   )
 }

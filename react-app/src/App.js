@@ -7,7 +7,6 @@ import NavBar from './components/navbar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
 import Splash from './components/splash-page/Splash';
-// import LogoutButton from './components/auth/LogoutButton';
 import Main from './components/main/Main';
 import ServerForm from './components/ServerForm/ServerForm';
 
