@@ -1,12 +1,12 @@
 import './Channel.css'
 
-const Channel = () => {
+const Channel = ({ channel }) => {
   return (
   <div className="channel-container">
     
     <div className='channel-name'>
       <i className="fas fa-hashtag"></i>
-      yo bro
+      {channel.name}
     </div>
     <div className='channel-delete'>
     <i className="fa-solid fa-gear"></i>

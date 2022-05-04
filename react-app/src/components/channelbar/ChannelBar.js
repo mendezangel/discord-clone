@@ -11,6 +11,7 @@ const ChannelBar = ({ user }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const server = useSelector(state => state.server[server_id])
+    const channels = useSelector(state => state.channel.channels)
     console.log(server)
 
     const onDelete = () => {
@@ -40,7 +41,11 @@ const ChannelBar = ({ user }) => {
                     <p className='channel-bar-p'>CHANNELS</p>
                     <i className="fas fa-plus" onClick={onClick}></i>
                 </div>
-                <Channel />
+                { channels.map( channel => {
+                  return (
+                    <Channel channel={channel} />
+                  )
+                })}
             </div>
 
             <ProfileBar user={user} />
