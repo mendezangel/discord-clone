@@ -15,22 +15,6 @@ const Main = () => {
   const user = useSelector(state => state.session.user)
   const servers = useSelector(state => state.server)
 
-
-  // let normalized_servers = [];
-  // if (Array.isArray(servers)) {
-  //   for (let i = 0; i < Object.keys(servers).length; i++) {
-  //     normalized_servers.push(servers[Object.keys(servers)[i]])
-  //   }
-  // }
-  // const members = useSelector(state => state.server.users)
-  // let normalized_members = [];
-  // if (Array.isArray(members)) {
-  //   console.log(members.flat())
-  //   for (let i = 0; i < Object.keys(members).length; i++) {
-  //     normalized_members.push(members[Object.keys(members)[i]])
-  //   }
-  // }
-
   useEffect(() => {
     dispatch(getAllServers(user?.id))
   }, [dispatch, user?.id])

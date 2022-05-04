@@ -45,11 +45,10 @@ def createServer():
 @login_required
 def updateServer():
     data = request.get_json()
-
     server = Server.query.get(data['id'])
     server.name = data['name']
     server.image = data['image']
-    server.invite_url = data['invite_url']
+    # server.invite_url = data['invite_url']
     server.owner_id = data['owner_id']
 
     db.session.commit()
