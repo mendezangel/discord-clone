@@ -19,6 +19,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s linear;
+  cursor: pointer
 }
 .server_icon:hover {
   border-radius: 15px;
