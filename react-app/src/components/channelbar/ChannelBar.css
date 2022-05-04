@@ -3,4 +3,32 @@
     width: 239px;
     background-color: #2f3136;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.channel-bar-top {
+    padding: 0px 10px;
+}
+
+.channel-bar-server-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    padding-top: 5px;
+}
+
+.server-button {
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: rgb(54,57,63);
+    transition: all 0.2s linear;
+    color: white;
+}
+
+.server-button:hover {
+    background-color: #f55;
 }
