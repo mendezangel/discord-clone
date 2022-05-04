@@ -11,8 +11,8 @@ const ChannelBar = ({ user }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const server = useSelector(state => state.server[server_id])
-    const channels = useSelector(state => state.channel.channels)
-    console.log(server)
+    const channels = server?.channels
+
 
     const onDelete = () => {
         dispatch(delServer(server_id))
@@ -32,20 +32,22 @@ const ChannelBar = ({ user }) => {
             <div className="channel-bar-top">
                 <h2 className='server-name-text'>{server?.name}</h2>
                 {server_id !== '@me' && (
+                  <>
                     <div className='channel-bar-server-info'>
-                    <button onClick={onDelete} className="server-button">Delete</button>
-                    <button className="server-button">Edit</button>
+                      <button onClick={onDelete} className="server-button">Delete</button>
+                      <button className="server-button">Edit</button>
                     </ div>
+                    <div className='channel-bar-text'>
+                        <p className='channel-bar-p'>CHANNELS</p>
+                        <i className="fas fa-plus" onClick={onClick}></i>
+                    </div>
+                    { channels?.map( channel => {
+                        return (
+                          <Channel channel={channel} key={channel.id}/>
+                        )
+                      })}
+                  </>
                 )}
-                <div className='channel-bar-text'>
-                    <p className='channel-bar-p'>CHANNELS</p>
-                    <i className="fas fa-plus" onClick={onClick}></i>
-                </div>
-                { channels.map( channel => {
-                  return (
-                    <Channel channel={channel} />
-                  )
-                })}
             </div>
 
             <ProfileBar user={user} />

@@ -13,7 +13,6 @@ channel_routes = Blueprint('channels', __name__)
 def createChannel():
   form = CreateChannelForm()
   data = request.get_json()
-  print('------------------', data)
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
     channel = Channel(
@@ -23,6 +22,7 @@ def createChannel():
     db.session.add(channel)
     db.session.commit()
 
+    print('--------------------------CHANNEL: ', channel.to_dict())
     return channel.to_dict()
   else:
     return 'Validation'

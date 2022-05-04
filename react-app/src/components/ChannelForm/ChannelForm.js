@@ -14,7 +14,6 @@ const ChannelForm = () => {
   const updateName = (e) => setName(e.target.value);
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(location.server_id)
     const channel = {
       name,
       server_id: location.server_id
@@ -37,8 +36,6 @@ const ChannelForm = () => {
         <div className="server-form-input">
           <form
             className="server-form"
-            // action="/channels/new"
-            // method="POST"
             onSubmit={onSubmit}
           >
             <div className='server-form-group'>
