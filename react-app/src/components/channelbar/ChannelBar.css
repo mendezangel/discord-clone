@@ -3,4 +3,5 @@
     width: 239px;
     background-color: #2f3136;
     display: flex;
+    flex-direction: column;
 }

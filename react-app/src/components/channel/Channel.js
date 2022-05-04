@@ -1,7 +1,13 @@
 import './Channel.css'
 
 const Channel = () => {
-  return <div className="channel">yo</div>
+  return (
+  <div className="channel-container">
+    <div className='channel-name'>
+      yo bro
+    </div>
+  </div>
+  )
 }
 
 
