@@ -8,11 +8,12 @@ from app.forms import CreateChannelForm
 channel_routes = Blueprint('channels', __name__)
 
 
-@channel_routes.route('/new')
+@channel_routes.route('/new', methods=['POST'])
 @login_required
 def createChannel():
   form = CreateChannelForm()
   data = request.get_json()
+  print('------------------', data)
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
     channel = Channel(

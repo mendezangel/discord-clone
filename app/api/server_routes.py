@@ -11,7 +11,8 @@ server_routes = Blueprint('servers', __name__)
 @server_routes.route('/<int:user_id>')
 @login_required
 def getAllServers(user_id):
-  servers = Server.query.filter_by(owner_id = user_id).all()
+  servers = Server.query.join(members).filter(members.c.user_id == user_id).all()
+  print(servers, '-------------------------------------------------------------')
   return {'servers': [server.to_dict() for server in servers]}
 
 @server_routes.route('/new', methods=["POST"])

@@ -24,17 +24,28 @@ const ChannelBar = ({ user }) => {
     })
   }
 
+  const onClick = () => {
+    history.push({
+      pathname: '/channels/new',
+      server_id
+    })
+  }
+
   return (
     <div className="channel-bar">
 
       <div className="channel-bar-top">
+        <h2 className='server-name-text'>{server?.name}</h2>
         {server_id !== '@me' && (
           <div className='channel-bar-server-info'>
             <button onClick={onDelete} className="server-button">Delete</button>
             <button className="server-button" onClick={editButton}>Edit</button>
           </ div>
         )}
-        <p className='channel-bar-p'>CHANNELS</p>
+        <div className='channel-bar-text'>
+          <p className='channel-bar-p'>CHANNELS</p>
+          <i className="fas fa-plus" onClick={onClick}></i>
+        </div>
         <Channel />
       </div>
 

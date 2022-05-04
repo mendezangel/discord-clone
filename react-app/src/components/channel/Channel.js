@@ -5,12 +5,12 @@ const Channel = () => {
   <div className="channel-container">
     
     <div className='channel-name'>
-      <i class="fas fa-hashtag"></i>
+      <i className="fas fa-hashtag"></i>
       yo bro
     </div>
     <div className='channel-delete'>
-    <i class="fa-solid fa-gear"></i>
-    <i class="fa fa-trash" aria-hidden="true"></i>
+    <i className="fa-solid fa-gear"></i>
+    <i className="fa fa-trash" aria-hidden="true"></i>
     </div>
   </div>
   )

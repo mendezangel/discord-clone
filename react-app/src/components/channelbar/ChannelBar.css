@@ -17,7 +17,11 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
     padding-top: 5px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgb(71, 71, 71);
 }
+
+
 
 .server-button {
     border: none;
@@ -27,8 +31,39 @@
     background-color: rgb(54,57,63);
     transition: all 0.2s linear;
     color: white;
+   
 }
 
 .server-button:hover {
     background-color: #f55;
 }
+
+.server-name-text {
+    display: flex;
+    padding-left: 10px;
+    
+   
+}
+
+.channel-bar-text {
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(240, 248, 255, 0.74);
+   
+}
+
+.channel-bar-text i {
+    cursor: pointer;
+    color: rgba(240, 248, 255, 0.74);
+    transition: all 0.2s linear;
+    margin-right: 18px;
+}
+
+.channel-bar-text i:hover {
+    
+    color: rgba(240, 248, 255);
+  
+}
+
