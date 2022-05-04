@@ -17,17 +17,14 @@ def getAllServers(user_id):
 @server_routes.route('/new', methods=["POST"])
 @login_required
 def createServer():
-
   form = CreateServerForm()
   data = request.get_json()
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
-    print('\n\n\n\ninside if')
     server = Server(
         image=data['image'],
         owner_id =data['owner_id'],
         name=data['name'],
-
     )
     db.session.add(server)
     db.session.commit()
