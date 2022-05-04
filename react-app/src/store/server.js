@@ -42,10 +42,10 @@ export const createServer = (server) => async dispatch => {
 }
 
 export const editServer = (server) => async dispatch => {
-  const { owner_id, name, image, invite_url } = server;
-  const res = await fetch(`/api/servers/${server.id}/edit`, {
+  const { owner_id, name, image, invite_url, id } = server;
+  const res = await fetch(`/api/servers/edit`, {
     method: 'PATCH',
-    body: JSON.stringify({ owner_id, name, image, invite_url }),
+    body: JSON.stringify({ owner_id, name, image, invite_url, id }),
     headers: { 'Content-Type': 'application/json' }
   });
   const data = await res.json();
@@ -77,26 +77,24 @@ const ServerReducer = (state = initialState, action) => {
       newState = { ...state };
       newState.servers.push(action.payload);
       newState[action.payload.id] = action.payload;
-
       return newState;
+
     case SERVERS:
       newState = { ...state, servers: [...action.payload] };
       action.payload.forEach(server => {
         newState[server.id] = server
       })
-
       return newState;
+
     case UPDATE:
       newState = { ...state };
-      newState.servers = newState.servers.map(server => {
-        if (server.id === action.payload.id) {
-          return action.payload;
-        } else {
-          return server;
-        }
-      })
-
+      newState[action.payload.id] = action.payload;
+      for (let i = 0; i < newState.servers.length; i++) {
+        const server = newState.servers[i];
+        if (server.id === action.payload.id) return newState.servers.splice(i, 1, action.payload)
+      }
       return newState;
+
     case DELETE:
       newState = { ...state };
       delete newState[action.payload.id];
@@ -104,15 +102,8 @@ const ServerReducer = (state = initialState, action) => {
         const server = newState.servers[i];
         if (server.id === action.payload.id) newState.servers.splice(i, 1)
       }
-      // newState.servers = newState.servers.filter(server => {
-      //   if (server.id !== action.payload) {
-      //     return server;
-      //   } else {
-      //     return null;
-      //   }
-      // });
-
       return newState;
+
     default:
       return state;
   }

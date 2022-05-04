@@ -36,6 +36,10 @@ const ServerForm = () => {
     history.push(`/channels/${newServer.id}`);
   }
 
+  const backButton = () => {
+    history.goBack()
+  }
+
   return (
     <div className='whole-page-div'>
       <div className="server-form-container">
@@ -74,7 +78,7 @@ const ServerForm = () => {
           </form>
         </div>
         <div className='server-form-buttons-container'>
-          <button className='server-form-back-button'>Back</button>
+          <button className='server-form-back-button' onClick={backButton}>Back</button>
           <button className='server-form-create-button' onClick={onSubmit} type='submit'>Create</button>
         </div>
 

@@ -40,14 +40,15 @@ def createServer():
     return {"errors": ["Server name must be between 3 and 35 characters."]}
 
 
-@server_routes.route('/<int:server_id>/edit', methods=['PATCH'])
+@server_routes.route('/edit', methods=['PATCH'])
 @login_required
-def updateServer(server_id):
+def updateServer():
     data = request.get_json()
 
-    server = Server.query.get(server_id)
+    server = Server.query.get(data['id'])
     server.name = data['name']
     server.image = data['image']
+    server.invite_url = data['invite_url']
     server.owner_id = data['owner_id']
 
     db.session.commit()

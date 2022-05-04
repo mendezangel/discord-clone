@@ -16,7 +16,7 @@ const ServerBar = ({ servers }) => {
   }
   return (
     <div className="server_bar">
-      {servers.map(server => {
+      {servers?.map(server => {
         if (server.id === userServer) {
           return (
             <div className="server_icon" style={{ backgroundImage: `url(${server.image})` }} key={server.id} onClick={() => onServerClick('@me')}>
