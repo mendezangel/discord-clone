@@ -1,10 +1,12 @@
 import './ServerBar.css'
+import { useState } from 'react'
 import { useSelector } from "react-redux"
-import { NavLink, useHistory } from 'react-router-dom'
+import { NavLink, useHistory, useParams } from 'react-router-dom'
 
 const ServerBar = ({ servers }) => {
   const history = useHistory();
-  const userServer = useSelector(state => state.session.user.me_server)
+  const userServer = useSelector(state => state.session.user.me_server);
+  const {server_id} = useParams();
 
   const onServerClick = (id) => history.push(`/channels/${id}`)
   const randomColor = () => {
