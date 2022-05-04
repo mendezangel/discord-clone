@@ -10,7 +10,7 @@ class Server(db.Model):
     image = db.Column(db.String)
     invite_url = db.Column(db.String, unique=True)
 
-    channels = db.relationship('Channel', back_populates='server')
+    channels = db.relationship('Channel', back_populates='server', cascade="all, delete")
     owner = db.relationship('User', back_populates='owned_servers')
 
     users = db.relationship('User', back_populates='servers', secondary=members)

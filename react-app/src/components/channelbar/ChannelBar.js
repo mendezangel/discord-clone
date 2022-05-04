@@ -18,10 +18,15 @@ const ChannelBar = ({ user }) => {
         dispatch(delServer(server_id))
         history.push('/channels/@me')
     }
-
+    const editButton = () => {
+      history.push({
+        pathname: `/channels/${server_id}/edit`,
+        state: server
+      })
+    }
     const onClick = () => {
         history.push({
-          pathname:'/channels/new',
+          pathname: '/channels/new',
           server_id
         })
     }
@@ -35,7 +40,7 @@ const ChannelBar = ({ user }) => {
                   <>
                     <div className='channel-bar-server-info'>
                       <button onClick={onDelete} className="server-button">Delete</button>
-                      <button className="server-button">Edit</button>
+                      <button className="server-button" onClick={editButton}>Edit</button>
                     </ div>
                     <div className='channel-bar-text'>
                         <p className='channel-bar-p'>CHANNELS</p>
@@ -52,7 +57,7 @@ const ChannelBar = ({ user }) => {
 
             <ProfileBar user={user} />
         </div>
-    )
+  )
 }
 
 export default ChannelBar
