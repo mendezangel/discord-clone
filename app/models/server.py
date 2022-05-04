@@ -23,6 +23,10 @@ class Server(db.Model):
         'image': self.image,
         'invite_url': self.invite_url,
         'users': [user.to_dict() for user in self.users],
+<<<<<<< HEAD
         'channels': [channel.to_dict() for channel in self.channels]
+=======
+        'channels': [channel.to_dict() for channel in self.channels],
+>>>>>>> main
         # 'owner': [owner.to_dict() for owner in self.owner]
       }

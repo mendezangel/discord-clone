@@ -4,12 +4,17 @@ import './Main.css'
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllServers } from "../../store/server.js"
+import { useParams } from "react-router-dom"
+import ServerMembers from "../servermembers/ServerMembers.js"
+import ChatBox from "../chatbox/ChatBox.js"
 
 
 const Main = () => {
     const dispatch = useDispatch()
+    const {server_id} = useParams()
     const user = useSelector(state => state.session.user)
     const servers = useSelector(state => state.server.servers)
+
     let normalized_servers = [];
     if (Array.isArray(servers)) {
       for (let i = 0; i < Object.keys(servers).length; i++) {
@@ -31,8 +36,10 @@ const Main = () => {
 
     return (
         <div className="main">
+
             <ServerBar servers={normalized_servers}/>
             <ChannelBar user={user}/>
+            {server_id === '@me'? null :<><ChatBox /><ServerMembers /></>}
         </div>
     )
 }
