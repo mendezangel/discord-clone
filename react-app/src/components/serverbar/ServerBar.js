@@ -1,5 +1,4 @@
 import './ServerBar.css'
-import { useState } from 'react'
 import { useSelector } from "react-redux"
 import { NavLink, useHistory, useParams } from 'react-router-dom'
 
@@ -16,10 +15,13 @@ const ServerBar = ({ servers }) => {
   }
   return (
     <div className="server_bar">
-      {servers?.map(server => {
+      {servers.map(server => {
         if (server.id === userServer) {
           return (
-            <div className="server_icon" style={{ backgroundImage: `url(${server.image})` }} key={server.id} onClick={() => onServerClick('@me')}>
+            <div className="server_icon"
+              style={{ backgroundImage: `url(${server.image})` }}
+              key={server.id}
+              onClick={() => onServerClick('@me')}>
             </div>
           )
         } else {
