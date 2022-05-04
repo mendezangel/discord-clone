@@ -17,16 +17,18 @@ const ChannelBar = ({ user }) => {
     }
     return (
         <div className="channel-bar">
-            
+
             <div className="channel-bar-top">
                 {server_id !== '@me' && (
-                    <div className='channel-bar-server-info'>
-                    <button onClick={onDelete} className="server-button">Delete</button>
-                    <button className="server-button">Edit</button>
-                    </ div>
+                    <>
+                        <div className='channel-bar-server-info'>
+                            <button onClick={onDelete} className="server-button">Delete</button>
+                            <button className="server-button">Edit</button>
+                        </ div>
+                        <p className='channel-bar-p'>CHANNELS</p>
+                        <Channel />
+                    </>
                 )}
-                <p className='channel-bar-p'>CHANNELS</p>
-                <Channel />
             </div>
 
             <ProfileBar user={user} />
