@@ -33,11 +33,11 @@ export const createServer = (server) => async dispatch => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ owner_id, name, image, invite_url }),
   });
-  console.log(res)
   const data = await res.json();
-  console.log('this is the data', data)
+  if (data.errors) {
+    return data;
+  }
   dispatch(newServer(data))
-  console.log('dispatch was successful\n\n')
   return data;
 }
 
@@ -99,13 +99,18 @@ const ServerReducer = (state = initialState, action) => {
       return newState;
     case DELETE:
       newState = { ...state };
-      newState.servers = newState.servers.filter(server => {
-        if (server.id !== action.payload) {
-          return server;
-        } else {
-          return null;
-        }
-      });
+      delete newState[action.payload.id];
+      for (let i = 0; i < newState.servers.length; i++) {
+        const server = newState.servers[i];
+        if (server.id === action.payload.id) newState.splice(i, 1)
+      }
+      // newState.servers = newState.servers.filter(server => {
+      //   if (server.id !== action.payload) {
+      //     return server;
+      //   } else {
+      //     return null;
+      //   }
+      // });
 
       return newState;
     default:
