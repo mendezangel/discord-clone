@@ -5,7 +5,7 @@ const Channel = () => {
   <div className="channel-container">
     
     <div className='channel-name'>
-      <i classname="fas fa-hashtag"></i>
+      <i className="fas fa-hashtag"></i>
       yo bro
     </div>
     <div className='channel-delete'>
