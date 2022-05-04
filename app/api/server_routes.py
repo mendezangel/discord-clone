@@ -14,12 +14,6 @@ def getAllServers(user_id):
   servers = Server.query.filter_by(owner_id = user_id).all()
   return {'servers': [server.to_dict() for server in servers]}
 
-@server_routes.route('/one/<int:id>')
-@login_required
-def getOneServer(id):
-  servers = Server.query.filter_by(id = id).all()
-  return {'servers': [server.to_dict() for server in servers]}
-
 @server_routes.route('/new', methods=["POST"])
 @login_required
 def createServer():
@@ -50,9 +44,7 @@ def createServer():
 @login_required
 def updateServer():
     data = request.get_json()
-
     server = Server.query.get(data['id'])
-    print('\n\n\nthis is the server', server, '\n\n\n\n')
     server.name = data['name']
     server.image = data['image']
     # server.invite_url = data['invite_url']

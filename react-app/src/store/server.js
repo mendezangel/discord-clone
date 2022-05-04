@@ -26,12 +26,6 @@ export const getAllServers = (id) => async dispatch => {
   dispatch(servers(serversArray));
 }
 
-export const getOneServer = (id) => async dispatch => {
-  const res = await fetch(`/api/servers/one/${id}`);
-  const { servers: serversArray } = await res.json();
-  dispatch(servers(serversArray))
-}
-
 export const createServer = (server) => async dispatch => {
   const { owner_id, name, image, invite_url } = server;
   const res = await fetch('/api/servers/new', {

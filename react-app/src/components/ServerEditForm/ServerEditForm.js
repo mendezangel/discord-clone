@@ -1,26 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
-import { editServer, getOneServer } from '../../store/server';
+import { useHistory, useParams, useLocation } from 'react-router-dom';
+import { editServer } from '../../store/server';
 
 const ServerEditForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { serverId } = useParams();
+  const { state: server } = useLocation();
   const user = useSelector(state => state.session.user);
-  const server = useSelector(state => state.server[serverId])
+  // const server = useSelector(state => state.server[serverId])
 
-  const [image, setImage] = useState('');
-  const [name, setName] = useState('');
+  const [image, setImage] = useState(server.image);
+  const [name, setName] = useState(server.name);
   const [errors, setErrors] = useState([]);
-  console.log(name)
-
-  useEffect(() => {
-    dispatch(getOneServer(serverId));
-    setImage(server.image)
-    setName(server.name)
-  }, [dispatch])
-
 
 
   const updateImage = (e) => {
@@ -36,6 +29,7 @@ const ServerEditForm = () => {
     e.preventDefault();
 
     const server = {
+      id: serverId,
       image,
       name,
       owner_id: user?.id
