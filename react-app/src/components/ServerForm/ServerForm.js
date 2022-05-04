@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
-// import { login } from '../../store/session';
+import { useHistory } from 'react-router-dom';
 
-// import image from '../../images/login-background.png'
 import { createServer } from '../../store/server';
 
 const ServerForm = () => {
   const history = useHistory();
   const [image, setImage] = useState("");
   const [name, setName] = useState('');
+  const [errors, setErrors] = useState([])
 
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
@@ -33,6 +32,7 @@ const ServerForm = () => {
       // add server inviteurl
     }
     const newServer = await dispatch(createServer(server))
+    if (newServer.errors) return setErrors(newServer.errors)
     history.push(`/channels/${newServer.id}`);
   }
 
@@ -58,6 +58,9 @@ const ServerForm = () => {
                 value={name}
                 onChange={updateName}
               />
+              {errors?.map(error => {
+                return (<p className='server-form-error' key={error}>{error}</p>)
+              })}
             </div>
             <div className='server-form-group'>
               <label>Image Url</label>
