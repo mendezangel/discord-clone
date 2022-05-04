@@ -5,8 +5,8 @@ const DELETE   = '/channels/:id/delete'
 
 
 // REGULAR ACTION FUNCTIONS
-const channels = payload => {
-  return { type:CHANNELS, payload }}
+// const channels = payload => {
+//   return { type:CHANNELS, payload }}
 const newChannel = payload => {
   return { type:CREATE, payload }}
 const updateChannel = payload => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { createChannel } from '../../store/channels'
 
@@ -8,7 +8,6 @@ const ChannelForm = () => {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
-  const user = useSelector(state => state.session.user);
   const [name, setName] = useState("");
   const [errors, setErrors] = useState([]);
 
