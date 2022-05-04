@@ -9,6 +9,7 @@ import { authenticate } from './store/session';
 import Splash from './components/splash-page/Splash';
 import Main from './components/main/Main';
 import ServerForm from './components/ServerForm/ServerForm';
+import ChannelForm from './components/ChannelForm/ChannelForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,6 +41,9 @@ function App() {
         </Route>
         <Route path='/servers/new' exact={true}>
           <ServerForm />
+        </Route>
+        <Route path='/channels/new' exact={true}>
+          <ChannelForm />
         </Route>
         <ProtectedRoute path='/channels/:server_id'>
           <Main />
