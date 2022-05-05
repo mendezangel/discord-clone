@@ -53,7 +53,7 @@ function App() {
         <Route path='/channels/:id/editchannel'>
           <ChannelEditForm />
         </Route>
-        <ProtectedRoute path='/channels/@me' exact={true}>
+        <ProtectedRoute path='/channels/:me(@me)'>
           <Main style={{overflow: "hidden"}} />
         </ProtectedRoute>
         <ProtectedRoute path='/channels/:server_id(\d{0,4})/:channel_id(\d{0,4})' exact={true}>

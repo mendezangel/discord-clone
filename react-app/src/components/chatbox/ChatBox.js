@@ -1,18 +1,20 @@
 import './ChatBox.css'
 import { io } from 'socket.io-client'
 import { useEffect, useState } from 'react'
+import { useParams } from "react-router";
 import { useSelector } from 'react-redux'
 
 
 let socket
 
 const ChatBox = () => {
-
+    const { channel_id } = useParams()
     const [messages, setMessages] = useState([])
     const [chatInput, setChatInput] = useState("");
+    const [prevRoom, setPrevRoom] = useState(channel_id);
     const user = useSelector(state => state.session.user)
-    const channelId = window.location.pathname.split('/')[3]
     const channel = useSelector(state => state.channel)
+
 
     useEffect(() => {
         socket = io();
@@ -24,9 +26,17 @@ const ChatBox = () => {
         })
     }, [])
 
+    useEffect(() => {
+        socket.emit('leave', {room: prevRoom})
+        socket.emit('join', {room: channel_id})
+        setPrevRoom(channel_id)
+        console.log(prevRoom, 'LEFT')
+        console.log(channel_id, 'JOINED')
+    },[channel_id])
+
     const sendChat = (e) => {
         e.preventDefault()
-        socket.emit("chat", { user: user.username, msg: chatInput, img: user.profile_pic});
+        socket.emit("chat", { user: user.username, msg: chatInput, img: user.profile_pic, room: channel_id});
         setChatInput('')
     }
 
