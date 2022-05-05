@@ -11,6 +11,7 @@ import Main from './components/main/Main';
 import ServerForm from './components/ServerForm/ServerForm';
 import ServerEditForm from './components/ServerEditForm/ServerEditForm';
 import ChannelForm from './components/ChannelForm/ChannelForm';
+import ServerJoin from './components/ServerJoin/ServerJoin';
 import ChannelEditForm from './components/ChannelEditForm/ChannelEditForm';
 
 function App() {
@@ -63,6 +64,9 @@ function App() {
           <Redirect to='/'/>
         </Route>
       </Switch>
+      <Route path='/gg/:serverId' exact={true}>
+        <ServerJoin />
+      </Route>
     </BrowserRouter>
   );
 }

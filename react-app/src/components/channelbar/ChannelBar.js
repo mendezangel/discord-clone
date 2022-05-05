@@ -7,35 +7,44 @@ import Channel from '../channel/Channel'
 import { delServer } from '../../store/server';
 
 const ChannelBar = ({ user }) => {
-    const { server_id } = useParams()
-    const dispatch = useDispatch()
-    const history = useHistory()
-    const server = useSelector(state => state.server[server_id]);
-    const channelState = useSelector(state => state.channel);
-    const channels = channelState.channels;
+  const { server_id } = useParams()
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const server = useSelector(state => state.server[server_id]);
+  const channelState = useSelector(state => state.channel);
+  const channels = channelState.channels;
 
-    const onDelete = () => {
-        dispatch(delServer(server_id))
-        history.push('/channels/@me')
+  const onDelete = () => {
+    dispatch(delServer(server_id))
+    history.push('/channels/@me')
+  }
+  const editButton = () => {
+    history.push({
+      pathname: `/channels/${server_id}/edit`,
+      state: server
+    })
+  }
+  const onClick = () => {
+    history.push({
+      pathname: '/channels/new',
+      server_id
+    })
+  }
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(server.invite_url)
+      alert('Server Invite URL Copied!')
+    } catch {
+      console.log('fail')
     }
-    const editButton = () => {
-      history.push({
-        pathname: `/channels/${server_id}/edit`,
-        state: server
-      })
-    }
-    const onClick = () => {
-        history.push({
-          pathname: '/channels/new',
-          server_id
-        })
-    }
+  }
 
     return (
         <div className="channel-bar">
 
             <div className="channel-bar-top">
-                <h2 className='server-name-text'>{server?.name}</h2>
+                <h2 className='server-name-text' onClick={copy}>{server?.name}</h2>
                 {server_id !== undefined && (
                   <>
                     <div className='channel-bar-server-info'>
@@ -59,8 +68,8 @@ const ChannelBar = ({ user }) => {
                 )}
             </div>
 
-            <ProfileBar user={user} />
-        </div>
+      <ProfileBar user={user} />
+    </div>
   )
 }
 
