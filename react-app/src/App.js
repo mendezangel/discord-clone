@@ -51,7 +51,7 @@ function App() {
         <Route path='/channels/new' exact={true}>
           <ChannelForm />
         </Route>
-        <Route path='/channels/:id/editchannel'>
+        <Route path='/channels/:server_id(\d{0,4})/:id(\d{0,4})/editchannel' exact={true}>
           <ChannelEditForm />
         </Route>
         <ProtectedRoute path='/channels/:me(@me)'>
@@ -60,13 +60,13 @@ function App() {
         <ProtectedRoute path='/channels/:server_id(\d{0,4})/:channel_id(\d{0,4})' exact={true}>
           <Main style={{overflow: "hidden"}} />
         </ProtectedRoute>
+        <Route path='/gg/:serverId' exact={true}>
+        <ServerJoin />
         <Route>
           <Redirect to='/'/>
         </Route>
-      </Switch>
-      <Route path='/gg/:serverId' exact={true}>
-        <ServerJoin />
       </Route>
+      </Switch>
     </BrowserRouter>
   );
 }

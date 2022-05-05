@@ -7,9 +7,10 @@ const Channel = ({ channel, server }) => {
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const editChannel = () => {
+  const editChannel = (e) => {
+    e.stopPropagation()
     history.push({
-      pathname: `/channels/${channel.id}/editchannel`,
+      pathname: `/channels/${server.id}/${channel.id}/editchannel`,
       state: channel
     })
   }
