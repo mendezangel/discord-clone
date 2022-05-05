@@ -34,6 +34,7 @@ const ChannelBar = ({ user }) => {
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(server.invite_url)
+      alert('Server Invite URL Copied!')
     } catch {
       console.log('fail')
     }

@@ -37,7 +37,6 @@
 }
 
 .server-name-text {
-  border: solid white 1px;
   display: flex;
   padding-left: 10px;
 }
