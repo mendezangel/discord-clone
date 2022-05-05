@@ -1,69 +1,65 @@
-.channel-bar{
-    height: 100vh;
-    width: 239px;
-    background-color: #2f3136;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    
+.channel-bar {
+  height: 100vh;
+  width: 239px;
+  background-color: #2f3136;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .channel-bar-top {
-    padding: 0px 10px;
+  padding: 0px 10px;
 }
 
 .channel-bar-server-info {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
-    padding-top: 5px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid rgb(71, 71, 71);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  padding-top: 5px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgb(71, 71, 71);
 }
 
 
 
 .server-button {
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    padding: 10px;
-    background-color: rgb(54,57,63);
-    transition: all 0.2s linear;
-    color: white;
-   
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px;
+  background-color: rgb(54, 57, 63);
+  transition: all 0.2s linear;
+  color: white;
 }
 
 .server-button:hover {
-    background-color: #f55;
+  background-color: #f55;
 }
 
 .server-name-text {
-    display: flex;
-    padding-left: 10px;
-    
-   
+  display: flex;
+  padding-left: 10px;
+}
+
+.server-name-text:hover {
+  cursor: pointer;
 }
 
 .channel-bar-text {
-    display: inline-flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    color: rgba(240, 248, 255, 0.74);
-   
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(240, 248, 255, 0.74);
 }
 
 .channel-bar-text i {
-    cursor: pointer;
-    color: rgba(240, 248, 255, 0.74);
-    transition: all 0.2s linear;
-    margin-right: 18px;
+  cursor: pointer;
+  color: rgba(240, 248, 255, 0.74);
+  transition: all 0.2s linear;
+  margin-right: 18px;
 }
 
 .channel-bar-text i:hover {
-    
-    color: rgba(240, 248, 255);
-  
+  color: rgba(240, 248, 255);
 }
-
