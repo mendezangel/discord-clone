@@ -1,5 +1,31 @@
 .chat {
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
-    background-color: #36393F;
+    background-color: red;
     height: 100vh;
+}
+.message-form{
+    align-self: center;
+    /* position: fixed; */
+    bottom: 0;
+    margin-bottom: 20px;
+    width: 100%;
+    background-color: blue;
+}
+.chat-input{
+    background-color: #40444b;
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    color: white;
+    width: 60%;
+    align-self: center;
+}
+.message-form-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    border: solid white 2px;
 }

@@ -43,15 +43,20 @@ const ChatBox = () => {
 
     return ( user && (
         <div className='chat'>
+
             <div>
                 {messages.map((message, ind) => (
                     <div key={ind}>{`${message.user}: ${message.msg}`}</div>
                 ))}
             </div>
-            <form onSubmit={sendChat}>
-                <input value={chatInput} onChange={updateChatInput} />
-                <button type="submit">Send</button>
-            </form>
+
+            <div className='message-form-container'>
+                <form className='message-form' onSubmit={sendChat}>
+                    <input className='chat-input' value={chatInput} onChange={updateChatInput} placeholder='Message'/>
+                    {/* <button type="submit">Send</button> */}
+                </form>
+            </div>
+
         </div>
     ))
 }
