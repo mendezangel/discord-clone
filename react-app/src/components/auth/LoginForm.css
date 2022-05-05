@@ -85,8 +85,7 @@
   align-items: center;
 }
 
-.login-form-container,
-.join-server-h1-container h1 {
+.login-form-container h1 {
   font-size: 24px;
   color: white;
 }
