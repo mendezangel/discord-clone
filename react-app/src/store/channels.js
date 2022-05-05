@@ -49,7 +49,7 @@ export const editChannel = (channel) => async dispatch => {
 }
 
 export const delChannel = (channelId) => async dispatch => {
-  const res = await fetch('/api/channels/:id/delete', {
+  const res = await fetch(`/api/channels/${channelId}/delete`, {
     method: 'DELETE',
     body: JSON.stringify(channelId),
     headers: {'Content-Type': 'application/json'}
@@ -90,15 +90,22 @@ const ChannelReducer = (state = initialState, action) => {
       return newState;
     case DELETE:
       newState = { ...state };
-      newState.channels = newState.channels.filter( channel => {
-        if ( channel.id !== action.payload ) {
-          return channel;
-        } else {
-          return null;
-        }
-      });
-
+      delete newState[action.payload];
+      for (let i = 0; i < newState.channels.length; i++) {
+        const channel = newState.channels[i];
+        if (channel.id === action.payload.id) newState.channels.splice(i, 1)
+      }
       return newState;
+
+      // newState.channels = newState.channels.filter( channel => {
+      //   if ( channel.id !== action.payload ) {
+      //     return channel;
+      //   } else {
+      //     return null;
+      //   }
+      // });
+
+      // return newState;
     default:
       return state;
   }

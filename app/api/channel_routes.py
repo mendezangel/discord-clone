@@ -49,7 +49,10 @@ def editChannel(id):
 @channel_routes.route('/<int:id>/delete', methods=['DELETE'])
 @login_required
 def delChannel(id):
+  id = request.get_json()
+  print('/n/n/n/n/n/n/n/n/n/n/n/n', id)
   channel = Channel.query.get(id)
   db.session.delete(channel)
+  db.session.commit()
 
   return channel.to_dict()
