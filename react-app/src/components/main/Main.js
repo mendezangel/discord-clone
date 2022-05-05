@@ -4,6 +4,7 @@ import './Main.css'
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllServers } from "../../store/server.js"
+import { getAllChannels } from "../../store/channels.js"
 import { useParams } from "react-router-dom"
 import ServerMembers from "../servermembers/ServerMembers.js"
 import ChatBox from "../chatbox/ChatBox.js"
@@ -17,6 +18,7 @@ const Main = () => {
 
   useEffect(() => {
     dispatch(getAllServers(user?.id))
+    dispatch(getAllChannels())
   }, [dispatch, user?.id])
 
   return (

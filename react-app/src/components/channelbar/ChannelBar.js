@@ -10,9 +10,9 @@ const ChannelBar = ({ user }) => {
     const { server_id } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
-    const server = useSelector(state => state.server[server_id])
-    const channels = server?.channels
-
+    const server = useSelector(state => state.server[server_id]);
+    const channelState = useSelector(state => state.channel);
+    const channels = channelState.channels;
 
     const onDelete = () => {
         dispatch(delServer(server_id))
@@ -47,9 +47,13 @@ const ChannelBar = ({ user }) => {
                         <i className="fas fa-plus" onClick={onClick}></i>
                     </div>
                     { channels?.map( channel => {
-                        return (
-                          <Channel channel={channel} key={channel.id}/>
-                        )
+                        if (channel.server_id === server?.id) {
+                          return (
+                            <Channel channel={channel} key={channel.id}/>
+                          )
+                        } else {
+                          return null;
+                        }
                       })}
                   </>
                 )}
