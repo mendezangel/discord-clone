@@ -12,6 +12,7 @@ import ServerForm from './components/ServerForm/ServerForm';
 import ServerEditForm from './components/ServerEditForm/ServerEditForm';
 import ChannelForm from './components/ChannelForm/ChannelForm';
 import ServerJoin from './components/ServerJoin/ServerJoin';
+import ChannelEditForm from './components/ChannelEditForm/ChannelEditForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,6 +50,9 @@ function App() {
         </Route>
         <Route path='/channels/new' exact={true}>
           <ChannelForm />
+        </Route>
+        <Route path='/channels/:id/editchannel'>
+          <ChannelEditForm />
         </Route>
         <ProtectedRoute path='/channels/:server_id'>
           <Main style={{ overflow: "hidden" }} />

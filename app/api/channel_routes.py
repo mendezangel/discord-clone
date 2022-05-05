@@ -26,13 +26,13 @@ def createChannel():
   else:
     return 'Validation'
 
-# @channel_routes.route('/<int:server_id>')
-# @login_required
-# def getAllChannels():
-#   channels = Channel.query.filter_by(server_id = ???).all()
-#   return {'channels': [channel.to_dict() for channel in channels]}
+@channel_routes.route('/')
+@login_required
+def getAllChannels():
+  channels = Channel.query.all()
+  return {'test': [channel.to_dict() for channel in channels]}
 
-@channel_routes.route('/<int:id>/edit')
+@channel_routes.route('/<int:id>/editchannel', methods=['PATCH'])
 @login_required
 def editChannel(id):
   data = request.get_json()
@@ -45,10 +45,12 @@ def editChannel(id):
   return channel.to_dict()
 
 
-@channel_routes.route('/<int:id>/delete')
+@channel_routes.route('/<int:id>/delete', methods=['DELETE'])
 @login_required
 def delChannel(id):
+  channel_id = request.get_json()
   channel = Channel.query.get(id)
   db.session.delete(channel)
+  db.session.commit()
 
   return channel.to_dict()
