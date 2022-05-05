@@ -22,7 +22,6 @@ def createChannel():
     db.session.add(channel)
     db.session.commit()
 
-    print('--------------------------CHANNEL: ', channel.to_dict())
     return channel.to_dict()
   else:
     return 'Validation'

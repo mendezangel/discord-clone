@@ -1,6 +1,6 @@
 from crypt import methods
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import Server, User, Channel, Message, members, db
 from app.forms import CreateServerForm
 
@@ -66,3 +66,18 @@ def deleteServer():
   db.session.commit()
 
   return server.to_dict()
+
+@server_routes.route('/gg/<int:server_id>')
+@login_required
+def join_server(server_id):
+  id = current_user.id
+  user = User.query.get(id)
+  server = Server.query.get(server_id)
+  if(server.name == '@me')
+  new_member = members.insert().values(server_id =server.id,user_id= user.id)
+  db.engine.execute(new_member)
+  db.session.commit()
+
+  new_server = Server.query.get(server.id)
+
+  return new_server.to_dict()
