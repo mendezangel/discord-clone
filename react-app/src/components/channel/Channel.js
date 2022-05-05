@@ -17,8 +17,11 @@ const Channel = ({ channel }) => {
     dispatch(delChannel(channel.id));
   }
 
+  const channelClick = () => {
+    history.push(`/channels/${channel.server_id}/${channel.id}`)
+  }
   return (
-    <div className="channel-container">
+    <div className="channel-container" onClick={channelClick}>
       <div className='channel-name'>
         <i className="fas fa-hashtag"></i>
         {channel.name}

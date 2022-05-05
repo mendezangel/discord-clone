@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -53,9 +53,15 @@ function App() {
         <Route path='/channels/:id/editchannel'>
           <ChannelEditForm />
         </Route>
-        <ProtectedRoute path='/channels/:server_id'>
+        <ProtectedRoute path='/channels/@me' exact={true}>
           <Main style={{overflow: "hidden"}} />
         </ProtectedRoute>
+        <ProtectedRoute path='/channels/:server_id(\d{0,4})/:channel_id(\d{0,4})' exact={true}>
+          <Main style={{overflow: "hidden"}} />
+        </ProtectedRoute>
+        <Route>
+          <Redirect to='/'/>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

@@ -33,10 +33,10 @@ const ChannelBar = ({ user }) => {
 
     return (
         <div className="channel-bar">
-            
+
             <div className="channel-bar-top">
                 <h2 className='server-name-text'>{server?.name}</h2>
-                {server_id !== '@me' && (
+                {server_id !== undefined && (
                   <>
                     <div className='channel-bar-server-info'>
                       <button onClick={onDelete} className="server-button">Delete</button>

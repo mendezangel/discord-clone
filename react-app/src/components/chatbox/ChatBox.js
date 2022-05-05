@@ -11,6 +11,8 @@ const ChatBox = () => {
     const [messages, setMessages] = useState([])
     const [chatInput, setChatInput] = useState("");
     const user = useSelector(state => state.session.user)
+    const channelId = window.location.pathname.split('/')[3]
+    const channel = useSelector(state => state.channel)
 
     useEffect(() => {
         socket = io();
@@ -48,7 +50,7 @@ const ChatBox = () => {
             </div>
 
                 <form className='message-form' onSubmit={sendChat}>
-                    <input className='chat-input' value={chatInput} onChange={updateChatInput} placeholder='Message' required/>
+                    <input className='chat-input' value={chatInput} onChange={updateChatInput} required/>
                 </form>
 
         </div>
