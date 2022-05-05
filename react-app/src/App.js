@@ -50,7 +50,7 @@ function App() {
           <ChannelForm />
         </Route>
         <ProtectedRoute path='/channels/:server_id'>
-          <Main />
+          <Main style={{overflow: "hidden"}} />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

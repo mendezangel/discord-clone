@@ -1,5 +1,5 @@
 .server_bar{
-    height: 100vh;
+    height: calc(100vh - 10px);
     width: 62px;
     background-color: #202225;
     display: flex;
