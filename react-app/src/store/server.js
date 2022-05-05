@@ -27,11 +27,11 @@ export const getAllServers = (id) => async dispatch => {
 }
 
 export const createServer = (server) => async dispatch => {
-  const { owner_id, name, image, invite_url } = server;
+  const { owner_id, name, image, url } = server;
   const res = await fetch('/api/servers/new', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ owner_id, name, image, invite_url }),
+    body: JSON.stringify({ owner_id, name, image, url }),
   });
   const data = await res.json();
   if (data.errors) {

@@ -12,7 +12,6 @@ server_routes = Blueprint('servers', __name__)
 @login_required
 def getAllServers(user_id):
   servers = Server.query.join(members).filter(members.c.user_id == user_id).all()
-  print(servers, '-------------------------------------------------------------')
   return {'servers': [server.to_dict() for server in servers]}
 
 @server_routes.route('/new', methods=["POST"])
@@ -30,6 +29,8 @@ def createServer():
 
     db.session.add(server)
     db.session.commit()
+    data_url = data['url']
+    server.invite_url = f'{data_url}/gg/{server.id}'
 
     new_member = members.insert().values(server_id=server.id, user_id= server.owner_id)
 
