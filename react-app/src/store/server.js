@@ -4,7 +4,6 @@ const UPDATE = 'servers/edit'
 const DELETE = 'servers/delete'
 const JOIN = 'servers/join'
 
-
 // REGULAR ACTION FUNCTIONS
 const servers = payload => {
   return { type: SERVERS, payload }
@@ -47,7 +46,7 @@ export const createServer = (server) => async dispatch => {
 }
 
 export const editServer = (server) => async dispatch => {
-  const { owner_id, name, image, invite_url, id } = server;
+  const { owner_id, name, image, id } = server;
   const res = await fetch(`/api/servers/edit`, {
     method: 'PATCH',
     body: JSON.stringify({ owner_id, name, image, id }),
@@ -73,6 +72,14 @@ export const delServer = (serverId) => async dispatch => {
 
 export const joinServer = serverId => async dispatch => {
   const res = await fetch(`/api/servers/gg/${serverId}`)
+  if (res.ok) {
+    const server = await res.json()
+    dispatch(joinOne(server))
+  }
+}
+
+export const getOneServer = serverId => async dispatch => {
+  const res = await fetch(`/api/servers/one/${serverId}`)
   if (res.ok) {
     const server = await res.json()
     dispatch(joinOne(server))

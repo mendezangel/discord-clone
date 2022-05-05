@@ -1,5 +1,5 @@
 from crypt import methods
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, redirect
 from flask_login import login_required, current_user
 from app.models import Server, User, Channel, Message, members, db
 from app.forms import CreateServerForm
@@ -13,6 +13,12 @@ server_routes = Blueprint('servers', __name__)
 def getAllServers(user_id):
   servers = Server.query.join(members).filter(members.c.user_id == user_id).all()
   return {'servers': [server.to_dict() for server in servers]}
+
+@server_routes.route('/one/<int:server_id>')
+@login_required
+def getOneServer(server_id):
+  server = Server.query.get(server_id)
+  return server.to_dict()
 
 @server_routes.route('/new', methods=["POST"])
 @login_required
@@ -73,8 +79,11 @@ def join_server(server_id):
   id = current_user.id
   user = User.query.get(id)
   server = Server.query.get(server_id)
-  if(server.name == '@me')
-  new_member = members.insert().values(server_id =server.id,user_id= user.id)
+
+  if (server.name == '@me'):
+    return redirect(request.host_url)
+
+  new_member = members.insert().values(server_id=server.id, user_id=user.id)
   db.engine.execute(new_member)
   db.session.commit()
 
