@@ -13,16 +13,13 @@ const ChatBox = () => {
     const user = useSelector(state => state.session.user)
 
     useEffect(() => {
-
         // create websocket/connect
         socket = io();
-
         // listen for chat events
         socket.on("chat", (chat) => {
             // when we recieve a chat, add it into our messages array in state
             setMessages(messages => [...messages, chat])
         })
-
         // when component unmounts, disconnect
         return (() => {
             socket.disconnect()
@@ -36,26 +33,29 @@ const ChatBox = () => {
     const sendChat = (e) => {
         e.preventDefault()
         // emit a message
-        socket.emit("chat", { user: user.username, msg: chatInput });
+        socket.emit("chat", { user: user.username, msg: chatInput, img: user.profile_pic});
         // clear the input field after the message is sent
-        setChatInput("")
+        setChatInput('')
     }
 
     return ( user && (
         <div className='chat'>
 
-            <div>
+            <div className='chat-log'>
                 {messages.map((message, ind) => (
-                    <div key={ind}>{`${message.user}: ${message.msg}`}</div>
+                    <div key={ind} className='text-info-container'>
+                        <img className='text-img' src={message.img} height='40px'/>
+                        <div>
+                            <div>{message.user.split('#')[0]}</div>
+                            <div className='text' >{`${message.msg}`}</div>
+                        </div>
+                    </div>
                 ))}
             </div>
 
-            <div className='message-form-container'>
                 <form className='message-form' onSubmit={sendChat}>
-                    <input className='chat-input' value={chatInput} onChange={updateChatInput} placeholder='Message'/>
-                    {/* <button type="submit">Send</button> */}
+                    <input className='chat-input' value={chatInput} onChange={updateChatInput} placeholder='Message' required/>
                 </form>
-            </div>
 
         </div>
     ))
