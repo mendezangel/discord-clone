@@ -1,42 +1,48 @@
 import './ChatBox.css'
 import { io } from 'socket.io-client'
 import { useEffect, useState } from 'react'
+import { useParams } from "react-router";
 import { useSelector } from 'react-redux'
 
 
 let socket
 
 const ChatBox = () => {
-
+    const { channel_id } = useParams()
     const [messages, setMessages] = useState([])
     const [chatInput, setChatInput] = useState("");
+    const [prevRoom, setPrevRoom] = useState(channel_id);
     const user = useSelector(state => state.session.user)
+    const channel = useSelector(state => state.channel)
+
 
     useEffect(() => {
-        // create websocket/connect
         socket = io();
-        // listen for chat events
         socket.on("chat", (chat) => {
-            // when we recieve a chat, add it into our messages array in state
             setMessages(messages => [...messages, chat])
         })
-        // when component unmounts, disconnect
         return (() => {
             socket.disconnect()
         })
     }, [])
 
-    const updateChatInput = (e) => {
-        setChatInput(e.target.value)
-    };
+    useEffect(() => {
+        socket.emit('leave', {room: prevRoom})
+        socket.emit('join', {room: channel_id})
+        setPrevRoom(channel_id)
+        console.log(prevRoom, 'LEFT')
+        console.log(channel_id, 'JOINED')
+    },[channel_id])
 
     const sendChat = (e) => {
         e.preventDefault()
-        // emit a message
-        socket.emit("chat", { user: user.username, msg: chatInput, img: user.profile_pic});
-        // clear the input field after the message is sent
+        socket.emit("chat", { user: user.username, msg: chatInput, img: user.profile_pic, room: channel_id});
         setChatInput('')
     }
+
+    const updateChatInput = (e) => {
+        setChatInput(e.target.value)
+    };
 
     return ( user && (
         <div className='chat'>
@@ -54,7 +60,7 @@ const ChatBox = () => {
             </div>
 
                 <form className='message-form' onSubmit={sendChat}>
-                    <input className='chat-input' value={chatInput} onChange={updateChatInput} placeholder='Message' required/>
+                    <input className='chat-input' value={chatInput} onChange={updateChatInput} required/>
                 </form>
 
         </div>

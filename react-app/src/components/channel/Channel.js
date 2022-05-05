@@ -3,22 +3,28 @@ import { useDispatch } from 'react-redux';
 import { delChannel } from '../../store/channels';
 import './Channel.css';
 
-const Channel = ({ channel }) => {
+const Channel = ({ channel, server }) => {
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const editChannel = () => {
+  const editChannel = (e) => {
+    e.stopPropagation()
     history.push({
-      pathname: `/channels/${channel.id}/editchannel`,
+      pathname: `/channels/${server.id}/${channel.id}/editchannel`,
       state: channel
     })
   }
   const deleteChannel = () => {
-    dispatch(delChannel(channel.id));
+    if(server.channels.length >1){
+      dispatch(delChannel(channel.id));
+    }
   }
 
+  const channelClick = () => {
+    history.push(`/channels/${channel.server_id}/${channel.id}`)
+  }
   return (
-    <div className="channel-container">
+    <div className="channel-container" onClick={channelClick}>
       <div className='channel-name'>
         <i className="fas fa-hashtag"></i>
         {channel.name}

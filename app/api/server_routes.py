@@ -43,6 +43,11 @@ def createServer():
     db.engine.execute(new_member)
     db.session.commit()
 
+    gen_channel = Channel(name='General', server_id=server.id)
+
+    db.session.add(gen_channel)
+    db.session.commit()
+
     return server.to_dict()
   else:
     return {"errors": ["Server name must be between 3 and 35 characters."]}
