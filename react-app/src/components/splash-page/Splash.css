@@ -1,4 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@900&family=Open+Sans&display=swap');
+/* 
+.splash-image{
+    background-color: #404EED;
+    height: 550px;
+} */
+
+
+/* html {
+    height: 100vh;
+} */
+
 .splash-image{
     background-color: #404EED;
     height: 550px;
 }
+
+.splash-h1 {
+    font-family: 'Catamaran', sans-serif;
+    font-size: 60px;
+    display: flex;
+    justify-content: center;
+    color: aliceblue;
+}
+
+.splash-p {
+    width: 40vw;
+    display: flex;
+    text-align: center;
+    
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    background-color: #404EED;
+    padding: 50px;
+}
+
+.splash-body {
+    height: 1647px;
+    background-color: aliceblue;
+    color: black;
+}
+
+::-webkit-scrollbar {
+    width: 18px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 10px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+  }

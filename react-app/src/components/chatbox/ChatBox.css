@@ -1,4 +1,5 @@
 .chat {
     flex-grow: 1;
     background-color: #36393F;
+    height: 100vh;
 }

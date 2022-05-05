@@ -5,12 +5,16 @@ html {
 
 #root {
   font-family: 'Radio Canada', sans-serif;
-  color: #CECAC4;
+  color: #ececec;
   box-sizing: border-box;
+  background-color: rgb(29, 29, 29);
+  height: fit-content;
 }
 
 body {
   margin: auto;
   padding: 0%;
-  overflow: hidden;
+  
 }
+
+
