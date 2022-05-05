@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { delChannel } from '../../store/channels';
 import './Channel.css';
 
-const Channel = ({ channel }) => {
+const Channel = ({ channel, server }) => {
   const history = useHistory()
   const dispatch = useDispatch()
 
@@ -14,7 +14,9 @@ const Channel = ({ channel }) => {
     })
   }
   const deleteChannel = () => {
-    dispatch(delChannel(channel.id));
+    if(server.channels.length >1){
+      dispatch(delChannel(channel.id));
+    }
   }
 
   const channelClick = () => {

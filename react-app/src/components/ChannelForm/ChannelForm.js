@@ -21,7 +21,7 @@ const ChannelForm = () => {
     const newChannel = await dispatch(createChannel(channel));
 
     if (newChannel.errors) return setErrors(newChannel.errors);
-    history.push(`/channels/${location.server_id}`);
+    history.push(`/channels/${location.server_id}/${newChannel.id}`);
   }
   const backButton = () => {
     history.goBack();
@@ -58,7 +58,7 @@ const ChannelForm = () => {
           <button className='server-form-create-button' onClick={onSubmit} type='submit'>Create</button>
         </div>
       </div>
-    </div>  
+    </div>
   )
 }
 

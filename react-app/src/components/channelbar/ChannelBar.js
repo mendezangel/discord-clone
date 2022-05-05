@@ -49,7 +49,7 @@ const ChannelBar = ({ user }) => {
                     { channels?.map( channel => {
                         if (channel.server_id === server?.id) {
                           return (
-                            <Channel channel={channel} key={channel.id}/>
+                            <Channel channel={channel} server={server} key={channel.id}/>
                           )
                         } else {
                           return null;
