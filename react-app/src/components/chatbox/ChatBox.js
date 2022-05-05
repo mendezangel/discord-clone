@@ -13,30 +13,24 @@ const ChatBox = () => {
     const user = useSelector(state => state.session.user)
 
     useEffect(() => {
-        // create websocket/connect
         socket = io();
-        // listen for chat events
         socket.on("chat", (chat) => {
-            // when we recieve a chat, add it into our messages array in state
             setMessages(messages => [...messages, chat])
         })
-        // when component unmounts, disconnect
         return (() => {
             socket.disconnect()
         })
     }, [])
 
+    const sendChat = (e) => {
+        e.preventDefault()
+        socket.emit("chat", { user: user.username, msg: chatInput, img: user.profile_pic});
+        setChatInput('')
+    }
+
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
     };
-
-    const sendChat = (e) => {
-        e.preventDefault()
-        // emit a message
-        socket.emit("chat", { user: user.username, msg: chatInput, img: user.profile_pic});
-        // clear the input field after the message is sent
-        setChatInput('')
-    }
 
     return ( user && (
         <div className='chat'>
