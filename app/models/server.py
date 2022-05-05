@@ -12,8 +12,8 @@ class Server(db.Model):
 
     channels = db.relationship('Channel', back_populates='server', cascade="all, delete")
     owner = db.relationship('User', back_populates='owned_servers')
-
     users = db.relationship('User', back_populates='servers', secondary=members)
+    dmChannel = db.relationship('DMChannel', back_populates='server', cascade='all, delete')
 
     def to_dict(self):
       return {
@@ -24,5 +24,4 @@ class Server(db.Model):
         'invite_url': self.invite_url,
         'users': [user.to_dict() for user in self.users],
         'channels': [channel.to_dict() for channel in self.channels]
-        # 'owner': [owner.to_dict() for owner in self.owner]
       }
