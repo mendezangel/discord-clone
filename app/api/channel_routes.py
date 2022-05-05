@@ -33,7 +33,7 @@ def createChannel():
 #   channels = Channel.query.filter_by(server_id = ???).all()
 #   return {'channels': [channel.to_dict() for channel in channels]}
 
-@channel_routes.route('/<int:id>/edit')
+@channel_routes.route('/<int:id>/editchannel', methods=['PATCH'])
 @login_required
 def editChannel(id):
   data = request.get_json()
@@ -46,7 +46,7 @@ def editChannel(id):
   return channel.to_dict()
 
 
-@channel_routes.route('/<int:id>/delete')
+@channel_routes.route('/<int:id>/delete', methods=['DELETE'])
 @login_required
 def delChannel(id):
   channel = Channel.query.get(id)

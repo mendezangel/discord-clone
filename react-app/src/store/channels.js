@@ -1,6 +1,6 @@
 const CREATE   = '/channels/new'
 const CHANNELS = '/channels'
-const UPDATE   = '/channels/:id/edit'
+const UPDATE   = '/channels/:id/editchannel'
 const DELETE   = '/channels/:id/delete'
 
 
@@ -37,7 +37,7 @@ export const createChannel = (channel) => async dispatch => {
 
 export const editChannel = (channel) => async dispatch => {
   const { name, server_id } = channel;
-  const res = await fetch('/api/channels/:id/edit', {
+  const res = await fetch(`/api/channels/${channel.id}/editchannel`, {
     method: 'PATCH',
     body: JSON.stringify({ name, server_id }),
     headers: {'Content-Type': 'application/json'}
