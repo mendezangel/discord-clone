@@ -1,4 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@900&family=Open+Sans&display=swap');
+/* 
 .splash-image{
     background-color: #404EED;
     height: 550px;
+} */
+
+
+html {
+    height: 100vh;
+}
+
+.splash-image{
+    background-color: #404EED;
+    height: 550px;
+}
+
+.splash-h1 {
+    font-family: 'Catamaran', sans-serif;
+    font-size: 60px;
+    display: flex;
+    justify-content: center;
+    color: aliceblue;
+}
+
+.splash-p {
+    width: 40vw;
+    display: flex;
+    text-align: center;
+    
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    background-color: #404EED;
+    padding: 50px;
+}
+
+.splash-body {
+    height: 1647px;
+    background-color: aliceblue;
+    color: black;
 }
