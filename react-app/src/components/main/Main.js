@@ -12,7 +12,7 @@ import ChatBox from "../chatbox/ChatBox.js"
 
 const Main = () => {
   const dispatch = useDispatch()
-  const { server_id } = useParams()
+  const { me, server_id } = useParams()
   const user = useSelector(state => state.session.user)
   const servers = useSelector(state => state.server)
 
@@ -26,7 +26,7 @@ const Main = () => {
 
       <ServerBar servers={servers.servers} />
       <ChannelBar user={user} />
-      {server_id === '@me' ? null : <><ChatBox /><ServerMembers members={servers[server_id]?.users} /></>}
+      {me === '@me' ? null : <><ChatBox /><ServerMembers members={servers[server_id]?.users} /></>}
     </div>
   )
 }

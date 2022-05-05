@@ -34,7 +34,7 @@ const ServerForm = () => {
 
     const newServer = await dispatch(createServer(server))
     if (newServer.errors) return setErrors(newServer.errors)
-    history.push(`/channels/${newServer.id}`);
+    history.push(`/channels/${newServer.id}/${newServer.channels[0].id}`);
   }
 
   const backButton = () => {
