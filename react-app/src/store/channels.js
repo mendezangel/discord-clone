@@ -5,8 +5,8 @@ const DELETE   = '/channels/:id/delete'
 
 
 // REGULAR ACTION FUNCTIONS
-// const channels = payload => {
-//   return { type:CHANNELS, payload }}
+const channels = payload => {
+  return { type:CHANNELS, payload }}
 const newChannel = payload => {
   return { type:CREATE, payload }}
 const updateChannel = payload => {
@@ -15,12 +15,12 @@ const deleteChannel = payload => {
   return { type:DELETE, payload }}
 
 // THUNKS
-// export const getAllChannels = (serverId) => async dispatch => {
-//   const res = await fetch(`/api/channels/${serverId}`);
-//   const channelArray = await res.json();
+export const getAllChannels = () => async dispatch => {
+  const res = await fetch(`/api/channels/`);
+  const channelArray = await res.json();
 
-//   dispatch( channels(channelArray) );
-// }
+  dispatch( channels(channelArray) );
+}
 
 export const createChannel = (channel) => async dispatch => {
   const { name, server_id } = channel;
@@ -56,12 +56,12 @@ export const delChannel = (channelId) => async dispatch => {
   });
   const data = await res.json();
 
-  dispatch( deleteChannel(data) );
+  dispatch( deleteChannel(channelId) );
   return data;
 }
 
 
-const initialState = { channels: [] }
+const initialState = { }
 
 const ChannelReducer = (state = initialState, action) => {
   let newState;
@@ -73,13 +73,16 @@ const ChannelReducer = (state = initialState, action) => {
       newState[action.payload.id] = action.payload;
       return newState;
     case CHANNELS:
-      newState = { ...state };
-      newState.channels = action.payload;
+      let payload = action.payload['test']
+      newState = { ...state, channels: payload}
+      payload.forEach( channel => {
+        newState[channel.id] = channel
+      })
 
       return newState;
     case UPDATE:
       newState = { ...state };
-      newState.channels = newState.channels.map( channel => {
+      newState.channels.channels = newState.channels.map( channel => {
         if ( channel.id === action.payload.id ) {
           return action.payload;
         } else {
@@ -93,19 +96,9 @@ const ChannelReducer = (state = initialState, action) => {
       delete newState[action.payload];
       for (let i = 0; i < newState.channels.length; i++) {
         const channel = newState.channels[i];
-        if (channel.id === action.payload.id) newState.channels.splice(i, 1)
+        if (channel.id === action.payload) newState.channels.splice(i, 1)
       }
       return newState;
-
-      // newState.channels = newState.channels.filter( channel => {
-      //   if ( channel.id !== action.payload ) {
-      //     return channel;
-      //   } else {
-      //     return null;
-      //   }
-      // });
-
-      // return newState;
     default:
       return state;
   }

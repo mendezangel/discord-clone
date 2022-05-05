@@ -14,9 +14,8 @@ const Channel = ({ channel }) => {
     })
   }
   const deleteChannel = () => {
-    dispatch(delChannel(channel.id))
+    dispatch(delChannel(channel.id));
   }
-
 
   return (
     <div className="channel-container">
