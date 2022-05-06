@@ -15,9 +15,12 @@ const DMForm = () => {
   const updateRecipient = (e) => setRecipient(e.target.value);
   const onSubmit = async (e) => {
     e.preventDefault();
+    let userName = location.state.username
     const dm = {
-      name: `${location.state.username}>${recipient}`,
-      server_id: location.state.me_server
+      name: `${userName.slice(0,userName.indexOf('#'))}>${recipient.slice(0,recipient.indexOf('#'))}`,
+      // Channel Name Length may be too short
+      server_id: location.state.me_server,
+      recipient_name: recipient
     };
     const newDMChannel = await dispatch(createDM(dm));
     console.log('RETURNED ON FORM:', newDMChannel)
