@@ -26,8 +26,9 @@ export const createDM = (dm) => async dispatch => {
 }
 
 export const getAllDMs = (userId) => async dispatch => {
-  const res = await fetch(`/api/dms/${userId}`);
+  const res = await fetch(`/api/dms/`);
   const dmArray = await res.json();
+  console.log('\n\n\n\n\n\n\n', dmArray)
 
   dispatch( dms(dmArray) );
 }
@@ -54,7 +55,10 @@ const DMReducer = (state = initialState, action) => {
     case CREATE:
       break;
     case DMS:
-      break;
+      console.log('\n\n\n\nPAYLOAD:', action.payload)  
+
+      newState = { ...state }
+      return newState;
     case DELETE:
       break;
     default:

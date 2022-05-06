@@ -23,10 +23,9 @@ const DMForm = () => {
       recipient_name: recipient
     };
     const newDMChannel = await dispatch(createDM(dm));
-    console.log('RETURNED ON FORM:', newDMChannel)
 
     if (newDMChannel.errors) return setErrors(newDMChannel.errors);
-    // history.push(`/channels/@me/${newDMChannel.id}`);
+    history.push(`/channels/@me/${newDMChannel.channel.id}`);
   }
   const backButton = () => {
     history.goBack();

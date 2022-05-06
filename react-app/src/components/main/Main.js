@@ -3,9 +3,12 @@ import ChannelBar from "../channelbar/ChannelBar.js"
 import './Main.css'
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
+
 import { getAllServers } from "../../store/server.js"
 import { getAllChannels } from "../../store/channels.js"
-import { useParams } from "react-router-dom"
+import { getAllDMs } from "../../store/dms.js"
+
 import ServerMembers from "../servermembers/ServerMembers.js"
 import ChatBox from "../chatbox/ChatBox.js"
 
@@ -19,6 +22,7 @@ const Main = () => {
   useEffect(() => {
     dispatch(getAllServers(user?.id))
     dispatch(getAllChannels())
+    dispatch(getAllDMs(user?.id))
   }, [dispatch, user?.id])
 
   return (

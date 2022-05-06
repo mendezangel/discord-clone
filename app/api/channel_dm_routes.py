@@ -38,7 +38,9 @@ def createDM():
 @dm_routes.route('/')
 @login_required
 def getAllDMS():
-  return None
+  dms = Channel.query.filter(Channel.server2_id.isnot(None)).all()
+
+  return 'flatten array'
 
 
 @dm_routes.route('/<int:id>/delete', methods=['DELETE'])
