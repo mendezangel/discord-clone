@@ -13,6 +13,7 @@ import ServerEditForm from './components/ServerEditForm/ServerEditForm';
 import ChannelForm from './components/ChannelForm/ChannelForm';
 import ServerJoin from './components/ServerJoin/ServerJoin';
 import ChannelEditForm from './components/ChannelEditForm/ChannelEditForm';
+import DMForm from './components/DmForm/DMForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -60,6 +61,9 @@ function App() {
         <ProtectedRoute path='/channels/:server_id(\d{0,4})/:channel_id(\d{0,4})' exact={true}>
           <Main style={{ overflow: "hidden" }} />
         </ProtectedRoute>
+        <Route path='/dms/new' exact={true}>
+          <DMForm />
+        </Route>
         <Route path='/gg/:serverId' exact={true}>
           <ServerJoin />
         </Route>

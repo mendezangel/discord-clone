@@ -15,7 +15,10 @@ const ChannelBar = ({ user }) => {
     const channels = channelState.channels;
 
     const createDM = () => {
-      alert('NOT YET')
+      history.push({
+        pathname: '/dms/new',
+        state: user
+      })
     }
     
     const createChannel = () => {
@@ -52,7 +55,7 @@ const ChannelBar = ({ user }) => {
                   <h2 className='server-name-text' onClick={copy}>{user?.username}</h2>
 
                   <div className='channel-bar-text'>
-                    <p className='channel-bar-p'>Private Messages</p>
+                    <p className='channel-bar-p'>Direct Messages</p>
                     <i className="fas fa-plus" onClick={createDM}></i>
                   </div>
                 </>
