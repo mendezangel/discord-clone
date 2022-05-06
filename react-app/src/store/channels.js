@@ -149,8 +149,8 @@ const ChannelReducer = (state = initialState, action) => {
 
     case LOAD_ALL_MESSAGES:
       newState = { ...state, messages: { ...state.messages } };
-      id = action.payload.messages[0].channel_id
-      newState[id].messages.push(...action.payload.messages)
+      let id = action.payload.channel_id
+      newState[id].messages = action.payload.messages
       return newState
 
     default:

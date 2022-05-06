@@ -21,17 +21,13 @@ const ChatBox = () => {
   useEffect(() => {
     socket = io();
     socket.on('chat', (chat) => {
-      console.log(chat)
+      // dispatch(getAllMessages(channel_id))
       setMessages(messages => [...messages, chat])
     })
     return (() => {
       socket.disconnect()
     })
   }, [])
-
-  useEffect(() => {
-    dispatch(getAllMessages(channel_id))
-  })
 
   useEffect(() => {
     socket.emit('leave', { room: prevRoom })
