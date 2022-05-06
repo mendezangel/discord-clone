@@ -55,17 +55,17 @@ function App() {
           <ChannelEditForm />
         </Route>
         <ProtectedRoute path='/channels/:me(@me)'>
-          <Main style={{overflow: "hidden"}} />
+          <Main style={{ overflow: "hidden" }} />
         </ProtectedRoute>
         <ProtectedRoute path='/channels/:server_id(\d{0,4})/:channel_id(\d{0,4})' exact={true}>
-          <Main style={{overflow: "hidden"}} />
+          <Main style={{ overflow: "hidden" }} />
         </ProtectedRoute>
         <Route path='/gg/:serverId' exact={true}>
-        <ServerJoin />
-        <Route>
-          <Redirect to='/'/>
+          <ServerJoin />
         </Route>
-      </Route>
+        <Route>
+          <Redirect to='/' />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
