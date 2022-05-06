@@ -38,8 +38,13 @@ def createDM():
 @dm_routes.route('/')
 @login_required
 def getAllDMS():
+  # GET ALL DM CHANNELS
+    # GET ALL DM CHANNELS WHERE USER IS SENDER
   dms = Channel.query.filter(Channel.server2_id.isnot(None)).all()
-
+    # GET ALL DM CHANNELS WHERE USER IS RECIEVER
+      # Channel.query.join(DMChannel).filter_by(Channel.server2_id = DMChannel.id).all()
+    # ADD TO PREVIOUS ARRAY
+  #FLATTEN ARRAY
   return 'flatten array'
 
 
