@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { createChannel } from '../../store/channels'
+import '../auth/LoginForm.css'
 
 
 const ChannelForm = () => {
@@ -29,31 +30,31 @@ const ChannelForm = () => {
 
   return (
     <div className='whole-page-div'>
-      <div className="server-form-container">
-        <div className="server-form-text-container">
+      <div className="login-form-container">
+        <div className="login-form-text-container">
           <h1>Create a new channel.</h1>
         </div>
-        <div className="server-form-input">
+        <div className="login-form-input">
           <form
-            className="server-form"
+            className="login-form"
             onSubmit={onSubmit}
           >
-            <div className='server-form-group'>
+            <div className='login-form-group'>
               <label>Name</label>
               <input
                 type="text"
-                className="server-form-name-input"
+                className="login-form-name-input"
                 value={name}
                 onChange={updateName}
               />
               { errors?.map( error => {
-                return (<p className="server-form-error" key={error}>{error}</p>)
+                return (<p className="login-form-error" key={error}>{error}</p>)
               })}
             </div>
 
           </form>
         </div>
-        <div className='server-form-buttons-container'>
+        <div className='login-form-buttons-container'>
           <button className='server-form-back-button' onClick={backButton}>Back</button>
           <button className='server-form-create-button' onClick={onSubmit} type='submit'>Create</button>
         </div>
