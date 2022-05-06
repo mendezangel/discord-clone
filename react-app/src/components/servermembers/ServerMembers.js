@@ -1,9 +1,14 @@
 import './ServerMembers.css'
 
 const ServerMembers = ({members}) => {
-    return (
-        <div className='members-list'>
-            {members?.map((member,idx) => {
+    if(members !== undefined){
+        let arr = []
+        for(let member in members){
+            arr.push(members[member])
+        }
+        return (
+            <div className='members-list'>
+            {arr?.map((member,idx) => {
                 const name = member?.username.split('#')
                 return (
                     <div key={idx} className='member'>
@@ -12,7 +17,10 @@ const ServerMembers = ({members}) => {
                     </div>
                 )
             })}
+
         </div>
     )
+}
+return null
 }
 export default ServerMembers
