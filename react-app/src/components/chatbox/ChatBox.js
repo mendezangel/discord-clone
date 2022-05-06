@@ -32,6 +32,7 @@ const ChatBox = () => {
         socket.emit('leave', {room: prevRoom})
         socket.emit('join', {room: channel_id})
         setPrevRoom(channel_id)
+        setMessages([])
     },[channel_id])
 
     const sendChat = (e) => {
@@ -66,7 +67,7 @@ const ChatBox = () => {
                         </div>
                     )
                     })
-                    )}
+                )}
 
                     {messages.map((message, idx) => {
                     return (
