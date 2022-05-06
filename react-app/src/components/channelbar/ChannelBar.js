@@ -15,12 +15,15 @@ const ChannelBar = ({ user }) => {
     const channels = channelState.channels;
 
     const createDM = () => {
+      alert('NOT YET')
+    }
+    
+    const createChannel = () => {
       history.push({
         pathname: '/channels/new',
         server_id
       })
     }
-
     const onDelete = () => {
       dispatch(delServer(server_id))
       history.push('/channels/@me')
@@ -31,7 +34,6 @@ const ChannelBar = ({ user }) => {
         state: server
       })
     }
-    
     const copy = async () => {
       try {
         await navigator.clipboard.writeText(server.invite_url)
@@ -64,7 +66,7 @@ const ChannelBar = ({ user }) => {
                   </ div>
                   <div className='channel-bar-text'>
                       <p className='channel-bar-p'>CHANNELS</p>
-                      <i className="fas fa-plus" onClick={createDM}></i>
+                      <i className="fas fa-plus" onClick={createChannel}></i>
                   </div>
                   { channels?.map( channel => {
                       if (channel.server_id === server?.id) {
