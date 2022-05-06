@@ -15,3 +15,8 @@ def post_message():
     db.session.add(newMessage)
     db.session.commit()
     return newMessage.to_dict()
+
+@message_routes.route('/<int:channel_id>/all')
+def get_messages(channel_id):
+  messages = Message.query.filter_by(channel_id = channel_id).all()
+  return {"messages": [message.to_dict() for message in messages], "channel_id": channel_id}
