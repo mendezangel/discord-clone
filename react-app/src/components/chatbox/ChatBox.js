@@ -2,12 +2,14 @@ import './ChatBox.css'
 import { io } from 'socket.io-client'
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router";
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import {createMessage} from '../../store/messages'
 
 
 let socket
 
 const ChatBox = () => {
+    const dispatch = useDispatch()
     const { channel_id,server_id } = useParams()
     const [messages, setMessages] = useState([])
     const [chatInput, setChatInput] = useState("");
@@ -36,6 +38,12 @@ const ChatBox = () => {
 
     const sendChat = (e) => {
         e.preventDefault()
+        dispatch( createMessage({
+
+            channel_id: channel_id,
+            user_id: user.id,
+            content: chatInput
+        }))
         socket.emit("chat", { user: user.username, msg: chatInput, img: user.profile_pic, room: channel_id});
         setChatInput('')
     }
