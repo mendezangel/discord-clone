@@ -50,14 +50,16 @@
 
 @keyframes slidein {
   from {
-      margin-top: -10%;
-      height: 470px;
+    margin-top: -10%;
+    height: 470px;
   }
+
   to {
-      margin-top: 0%;
-      height: 404px;
+    margin-top: 0%;
+    height: 404px;
   }
 }
+
 .login-form-form-container {
   display: flex;
   justify-content: center;
@@ -115,7 +117,8 @@
   outline: none;
 }
 
-.login-form-button {
+.login-form-button,
+.join-server-button {
   margin-bottom: 15px;
   width: 120px;
   height: 34px;
@@ -131,7 +134,8 @@
   font-family: inherit;
 }
 
-.login-form-button:hover {
+.login-form-button:hover,
+.join-server-button:hover {
   opacity: .8;
 }
 

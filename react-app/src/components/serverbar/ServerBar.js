@@ -6,7 +6,8 @@ const ServerBar = ({ servers }) => {
   const history = useHistory();
   const userServer = useSelector(state => state.session.user.me_server);
 
-  const onServerClick = (id) => history.push(`/channels/${id}`)
+  const onServerClick = (server) => history.push(`/channels/${server.id}/${server.channels[0]?.id}`)
+  const onMeClick = () => history.push(`/channels/@me`)
   const randomColor = () => {
     let colors = ['#5865f2', '#57f287', '#fee75c', '#eb459e', '#ed4245']
     let number = Math.floor(Math.random() * 5)
@@ -20,7 +21,7 @@ const ServerBar = ({ servers }) => {
             <div className="server_icon"
               style={{ backgroundImage: `url(${server.image})` }}
               key={server.id}
-              onClick={() => onServerClick('@me')}>
+              onClick={() => onMeClick()}>
             </div>
           )
         } else {
@@ -29,14 +30,14 @@ const ServerBar = ({ servers }) => {
               <div className="server_icon"
                 style={{ backgroundImage: `url(${server.image})` }}
                 key={server.id}
-                onClick={() => onServerClick(server.id)}></div>
+                onClick={() => onServerClick(server)}></div>
             )
           } else {
             return (
               <div className="server_icon"
                 style={{ backgroundColor: `${randomColor()}`, color: 'black' }}
                 key={server.id}
-                onClick={() => onServerClick(server.id)}>
+                onClick={() => onServerClick(server)}>
                 {server.name[0]}
               </div>
             )

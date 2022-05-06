@@ -28,12 +28,13 @@ const ServerForm = () => {
     const server = {
       image,
       name,
-      owner_id: user?.id
-      // add server inviteurl
+      owner_id: user?.id,
+      url: `${window.location.origin}`
     }
+
     const newServer = await dispatch(createServer(server))
     if (newServer.errors) return setErrors(newServer.errors)
-    history.push(`/channels/${newServer.id}`);
+    history.push(`/channels/${newServer.id}/${newServer.channels[0].id}`);
   }
 
   const backButton = () => {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -11,6 +11,7 @@ import Main from './components/main/Main';
 import ServerForm from './components/ServerForm/ServerForm';
 import ServerEditForm from './components/ServerEditForm/ServerEditForm';
 import ChannelForm from './components/ChannelForm/ChannelForm';
+import ServerJoin from './components/ServerJoin/ServerJoin';
 import ChannelEditForm from './components/ChannelEditForm/ChannelEditForm';
 
 function App() {
@@ -50,12 +51,21 @@ function App() {
         <Route path='/channels/new' exact={true}>
           <ChannelForm />
         </Route>
-        <Route path='/channels/:id/editchannel'>
+        <Route path='/channels/:server_id(\d{0,4})/:id(\d{0,4})/editchannel' exact={true}>
           <ChannelEditForm />
         </Route>
-        <ProtectedRoute path='/channels/:server_id'>
+        <ProtectedRoute path='/channels/:me(@me)'>
           <Main style={{overflow: "hidden"}} />
         </ProtectedRoute>
+        <ProtectedRoute path='/channels/:server_id(\d{0,4})/:channel_id(\d{0,4})' exact={true}>
+          <Main style={{overflow: "hidden"}} />
+        </ProtectedRoute>
+        <Route path='/gg/:serverId' exact={true}>
+        <ServerJoin />
+        <Route>
+          <Redirect to='/'/>
+        </Route>
+      </Route>
       </Switch>
     </BrowserRouter>
   );

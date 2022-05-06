@@ -23,7 +23,7 @@ const ChannelEditForm = () => {
     console.log(channel)
     const editedChannel = await dispatch(editChannel(channel));
     if (editedChannel.errors) return setErrors(editedChannel.errors);
-    history.push(`/channels/${location.state.server_id}`);
+    history.push(`/channels/${location.state.server_id}/${editedChannel.id}`);
   }
   const backButton = () => {
     history.goBack();
@@ -60,7 +60,7 @@ const ChannelEditForm = () => {
           <button className='server-form-create-button' onClick={onSubmit} type='submit'>Create</button>
         </div>
       </div>
-    </div>  
+    </div>
   )
 }
 

@@ -15,35 +15,28 @@ const ChannelBar = ({ user }) => {
     const channelState = useSelector(state => state.channel);
     const channels = channelState.channels;
 
-    // const onDelete = () => {
-    //     dispatch(delServer(server_id))
-    //     history.push('/channels/@me')
-    // }
-    // const editButton = () => {
-    //   history.push({
-    //     pathname: `/channels/${server_id}/edit`,
-    //     state: server
-    //   })
-    // }
     const createDM = () => {
       history.push({
         pathname: '/channels/new',
         server_id
       })
     }
-    // const onClick = () => {
-    //     history.push({
-    //       pathname: '/channels/new',
-    //       server_id
-    //     })
-    // }
+    
+    const copy = async () => {
+      try {
+        await navigator.clipboard.writeText(server.invite_url)
+        alert('Server Invite URL Copied!')
+      } catch {
+        console.log('fail')
+      }
+    }
 
     return (
         <div className="channel-bar">
-            
+
             <div className="channel-bar-top">
-                <h2 className='server-name-text'>{user?.username}</h2>
-                {server_id !== '@me' && (
+                <h2 className='server-name-text' onClick={copy}>{user?.username}</h2>
+                {server_id !== undefined && (
                   <>
                     <div className='channel-bar-server-info'>
                       <button /*onClick={onDelete}*/ className="server-button">Delete</button>
@@ -56,7 +49,7 @@ const ChannelBar = ({ user }) => {
                     { channels?.map( channel => {
                         if (channel.server_id === server?.id) {
                           return (
-                            <Channel channel={channel} key={channel.id}/>
+                            <Channel channel={channel} server={server} key={channel.id}/>
                           )
                         } else {
                           return null;
@@ -70,8 +63,8 @@ const ChannelBar = ({ user }) => {
                 </div>
             </div>
 
-            <ProfileBar user={user} />
-        </div>
+      <ProfileBar user={user} />
+    </div>
   )
 }
 

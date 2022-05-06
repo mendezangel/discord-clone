@@ -1,8 +1,8 @@
-const CREATE = '/servers/new'
-const SERVERS = '/servers'
-const UPDATE = '/servers/:id/edit'
-const DELETE = '/servers/:id/delete'
-
+const CREATE = 'servers/new'
+const SERVERS = 'servers'
+const UPDATE = 'servers/edit'
+const DELETE = 'servers/delete'
+const JOIN = 'servers/join'
 
 // REGULAR ACTION FUNCTIONS
 const servers = payload => {
@@ -18,6 +18,10 @@ const deleteServer = payload => {
   return { type: DELETE, payload }
 };
 
+const joinOne = payload => {
+  return { type: JOIN, payload }
+}
+
 //THUNKS
 export const getAllServers = (id) => async dispatch => {
   const res = await fetch(`/api/servers/${id}`);
@@ -27,11 +31,11 @@ export const getAllServers = (id) => async dispatch => {
 }
 
 export const createServer = (server) => async dispatch => {
-  const { owner_id, name, image, invite_url } = server;
+  const { owner_id, name, image, url } = server;
   const res = await fetch('/api/servers/new', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ owner_id, name, image, invite_url }),
+    body: JSON.stringify({ owner_id, name, image, url }),
   });
   const data = await res.json();
   if (data.errors) {
@@ -42,7 +46,7 @@ export const createServer = (server) => async dispatch => {
 }
 
 export const editServer = (server) => async dispatch => {
-  const { owner_id, name, image, invite_url, id } = server;
+  const { owner_id, name, image, id } = server;
   const res = await fetch(`/api/servers/edit`, {
     method: 'PATCH',
     body: JSON.stringify({ owner_id, name, image, id }),
@@ -66,6 +70,22 @@ export const delServer = (serverId) => async dispatch => {
   return data;
 }
 
+export const joinServer = serverId => async dispatch => {
+  const res = await fetch(`/api/servers/gg/${serverId}`)
+  if (res.ok) {
+    const server = await res.json()
+    dispatch(joinOne(server))
+  }
+}
+
+export const getOneServer = serverId => async dispatch => {
+  const res = await fetch(`/api/servers/one/${serverId}`)
+  if (res.ok) {
+    const server = await res.json()
+    dispatch(joinOne(server))
+  }
+}
+
 
 const initialState = { servers: [] }
 
@@ -85,6 +105,11 @@ const ServerReducer = (state = initialState, action) => {
         newState[server.id] = server
       })
       return newState;
+
+    case JOIN:
+      newState = { ...state, servers: [{ ...action.payload }] }
+      newState[action.payload.id] = action.payload
+      return newState
 
     case UPDATE:
       newState = { ...state };
