@@ -59,12 +59,16 @@ const DMReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case CREATE:
-      return null;
-    case DMS:
-      console.log('PAYLOAD:', action.payload);
-      newState = { ...state, ...action.payload }
+      newState = { ...state }
 
+      newState[action.payload.channel.id] = action.payload.channel;
+      newState.channels.push(action.payload.channel);
+      newState.dms.push(action.payload.dm)
+      // console.log('STATE         :', newState);
+      // console.log('CREATE PAYLOAD:', action.payload);
       return newState;
+    case DMS:
+      return { ...state, ...action.payload };
     case DELETE:
       return null;
     default:
