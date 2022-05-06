@@ -62,7 +62,7 @@ const DMReducer = (state = initialState, action) => {
     case DELETE:
       break;
     default:
-      return newState;
+      return {};
   }
 }
 
