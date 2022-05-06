@@ -52,22 +52,23 @@ export const delDM = (dm_id) => async dispatch => {
 }
 
 
-const initialState = { }
+const initialState = { dms: {} }
 
 const DMReducer = (state = initialState, action) => {
   let newState;
 
   switch (action.type) {
     case CREATE:
-      break;
+      return null;
     case DMS:
-      console.log('PAYLOAD:', action.payload)
+      console.log('PAYLOAD:', action.payload);
       newState = { ...state, ...action.payload }
+
       return newState;
     case DELETE:
-      break;
+      return null;
     default:
-      return {};
+      return state;
   }
 }
 
