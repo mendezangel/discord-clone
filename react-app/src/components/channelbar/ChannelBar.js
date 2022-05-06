@@ -13,6 +13,7 @@ const ChannelBar = ({ user }) => {
     const server = useSelector(state => state.server[server_id]);
     const channelState = useSelector(state => state.channel);
     const channels = channelState.channels;
+    const dmChannels = useSelector(state => state.dms)
 
     const createDM = () => {
       history.push({
@@ -55,9 +56,18 @@ const ChannelBar = ({ user }) => {
                   <h2 className='server-name-text' onClick={copy}>{user?.username}</h2>
 
                   <div className='channel-bar-text'>
-                    <p className='channel-bar-p'>Direct Messages</p>
+                    <p className='channel-bar-p'>{server?.id}Direct Messages</p>
                     <i className="fas fa-plus" onClick={createDM}></i>
                   </div>
+                  { dmChannels?.channels?.map( channel => {
+                    if (channel.server_id === user?.me_server) {
+                      return (
+                        <Channel channel={channel} server={server} key={channel.id}/>
+                      )
+                    } else {
+                      return null;
+                    }
+                  })}
                 </>
               )}
               {server_id !== undefined && (

@@ -64,8 +64,7 @@ const DMReducer = (state = initialState, action) => {
       newState[action.payload.channel.id] = action.payload.channel;
       newState.channels.push(action.payload.channel);
       newState.dms.push(action.payload.dm)
-      // console.log('STATE         :', newState);
-      // console.log('CREATE PAYLOAD:', action.payload);
+      
       return newState;
     case DMS:
       return { ...state, ...action.payload };
