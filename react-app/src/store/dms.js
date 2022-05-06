@@ -28,9 +28,15 @@ export const createDM = (dm) => async dispatch => {
 export const getAllDMs = (userId) => async dispatch => {
   const res = await fetch(`/api/dms/`);
   const dmArray = await res.json();
-  console.log('\n\n\n\n\n\n\n', dmArray)
+  
+  let data = {};
+  for (let channel in dmArray.channels) {
+    data[channel] = dmArray.channels[channel];
+  }
+  data.channels = dmArray.channels
+  data.dms = dmArray.dms
 
-  dispatch( dms(dmArray) );
+  dispatch( dms(data) );
 }
 
 export const delDM = (dm_id) => async dispatch => {
@@ -55,9 +61,8 @@ const DMReducer = (state = initialState, action) => {
     case CREATE:
       break;
     case DMS:
-      console.log('\n\n\n\nPAYLOAD:', action.payload)  
-
-      newState = { ...state }
+      console.log('PAYLOAD:', action.payload)
+      newState = { ...state, ...action.payload }
       return newState;
     case DELETE:
       break;
