@@ -30,7 +30,7 @@ export const createChannel = (channel) => async dispatch => {
     headers: {'Content-Type': 'application/json'}
   });
   const data = await res.json();
-  
+
   dispatch( newChannel(data) );
   return data;
 }
@@ -61,7 +61,7 @@ export const delChannel = (channelId) => async dispatch => {
 }
 
 
-const initialState = { }
+const initialState = { 'messages': {} }
 
 const ChannelReducer = (state = initialState, action) => {
   let newState;
@@ -72,11 +72,15 @@ const ChannelReducer = (state = initialState, action) => {
       newState.channels.push(action.payload);
       newState[action.payload.id] = action.payload;
       return newState;
+
     case CHANNELS:
-      let payload = action.payload['test']
+      let payload = action.payload['channels']
       newState = { ...state, channels: payload}
       payload.forEach( channel => {
         newState[channel.id] = channel
+        channel.messages.forEach((message) => {
+          newState.messages[message.id] = message
+        })
       })
 
       return newState;

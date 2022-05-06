@@ -8,13 +8,13 @@ import { useSelector } from 'react-redux'
 let socket
 
 const ChatBox = () => {
-    const { channel_id } = useParams()
+    const { channel_id,server_id } = useParams()
     const [messages, setMessages] = useState([])
     const [chatInput, setChatInput] = useState("");
     const [prevRoom, setPrevRoom] = useState(channel_id);
     const user = useSelector(state => state.session.user)
     const channel = useSelector(state => state.channel)
-
+    const users = useSelector(state => state?.server[server_id]?.users)
 
     useEffect(() => {
         socket = io();
@@ -48,8 +48,22 @@ const ChatBox = () => {
         <div className='chat'>
 
             <div className='chat-log'>
-                {messages.map((message, ind) => (
-                    <div key={ind} className='text-info-container'>
+                {users && (
+                    channel[channel_id]?.messages.map((message, idx) => {
+                        {console.log(message.content)}
+                        return (
+                        <div key={idx} className='text-info-container'>
+                        <img className='text-img' src={users[message.user_id].profile_pic} height='40px'/>
+                            <div>
+                                <div>{users[message.user_id].username.split('#')[0]}</div>
+                                <div className='text' >{`${message.content}`}</div>
+                            </div>
+                        </div>
+                    )
+                    })
+                    )}
+                    {messages.map((message, idx) => (
+                    <div key={idx} className='text-info-container'>
                         <img className='text-img' src={message.img} height='40px'/>
                         <div>
                             <div>{message.user.split('#')[0]}</div>

@@ -10,7 +10,7 @@ class Channel(db.Model):
     server2_id = db.Column(db.Integer, db.ForeignKey('dmChannels.id'))
 
     messages = db.relationship('Message', back_populates='channel', cascade='all, delete')
-    
+
     server = db.relationship('Server', back_populates='channels')
     dmChannel = db.relationship('DMChannel', back_populates='channel', cascade='all, delete')
 
