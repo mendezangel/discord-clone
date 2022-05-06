@@ -19,6 +19,16 @@ const ChatBox = () => {
     const users = useSelector(state => state?.server[server_id]?.users)
 
     useEffect(() => {
+        socket = io();
+        socket.on("chat", (chat) => {
+            setMessages(messages => [...messages, chat])
+        })
+        return (() => {
+            socket.disconnect()
+        })
+    }, [])
+
+    useEffect(() => {
         socket.emit('leave', {room: prevRoom})
         socket.emit('join', {room: channel_id})
         setPrevRoom(channel_id)
@@ -37,16 +47,6 @@ const ChatBox = () => {
         setChatInput('')
     }
 
-    useEffect(() => {
-        socket = io();
-        socket.on("chat", (chat) => {
-            setMessages(messages => [...messages, chat])
-        })
-        return (() => {
-            socket.disconnect()
-        })
-    }, [])
-
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
     };
@@ -55,6 +55,7 @@ const ChatBox = () => {
         <div className='chat'>
 
             <div className='chat-log'>
+
                 {users && (
                     channel[channel_id]?.messages.map((message, idx) => {
                         return (
@@ -68,7 +69,10 @@ const ChatBox = () => {
                     )
                     })
                     )}
-                    {messages.map((message, idx) => (
+
+
+                    {
+                    messages.map((message, idx) => (
                     <div key={idx} className='text-info-container'>
                         <img className='text-img' src={message.img} height='40px'  alt='pp'/>
                         <div>
