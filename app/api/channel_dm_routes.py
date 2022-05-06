@@ -52,5 +52,10 @@ def getAllDMS():
 
 @dm_routes.route('/<int:id>/delete', methods=['DELETE'])
 @login_required
-def deleteDM():
-  return None
+def deleteDM(id):
+  channel_id = request.get_json()
+  channel = Channel.query.get(id)
+  db.session.delete(channel)
+  db.session.commit()
+
+  return channel.to_dict()

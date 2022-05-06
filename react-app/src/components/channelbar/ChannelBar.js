@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './ChannelBar.css'
 import ProfileBar from '../profilebar/ProfileBar'
 import Channel from '../channel/Channel'
+import DmChannel from '../DmChannel/dmChannel'
 
 import { delServer } from '../../store/server';
 
@@ -62,7 +63,7 @@ const ChannelBar = ({ user }) => {
                   { dmChannels?.channels?.map( channel => {
                     if (channel.server_id === user?.me_server) {
                       return (
-                        <Channel channel={channel} server={server} key={channel.id}/>
+                        <DmChannel channel={channel} server={server} key={channel.id}/>
                       )
                     } else {
                       return null;

@@ -19,8 +19,7 @@ export const createDM = (dm) => async dispatch => {
     headers: {'Content-Type': 'application/json'}
   })
   const data = await res.json();
-  console.log('--------------------------', data)
-
+  
   dispatch( newDM(data) );
   return data;
 }
@@ -69,7 +68,10 @@ const DMReducer = (state = initialState, action) => {
     case DMS:
       return { ...state, ...action.payload };
     case DELETE:
-      return null;
+      newState = { ...state }
+      console.log('DELETE PAYLOAD:', action.payload)
+      console.log('STATE:', newState)
+      return newState;
     default:
       return state;
   }
