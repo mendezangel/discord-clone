@@ -16,7 +16,8 @@ socketio = SocketIO(cors_allowed_origins=origins)
 
 @socketio.on("chat")
 def handle_chat(data):
-    emit("chat", data, broadcast=False, to=data['room'])
+    emit('chat', data, broadcast=False, to=data['room'], include_self=False)
+    # send(data, room=data['room'])
 
 @socketio.on('leave')
 def handle_leave(data):

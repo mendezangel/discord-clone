@@ -9,6 +9,12 @@ def seed_users():
         username='marnie#0001', email='marnie@aa.io', password='password', me_server=2, profile_pic='https://discord-imgs.s3.us-east-2.amazonaws.com/2-discord.png')
     bobbie = User(
         username='bobbie#0001', email='bobbie@aa.io', password='password', me_server=3, profile_pic='https://discord-imgs.s3.us-east-2.amazonaws.com/3-discord.png')
+    edwin = User()
+    angel = User()
+    ali = User()
+    tristan = User()
+    xX_gam3r_Xx = User()
+    
 
     db.session.add(demo)
     db.session.add(marnie)
