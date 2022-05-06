@@ -20,7 +20,7 @@ const ChatBox = () => {
 
     useEffect(() => {
         socket = io();
-        socket.on("chat", (chat) => {
+        socket.on('chat', (chat) => {
             setMessages(messages => [...messages, chat])
         })
         return (() => {
@@ -32,8 +32,6 @@ const ChatBox = () => {
         socket.emit('leave', {room: prevRoom})
         socket.emit('join', {room: channel_id})
         setPrevRoom(channel_id)
-        // console.log(prevRoom, 'LEFT')
-        // console.log(channel_id, 'JOINED')
     },[channel_id])
 
     const sendChat = (e) => {
@@ -43,7 +41,7 @@ const ChatBox = () => {
             user_id: user.id,
             content: chatInput
         }))
-        socket.emit("chat", { user: user.username, msg: chatInput, img: user.profile_pic, room: channel_id});
+        socket.emit('chat', { user: user.username, msg: chatInput, img: user.profile_pic, room: channel_id});
         setChatInput('')
     }
 
@@ -70,17 +68,17 @@ const ChatBox = () => {
                     })
                     )}
 
-
-                    {
-                    messages.map((message, idx) => (
-                    <div key={idx} className='text-info-container'>
-                        <img className='text-img' src={message.img} height='40px'  alt='pp'/>
-                        <div>
-                            <div>{message.user.split('#')[0]}</div>
-                            <div className='text' >{`${message.msg}`}</div>
+                    {messages.map((message, idx) => {
+                    return (
+                        <div key={idx} className='text-info-container'>
+                            <img className='text-img' src={message.img} height='40px'  alt='pp'/>
+                            <div>
+                                <div>{message.user.split('#')[0]}</div>
+                                <div className='text' >{`${message.msg}`}</div>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    )}
+                )}
             </div>
 
                 <form className='message-form' onSubmit={sendChat}>
