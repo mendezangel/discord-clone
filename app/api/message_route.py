@@ -7,7 +7,6 @@ message_routes = Blueprint('messages', __name__)
 @message_routes.route('/new', methods=['POST'])
 def post_message():
     data = request.get_json()
-    print(f'\n\n\n\n\n\n\n\n\n{data}')
     newMessage = Message(
         channel_id= data['channel_id'],
         user_id= data['user_id'],
