@@ -59,6 +59,8 @@ export const createChannel = (channel) => async dispatch => {
   });
   const data = await res.json();
 
+  if (data.errors) return data;
+
   dispatch(newChannel(data));
   return data;
 }

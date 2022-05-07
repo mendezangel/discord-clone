@@ -20,7 +20,8 @@
   justify-content: space-between;
 }
 
-.edit-server-form-input {
+.edit-server-form-input,
+.input {
   width: 100%;
   height: 35px;
   border-radius: 4px;
