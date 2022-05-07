@@ -23,7 +23,7 @@ const DMForm = () => {
       recipient_name: recipient
     };
     const newDMChannel = await dispatch(createDM(dm));
-    console.log(newDMChannel.errors)
+    
     if (newDMChannel.errors) return setErrors(newDMChannel.errors['recipient_name']);
     history.push(`/channels/@me/${newDMChannel.channel.id}`);
   }
