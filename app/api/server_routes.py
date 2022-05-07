@@ -56,7 +56,10 @@ def createServer():
 @server_routes.route('/edit', methods=['PATCH'])
 @login_required
 def updateServer():
-    data = request.get_json()
+  data = request.get_json()
+  form = CreateServerForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  if form.validate_on_submit():
     server = Server.query.get(data['id'])
     server.name = data['name']
     server.image = data['image']
@@ -66,6 +69,9 @@ def updateServer():
     db.session.commit()
 
     return server.to_dict()
+
+  else:
+    return {"errors": [form.errors]}
 
 
 @server_routes.route('/delete', methods=['DELETE'])

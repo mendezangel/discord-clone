@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams, useLocation } from 'react-router-dom';
 import { editServer } from '../../store/server';
+import './ServerEditForm.css'
 
 const ServerEditForm = () => {
   const history = useHistory();
@@ -36,7 +37,9 @@ const ServerEditForm = () => {
       //TODO add server inviteurl
     }
     const newServer = await dispatch(editServer(server))
-    if (newServer.errors) return setErrors(newServer.errors)
+    if (newServer.errors) {
+      return setErrors(newServer.errors)
+    }
     history.push(`/channels/${newServer.id}`);
   }
 
@@ -46,44 +49,48 @@ const ServerEditForm = () => {
 
   return (
     <div className='whole-page-div'>
-      <div className="login-form-container">
-        <div className="login-form-text-container">
-          <h1>Customize your login</h1>
-          <p>Give your new login a personality with a name and an icon. You can always change it later.</p>
+      <div className="edit-server-form-container">
+        <div className="edit-server-text-container">
+          <h1>Customize your Server</h1>
         </div>
-        <div className='login-form-input'>
+        <div className='edit-server-form-form-container'>
           <form
-            className='login-form'
+            className='edit-server-form'
             action='/channels/@me/new'
             method='POST'
             onSubmit={onSubmit}
           >
-            <div className='login-form-group'>
+            <div className='edit-server-form-group'>
               <label>Name</label>
               <input
                 type='text'
-                className='login-form-name-input'
+                className='edit-server-form-input'
+                name='name'
                 value={name}
                 onChange={updateName}
               />
-              {errors?.map(error => {
-                return (<p className='login-form-error' key={error}>{error}</p>)
+              {errors?.map(obj => {
+                return (<p className='server-form-error' key={obj.name}>{obj.name}</p>)
               })}
             </div>
-            <div className='login-form-group'>
+            <div className='edit-server-form-group'>
               <label>Image Url</label>
               <input
                 type='text'
-                className='login-form-image-url'
+                className='edit-server-form-input'
+                name='image'
                 value={image}
                 onChange={updateImage}
               />
+              {errors?.map(obj => {
+                return (<p className='server-form-error' key={obj.image}>{obj.image}</p>)
+              })}
             </div>
           </form>
         </div>
-        <div className='login-form-buttons-container'>
-          <button className='server-form-back-button' onClick={backButton}>Back</button>
-          <button className='server-form-create-button' onClick={onSubmit} type='submit'>Create</button>
+        <div className='edit-server-form-buttons-container'>
+          <button className='edit-server-form-back-button' onClick={backButton}>Back</button>
+          <button className='edit-server-form-create-button' onClick={onSubmit} type='submit'>Create</button>
         </div>
 
       </div>

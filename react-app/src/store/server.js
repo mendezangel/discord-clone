@@ -54,6 +54,8 @@ export const editServer = (server) => async dispatch => {
   });
   const data = await res.json();
 
+  if (data.errors) return data;
+
   dispatch(updateServer(data));
   return data;
 }

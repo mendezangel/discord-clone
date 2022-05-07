@@ -12,7 +12,8 @@
   animation-name: slidein;
 }
 
-.server-form-text-container {
+.server-form-text-container,
+.edit-server-text-container {
   width: 70%;
   display: flex;
   flex-direction: column;
@@ -63,14 +64,16 @@
   outline: none;
 }
 
-.server-form-buttons-container {
+.server-form-buttons-container,
+.edit-server-form-buttons-container {
   /* border: solid white 1px; */
   width: 50%;
   display: flex;
   justify-content: space-evenly;
 }
 
-.server-form-create-button {
+.server-form-create-button,
+.edit-server-form-create-button {
   border-radius: 10px;
   border-radius: 10px;
   color: rgb(255, 255, 255);
@@ -85,7 +88,8 @@
   width: 80px;
 }
 
-.server-form-back-button {
+.server-form-back-button,
+.edit-server-form-back-button {
   border-radius: 10px;
   color: rgb(255, 255, 255);
   background-color: #404EED;
