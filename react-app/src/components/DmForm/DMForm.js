@@ -1,28 +1,31 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { createChannel } from '../../store/channels'
+import { createDM } from '../../store/dms'
 import '../auth/LoginForm.css'
 
 
-const ChannelForm = () => {
+const DMForm = () => {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
+  const [recipient, setRecipient] = useState("");
   const [errors, setErrors] = useState([]);
 
-  const updateName = (e) => setName(e.target.value);
+  const updateRecipient = (e) => setRecipient(e.target.value);
   const onSubmit = async (e) => {
     e.preventDefault();
-    const channel = {
-      name,
-      server_id: location.server_id
+    let userName = location.state.username
+    const dm = {
+      name: `${userName.slice(0,userName.indexOf('#'))}>${recipient.slice(0,recipient.indexOf('#'))}`,
+      // Channel Name Length may be too short
+      server_id: location.state.me_server,
+      recipient_name: recipient
     };
-    const newChannel = await dispatch(createChannel(channel));
+    const newDMChannel = await dispatch(createDM(dm));
 
-    if (newChannel.errors) return setErrors(newChannel.errors);
-    history.push(`/channels/@me/${newChannel.id}`);
+    if (newDMChannel.errors) return setErrors(newDMChannel.errors);
+    history.push(`/channels/@me/${newDMChannel.channel.id}`);
   }
   const backButton = () => {
     history.goBack();
@@ -32,7 +35,7 @@ const ChannelForm = () => {
     <div className='whole-page-div'>
       <div className="login-form-container">
         <div className="login-form-text-container">
-          <h1>Create a new channel.</h1>
+          <h1>Create a new Direct Message!</h1>
         </div>
         <div className="login-form-input">
           <form
@@ -40,12 +43,12 @@ const ChannelForm = () => {
             onSubmit={onSubmit}
           >
             <div className='login-form-group'>
-              <label>Name</label>
+              <label>Recipient</label>
               <input
                 type="text"
                 className="login-form-name-input"
-                value={name}
-                onChange={updateName}
+                value={recipient}
+                onChange={updateRecipient}
               />
               { errors?.map( error => {
                 return (<p className="login-form-error" key={error}>{error}</p>)
@@ -63,4 +66,4 @@ const ChannelForm = () => {
   )
 }
 
-export default ChannelForm;
+export default DMForm;
