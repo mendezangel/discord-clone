@@ -3,7 +3,7 @@ const CHANNELS = '/channels'
 const UPDATE = '/channels/:id/editchannel'
 const DELETE = '/channels/:id/delete'
 const CREATE_MESSAGE = '/messages/new'
-const LOAD_ALL_MESSAGES = 'messages/all'
+const LOAD_ALL_MESSAGES = '/messages/all'
 
 
 // REGULAR ACTION FUNCTIONS

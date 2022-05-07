@@ -6,7 +6,7 @@ const ServerBar = ({ servers }) => {
   const history = useHistory();
   const userServer = useSelector(state => state.session.user.me_server);
 
-  const onServerClick = (server) => history.push(`/channels/${server.id}/${server.channels[0].id}`)
+  const onServerClick = (server) => history.push(`/channels/${server.id}/${server.channels[0]?.id}`)
   const onMeClick = () => history.push(`/channels/@me`)
   const randomColor = () => {
     let colors = ['#5865f2', '#57f287', '#fee75c', '#eb459e', '#ed4245']

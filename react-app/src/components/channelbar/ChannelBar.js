@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './ChannelBar.css'
 import ProfileBar from '../profilebar/ProfileBar'
 import Channel from '../channel/Channel'
+import DmChannel from '../DmChannel/dmChannel'
 
 import { delServer } from '../../store/server';
 
@@ -13,7 +14,26 @@ const ChannelBar = ({ user }) => {
   const server = useSelector(state => state.server[server_id]);
   const channelState = useSelector(state => state.channel);
   const channels = channelState.channels;
-
+  const dmChannels = useSelector(state => state.dms)
+  let objdms = {}
+  if (Array.isArray(dmChannels.dms)) {
+    dmChannels?.dms?.forEach(channel => {
+      objdms[channel.recipient_server_id] = channel
+    })
+  }
+  objdms = Object.keys(objdms)
+  const createDM = () => {
+    history.push({
+      pathname: '/dms/new',
+      state: user
+    })
+  }
+  const createChannel = () => {
+    history.push({
+      pathname: '/channels/new',
+      server_id
+    })
+  }
   const onDelete = () => {
     dispatch(delServer(server_id))
     history.push('/channels/@me')
@@ -24,13 +44,6 @@ const ChannelBar = ({ user }) => {
       state: server
     })
   }
-  const onClick = () => {
-    history.push({
-      pathname: '/channels/new',
-      server_id
-    })
-  }
-
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(server.invite_url)
@@ -40,33 +53,52 @@ const ChannelBar = ({ user }) => {
     }
   }
 
-    return (
-        <div className="channel-bar">
+  return (
+    <div className="channel-bar">
 
-            <div className="channel-bar-top">
-                <h2 className='server-name-text' onClick={copy}>{server?.name}</h2>
-                {server_id !== undefined && (
-                  <>
-                    <div className='channel-bar-server-info'>
-                      <button onClick={onDelete} className="server-button">Delete</button>
-                      <button className="server-button" onClick={editButton}>Edit</button>
-                    </ div>
-                    <div className='channel-bar-text'>
-                        <p className='channel-bar-p'>CHANNELS</p>
-                        <i className="fas fa-plus" onClick={onClick}></i>
-                    </div>
-                    { channels?.map( channel => {
-                        if (channel.server_id === server?.id) {
-                          return (
-                            <Channel channel={channel} server={server} key={channel.id}/>
-                          )
-                        } else {
-                          return null;
-                        }
-                      })}
-                  </>
-                )}
+      <div className="channel-bar-top">
+        {server_id === undefined && (
+          <>
+            <h2 className='server-name-text' onClick={copy}>{user?.username}</h2>
+
+            <div className='channel-bar-text'>
+              <p className='channel-bar-p'>{server?.id}Direct Messages</p>
+              <i className="fas fa-plus" onClick={createDM}></i>
             </div>
+            {dmChannels?.channels?.map(channel => {
+              if (channel.server_id === user?.me_server || objdms.includes(String(user?.me_server))) {
+                return (
+                  <DmChannel channel={channel} server={server} key={channel.id} />
+                )
+              } else {
+                return null;
+              }
+            })}
+          </>
+        )}
+        {server_id !== undefined && (
+          <>
+            <h2 className='server-name-text' onClick={copy}>{server?.name}</h2>
+            <div className='channel-bar-server-info'>
+              <button onClick={onDelete} className="server-button">Delete</button>
+              <button className="server-button" onClick={editButton} >Edit</button>
+            </ div>
+            <div className='channel-bar-text'>
+              <p className='channel-bar-p'>CHANNELS</p>
+              <i className="fas fa-plus" onClick={createChannel}></i>
+            </div>
+            {channels?.map(channel => {
+              if (channel.server_id === server?.id) {
+                return (
+                  <Channel channel={channel} server={server} key={channel.id} />
+                )
+              } else {
+                return null;
+              }
+            })}
+          </>
+        )}
+      </div>
 
       <ProfileBar user={user} />
     </div>
