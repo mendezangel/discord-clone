@@ -17,14 +17,14 @@ const DMForm = () => {
     e.preventDefault();
     let userName = location.state.username
     const dm = {
-      name: `${userName.slice(0,userName.indexOf('#'))}>${recipient.slice(0,recipient.indexOf('#'))}`,
-      // Channel Name Length may be too short
+      name: `${userName.slice(0,5)}>${recipient.slice(0,5)}`,
+      // Channel Name Length may be too long
       server_id: location.state.me_server,
       recipient_name: recipient
     };
     const newDMChannel = await dispatch(createDM(dm));
-
-    if (newDMChannel.errors) return setErrors(newDMChannel.errors);
+    console.log(newDMChannel.errors)
+    if (newDMChannel.errors) return setErrors(newDMChannel.errors['recipient_name']);
     history.push(`/channels/@me/${newDMChannel.channel.id}`);
   }
   const backButton = () => {
