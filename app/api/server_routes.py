@@ -50,7 +50,7 @@ def createServer():
 
     return server.to_dict()
   else:
-    return {"errors": ["Server name must be between 3 and 35 characters."]}
+    return {"errors": [form.errors]}
 
 
 @server_routes.route('/edit', methods=['PATCH'])

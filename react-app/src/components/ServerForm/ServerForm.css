@@ -109,3 +109,10 @@
   background-color: #3946d4;
   cursor: pointer;
 }
+
+.server-form-error {
+  color: red;
+  opacity: .7;
+  font-size: small;
+  margin: 0;
+}

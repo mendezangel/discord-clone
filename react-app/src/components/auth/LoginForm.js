@@ -49,11 +49,6 @@ const LoginForm = () => {
         </div>
         <div className='login-form-form-container'>
           <form onSubmit={onLogin} className='login-form'>
-            {/* <div>
-              {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
-              ))}
-            </div> */}
             <div className='login-form-input-fields'>
               <div className='form-group'>
                 <label htmlFor='email'>Email</label>
