@@ -15,7 +15,6 @@ const LoginForm = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
-    console.log(data)
     if (data) {
       setErrors(data);
     }
@@ -41,7 +40,7 @@ const LoginForm = () => {
   return (
     <div className='whole-page-div'>
       <div className='background-image-container'>
-        <img className='background-image' src={image} alt='Discord Background'/>
+        <img className='background-image' src={image} alt='Discord Background' />
       </div>
       <div className='login-form-container'>
         <div className='login-form-text-container'>

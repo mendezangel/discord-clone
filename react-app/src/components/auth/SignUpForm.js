@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './LoginForm.css';
 import image from '../../images/login-background.png'
+import './SignUpForm.css'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -16,11 +17,10 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
-      if (data) {
-        setErrors(data)
-      }
+    const data = await dispatch(signUp(username, email, password, repeatPassword));
+    if (data) {
+      setErrors(data)
+      console.log(data)
     }
   };
 
@@ -50,18 +50,18 @@ const SignUpForm = () => {
       <div className='background-image-container'>
         <img className='background-image' src={image} alt='Discord Background' />
       </div>
-      <div className='login-form-container'>
+      <div className='signup-form-container'>
         <div className='login-form-text-container'>
           <h1>Create an account.</h1>
         </div>
-        <div className='login-form-form-container'>
+        <div className='signup-form-form-container'>
           <form onSubmit={onSignUp} className='login-form'>
             {/* <div>
               {errors.map((error, ind) => (
                 <div key={ind}>{error}</div>
               ))}
             </div> */}
-            <div className='login-form-input-fields'>
+            <div className='signup-form-input-fields'>
               <div className='form-group'>
                 <label>User Name</label>
                 <input
@@ -69,9 +69,11 @@ const SignUpForm = () => {
                   name='username'
                   onChange={updateUsername}
                   value={username}
-                  className='login-form-email-input'
+                  className='signup-form-input'
                 />
-                {/* error handling needed */}
+                {errors?.username?.map(error => {
+                  return (<p className="signup-error" key={error}>{error}</p>)
+                })}
               </div>
               <div className='form-group'>
                 <label>Email</label>
@@ -80,9 +82,9 @@ const SignUpForm = () => {
                   name='email'
                   onChange={updateEmail}
                   value={email}
-                  className='login-form-email-input'
+                  className='signup-form-input'
                 ></input>
-                {errors?.password?.map(error => {
+                {errors?.email?.map(error => {
                   return (<p className="signup-error" key={error}>{error}</p>)
                 })}
               </div>
@@ -113,16 +115,15 @@ const SignUpForm = () => {
                   return (<p className="signup-error" key={error}>{error}</p>)
                 })}
               </div>
-
             </div>
           </form>
         </div>
-        <div className='login-form-buttons-container'>
-            <button onClick={onSignUp}>Sign Up</button>
-         
-          
+        <div className='signup-form-buttons-container'>
+          <button onClick={onSignUp}>Sign Up</button>
         </div>
-        
+        <div className='signup-form-no-account-container'>
+          <p className='signup-form-login-p'>Already have an account? <span><Link to='/login' className='signup-form-login-link'> Login</Link></span></p>
+        </div>
       </div>
     </div>
   );

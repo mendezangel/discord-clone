@@ -30,7 +30,7 @@ def createChannel():
 @login_required
 def getAllChannels():
   channels = Channel.query.all()
-  return {'test': [channel.to_dict() for channel in channels]}
+  return {'channels': [channel.to_dict() for channel in channels]}
 
 @channel_routes.route('/<int:id>/editchannel', methods=['PATCH'])
 @login_required
