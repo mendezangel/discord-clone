@@ -1,3 +1,75 @@
+.server-form-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 32px;
+  border-radius: 5px;
+  background-color: #36393f;
+  box-shadow: 0 2px 10px 0 rgb(0 0 0 / 20%);
+  animation-duration: 0.8s;
+  animation-name: slidein;
+}
+
+.server-form-text-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.server-form-text-container p {
+  margin: 6px;
+}
+
+.server-form-input {
+  /* border: solid white 1px; */
+  width: 80%;
+  height: 100px;
+  margin: 12px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.server-form-input form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.server-form-group {
+  margin: 10px;
+}
+
+.server-form-group input {
+  width: 100%;
+  height: 35px;
+  border-radius: 4px;
+  border: none;
+  margin: 6px 0 6px 0;
+  padding: 0 5px;
+  /* transition: .2s ease-in-out; */
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: rgb(35, 39, 42);
+  color: white;
+}
+
+.server-form-group input:focus {
+  outline: none;
+}
+
+.server-form-buttons-container {
+  /* border: solid white 1px; */
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .server-form-create-button {
   border-radius: 10px;
   border-radius: 10px;
@@ -5,6 +77,7 @@
   background-color: #404EED;
   padding: 12px;
   font-size: 13px;
+  font-family: inherit;
   border-radius: 25px;
   transition: all .2s;
   justify-self: flex-end;
@@ -18,19 +91,21 @@
   background-color: #404EED;
   padding: 12px;
   font-size: 13px;
+  font-family: inherit;
   border-radius: 25px;
   transition: all .2s;
   justify-self: flex-end;
   border: none;
   width: 80px;
-  
+
 }
 
 .server-form-create-button:hover {
   background-color: #3946d4;
+  cursor: pointer;
 }
 
 .server-form-back-button:hover {
   background-color: #3946d4;
-  
+  cursor: pointer;
 }
