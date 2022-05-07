@@ -32,7 +32,7 @@ const Main = () => {
 
       <ServerBar servers={servers.servers} />
       <ChannelBar user={user} />
-      {me === '@me' ? <DMChatbox /> : <><ChatBox /><ServerMembers members={servers[server_id]?.users} /></>}
+      {me === '@me' ? <DMChatbox user={user} servers={servers}/> : <><ChatBox /><ServerMembers members={servers[server_id]?.users} /></>}
     </div>
   )
 }
