@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { createChannel } from '../../store/channels'
-import '../auth/LoginForm.css'
+import './ChannelForm.css'
 
 
 const ChannelForm = () => {
@@ -21,8 +21,8 @@ const ChannelForm = () => {
     };
     const newChannel = await dispatch(createChannel(channel));
 
-    if (newChannel.errors) return setErrors(newChannel.errors);
-    history.push(`/channels/@me/${newChannel.id}`);
+    if (newChannel.errors) return setErrors(newChannel.errors.name);
+    history.push(`/channels/${location.server_id}/${newChannel.id}`);
   }
   const backButton = () => {
     history.goBack();
@@ -30,7 +30,7 @@ const ChannelForm = () => {
 
   return (
     <div className='whole-page-div'>
-      <div className="login-form-container">
+      <div className="signup-form-container">
         <div className="login-form-text-container">
           <h1>Create a new channel.</h1>
         </div>
@@ -43,20 +43,21 @@ const ChannelForm = () => {
               <label>Name</label>
               <input
                 type="text"
-                className="login-form-name-input"
+                className="input"
+                name='name'
                 value={name}
                 onChange={updateName}
               />
-              { errors?.map( error => {
-                return (<p className="login-form-error" key={error}>{error}</p>)
+              {errors?.map(error => {
+                return (<p className="signup-error" key={error}>{error}</p>)
               })}
             </div>
 
           </form>
         </div>
-        <div className='login-form-buttons-container'>
-          <button className='server-form-back-button' onClick={backButton}>Back</button>
-          <button className='server-form-create-button' onClick={onSubmit} type='submit'>Create</button>
+        <div className='create-channel-buttons-container'>
+          <button className='channel-form-button' onClick={backButton}>Back</button>
+          <button className='channel-form-button' onClick={onSubmit} type='submit'>Create</button>
         </div>
       </div>
     </div>

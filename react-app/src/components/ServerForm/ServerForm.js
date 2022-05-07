@@ -33,7 +33,9 @@ const ServerForm = () => {
     }
 
     const newServer = await dispatch(createServer(server))
-    if (newServer.errors) return setErrors(newServer.errors)
+    if (newServer.errors) {
+      return setErrors(newServer.errors)
+    }
     history.push(`/channels/${newServer.id}/${newServer.channels[0].id}`);
   }
 
@@ -63,8 +65,8 @@ const ServerForm = () => {
                 value={name}
                 onChange={updateName}
               />
-              {errors?.map(error => {
-                return (<p className='server-form-error' key={error}>{error}</p>)
+              {errors?.map(obj => {
+                return (<p className='server-form-error' key={obj.name}>{obj.name}</p>)
               })}
             </div>
             <div className='server-form-group'>
@@ -72,9 +74,13 @@ const ServerForm = () => {
               <input
                 type='text'
                 className='server-form-image-url'
+                name='image'
                 value={image}
                 onChange={updateImage}
               />
+              {errors?.map(obj => {
+                return (<p className='server-form-error' key={obj.image}>{obj.image}</p>)
+              })}
             </div>
           </form>
         </div>

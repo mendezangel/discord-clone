@@ -24,7 +24,7 @@ def createChannel():
 
     return channel.to_dict()
   else:
-    return 'Validation'
+    return {"errors": form.errors}
 
 @channel_routes.route('/')
 @login_required

@@ -85,6 +85,10 @@
   font-family: inherit;
 }
 
+.signup-form-buttons-container button:hover {
+  opacity: .8;
+}
+
 .signup-form-no-account-container {
   margin-top: 15px;
 }
