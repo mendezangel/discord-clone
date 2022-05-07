@@ -1,0 +1,100 @@
+.signup-form-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 32px;
+  border-radius: 5px;
+  background-color: #36393f;
+  box-shadow: 0 2px 10px 0 rgb(0 0 0 / 20%);
+  animation-duration: 0.8s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-top: -10%;
+    /* height: 470px; */
+  }
+
+  to {
+    margin-top: 0%;
+    /* height: 404px; */
+  }
+}
+
+/* .login-form-text-container {
+  border: solid white 1px;
+} */
+
+.signup-form-form-container {
+  height: 300px;
+}
+
+.signup-form-form-container form {
+  height: 100%;
+}
+
+.signup-form-input-fields {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.signup-form-input {
+  width: 100%;
+  height: 35px;
+  border-radius: 4px;
+  border: none;
+  margin: 6px 0 6px 0;
+  padding: 0 5px;
+  /* transition: .2s ease-in-out; */
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: rgb(35, 39, 42);
+  color: white;
+}
+
+.signup-form-container h1 {
+  font-size: 24px;
+  color: white;
+}
+
+.signup-form-buttons-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-form-buttons-container button {
+  width: 120px;
+  height: 34px;
+  border: none;
+  outline: none;
+  background: rgb(88, 101, 242);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  border-radius: 4px;
+  transition: .3s;
+  font-family: inherit;
+}
+
+.signup-form-no-account-container {
+  margin-top: 15px;
+}
+
+.signup-form-login-p a {
+  color: #00AFF4;
+  text-decoration: none;
+}
+
+.signup-form-login-p a:hover {
+  text-decoration: underline;
+  color: #00AFF4;
+}
