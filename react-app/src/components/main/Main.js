@@ -26,6 +26,7 @@ const Main = () => {
     dispatch(getAllDMs(user?.id))
   }, [dispatch, user?.id])
 
+
   return (
     <div className="main">
 
