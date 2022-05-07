@@ -10,7 +10,7 @@ const Channel = ({ channel, server }) => {
   const deleteChannel = () => dispatch(delDM(channel.id));
 
   const channelClick = () => {
-    history.push(`/channels/${channel.server_id}/${channel.id}`)
+    history.push(`/channels/@me/${channel.id}`)
   }
   return (
     <div className="channel-container" onClick={channelClick}>

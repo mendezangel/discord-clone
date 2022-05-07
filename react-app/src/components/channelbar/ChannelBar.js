@@ -15,14 +15,20 @@ const ChannelBar = ({ user }) => {
     const channelState = useSelector(state => state.channel);
     const channels = channelState.channels;
     const dmChannels = useSelector(state => state.dms)
-
+    let objdms = {}
+    if(Array.isArray(dmChannels.dms)){
+      dmChannels?.dms?.forEach(channel => {
+          objdms[channel.recipient_server_id] = channel
+        })
+      }
+      objdms = Object.keys(objdms)
     const createDM = () => {
       history.push({
         pathname: '/dms/new',
         state: user
       })
     }
-    
+    console.log(objdms)
     const createChannel = () => {
       history.push({
         pathname: '/channels/new',
@@ -61,7 +67,7 @@ const ChannelBar = ({ user }) => {
                     <i className="fas fa-plus" onClick={createDM}></i>
                   </div>
                   { dmChannels?.channels?.map( channel => {
-                    if (channel.server_id === user?.me_server) {
+                    if (channel.server_id === user?.me_server || objdms.includes(String(user?.me_server))) {
                       return (
                         <DmChannel channel={channel} server={server} key={channel.id}/>
                       )

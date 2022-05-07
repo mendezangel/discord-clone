@@ -11,6 +11,7 @@ import { getAllDMs } from "../../store/dms.js"
 
 import ServerMembers from "../servermembers/ServerMembers.js"
 import ChatBox from "../chatbox/ChatBox.js"
+import DMChatbox from "../DMChatbox/DMChatbox.js"
 
 
 const Main = () => {
@@ -30,7 +31,7 @@ const Main = () => {
 
       <ServerBar servers={servers.servers} />
       <ChannelBar user={user} />
-      {me === '@me' ? null : <><ChatBox /><ServerMembers members={servers[server_id]?.users} /></>}
+      {me === '@me' ? <DMChatbox /> : <><ChatBox /><ServerMembers members={servers[server_id]?.users} /></>}
     </div>
   )
 }

@@ -22,7 +22,7 @@ const ChannelForm = () => {
     const newChannel = await dispatch(createChannel(channel));
 
     if (newChannel.errors) return setErrors(newChannel.errors);
-    history.push(`/channels/${location.server_id}/${newChannel.id}`);
+    history.push(`/channels/@me/${newChannel.id}`);
   }
   const backButton = () => {
     history.goBack();
