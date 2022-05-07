@@ -34,3 +34,17 @@
   background-color: rgb(35, 39, 42);
   color: white;
 }
+
+.edit-server-form-input:focus {
+  outline: none;
+}
+
+.edit-server-form-create-button:hover {
+  background-color: #3946d4;
+  cursor: pointer;
+}
+
+.edit-server-form-back-button:hover {
+  background-color: #3946d4;
+  cursor: pointer;
+}
