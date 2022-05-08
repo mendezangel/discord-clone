@@ -18,14 +18,16 @@ const Splash = () => {
                     <p className='splash-p'>...where you can belong to a school club, a gaming group, or a worldwide art community. <br></br>Where just you and a handful of friends can spend time together. A place that makes it easy to talk every day and hang out more often.</p>
                 </div>
                 <div className='splash-body'>
-                    <div>
-                        
-                    <img src='https://i.imgur.com/CAZesdi.png' />
+                    <div className='splash-page-image'>                 
+                            <img src='https://i.imgur.com/CAZesdi.png' />
+                            <h2>Create an invite-only place where you belong</h2>               
                     </div>
-                    <img src='https://i.imgur.com/YB98VZT.png' />
-                </div>
-
-             
+                    <div className='splash-page-image'>
+                        <img src='https://i.imgur.com/YB98VZT.png' />
+    
+                    </div>
+                    
+                </div>         
                 <div className='footer'>
                     <div className='github-container'>
 
