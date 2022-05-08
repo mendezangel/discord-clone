@@ -59,7 +59,8 @@
 }
 
 ::-webkit-scrollbar {
-    width: 18px;
+    width: .5px;
+    
   }
   ::-webkit-scrollbar-track {
     background-color: transparent;

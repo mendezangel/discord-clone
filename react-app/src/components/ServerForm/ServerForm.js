@@ -85,7 +85,7 @@ const ServerForm = () => {
           </form>
         </div>
         <div className='server-form-buttons-container'>
-          <button className='server-form-back-button' onClick={backButton}>Back</button>
+          <button className='server-form-create-button' onClick={backButton}>Back</button>
           <button className='server-form-create-button' onClick={onSubmit} type='submit'>Create</button>
         </div>
 
