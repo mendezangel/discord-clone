@@ -13,6 +13,7 @@
     align-items: center;
     padding-left: 20px;
     padding-top: 20px;
+    width: 89%;
 }
 .member p {
     margin: 0;
@@ -20,4 +21,16 @@
 }
 .members-image {
     border-radius: 50%;
+}
+
+.members-list :hover {
+    background-color: rgb(107, 107, 107);
+   
+    cursor: pointer;
+}
+
+.modal-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

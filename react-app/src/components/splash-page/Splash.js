@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './Splash.css'
-
+import '../../images/46b2132c01604c9493d558de444929f4.svg'
 const Splash = () => {
     const user = useSelector(state => state.session.user);
 
@@ -13,14 +13,31 @@ const Splash = () => {
     return (
         <div>
             <div>
+                
                 <div className="text-container">
                     <h1 className='splash-h1'>IMAGINE A PLACE...</h1>
                     <p className='splash-p'>...where you can belong to a school club, a gaming group, or a worldwide art community. <br></br>Where just you and a handful of friends can spend time together. A place that makes it easy to talk every day and hang out more often.</p>
                 </div>
                 <div className='splash-body'>
-
-                </div>
+                    <div className='splash-page-image'>                 
+                            <img src='https://i.imgur.com/CAZesdi.png' />
+                            <div className='splash-body-text'>
+                                <h2>Create an invite-only place where you belong</h2> 
+                                <p> Servers are organized into topic-based channels where you can collaborate, share, and just talk about your day without clogging up a group chat.</p>              
+                            </div>
+                    </div>
+                    <div className='splash-page-image'>
+                     <div>
+                        <h2>Where hanging out is easy</h2>
+                        <p>Grab a seat in a voice channel when you’re free. Friends in your server can see you’re around and instantly pop in to talk without having to call.</p>
+                    </div> 
+                     <img src='https://i.imgur.com/YB98VZT.png' />
+                    </div>
+                    
+                </div>         
                 <div className='footer'>
+
+
                     <div className='github-container'>
 
                     <div className='github ali'>
