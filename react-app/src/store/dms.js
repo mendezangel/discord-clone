@@ -19,8 +19,10 @@ export const createDM = (dm) => async dispatch => {
     headers: {'Content-Type': 'application/json'}
   })
   const data = await res.json();
+
+  if (data.errors) return data;
   
-  dispatch( newDM(data) );
+  dispatch(newDM(data));
   return data;
 }
 
