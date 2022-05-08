@@ -58,6 +58,21 @@
   -webkit-animation: anvil 0.1s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
 }
 
+.splash-image {
+  height: fit-content;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+
+}
+
+.splash-page-image {
+  -webkit-animation: anvil 0.4s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+}
+
 
 .popup-overlay {
   background: #181818;
