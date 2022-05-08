@@ -12,7 +12,6 @@ const ProfileBar = ({ user }) => {
         }
     }
     return (
-
             <div className="profile-container">
                 <Popup
                     trigger={open => (

@@ -23,6 +23,11 @@
 }
 .profile-settings{
     justify-items: flex-end;
+    padding-right: 8px;
+    cursor: pointer;
+}
+.profile-settings:hover {
+  color: #f55;
 }
 .user-info{
     display: flex;
