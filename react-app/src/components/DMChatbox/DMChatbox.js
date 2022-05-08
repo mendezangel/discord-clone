@@ -35,7 +35,7 @@ const DMChatbox = ({user, servers}) => {
       channel[channel_id]?.messages.map((message, idx) => {
         return (
           <div key={idx} className='text-info-container'>
-            <img className='text-img' src={users[message?.user_id]?.profile_pic} height='40px'/>
+            <img className='text-img' src={users[message?.user_id]?.profile_pic} alt='profile' height='40px'/>
             <div>
               {/* <div>{users[message?.user_id].username.split('#')[0]}</div> */}
               <div className='text' >{`${message.content}`}</div>

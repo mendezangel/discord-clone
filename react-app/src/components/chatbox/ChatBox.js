@@ -3,7 +3,7 @@ import { io } from 'socket.io-client'
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from 'react-redux'
-import { createMessage, getAllMessages } from '../../store/channels'
+import { createMessage } from '../../store/channels'
 
 
 let socket
@@ -34,7 +34,7 @@ const ChatBox = () => {
     socket.emit('join', { room: channel_id })
     setPrevRoom(channel_id)
     setMessages([])
-  }, [channel_id])
+  }, [channel_id, prevRoom])
 
   const sendChat = (e) => {
     e.preventDefault()
