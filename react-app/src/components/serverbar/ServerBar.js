@@ -22,21 +22,23 @@ const ServerBar = ({ servers }) => {
       {servers?.map(server => {
         if (server.id === userServer) {
           return (
-            <Popup
-              trigger={open => (
-                <div className="server_icon home"
+            <div className='home'>
+              <Popup
+                trigger={open => (
+                  <div className="server_icon"
                   style={{ backgroundImage: `url(${server.image})` }}
                   key={server.id}
                   onClick={() => onMeClick()}>
-                </div>
-              )}
-              position="right center"
-              className="server_icon home"
-              closeOnEscape
-              on={'hover'}
-            >
-              <p>Home</p>
-            </Popup>
+                  </div>
+                )}
+                position="right center"
+                className="server_icon"
+                closeOnEscape
+                on={'hover'}
+                >
+                <p>Home</p>
+              </Popup>
+            </div>
           )
         } else {
           if (server.image) {

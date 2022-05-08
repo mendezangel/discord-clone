@@ -19,7 +19,8 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s linear;
-  cursor: pointer
+  cursor: pointer;
+  margin-top: 10px;
 }
 .server_icon:hover {
   border-radius: 15px;
@@ -58,7 +59,22 @@
   -webkit-animation: anvil 0.1s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
 }
 
+.home {
+border-bottom: 2px solid rgb(75, 75, 75);
+padding-bottom: 10px;
 
+}
+
+.splash-image {
+  height: fit-content;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+
+}
 
 .splash-page-image {
   -webkit-animation: anvil 0.4s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
