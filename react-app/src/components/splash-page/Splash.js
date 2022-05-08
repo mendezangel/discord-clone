@@ -20,7 +20,10 @@ const Splash = () => {
                 <div className='splash-body'>
                     <div className='splash-page-image'>                 
                             <img src='https://i.imgur.com/CAZesdi.png' />
-                            <h2>Create an invite-only place where you belong</h2>               
+                            <div className='splash-body-text'>
+                                <h2>Create an invite-only place where you belong</h2> 
+                                <p>Discord servers are organized into topic-based channels where you can collaborate, share, and just talk about your day without clogging up a group chat.</p>              
+                            </div>
                     </div>
                     <div className='splash-page-image'>
                         <img src='https://i.imgur.com/YB98VZT.png' />
