@@ -24,7 +24,7 @@ const ProfileBar = ({ user }) => {
                         </div>
                         </div>
                     )}
-                    position="right center"
+                    position="top center"
                     closeOnDocumentClick
                     closeOnEscape
                     on={'click'}
