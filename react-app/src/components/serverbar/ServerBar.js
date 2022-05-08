@@ -79,9 +79,19 @@ const ServerBar = ({ servers }) => {
           }
         }
       })}
-      <NavLink to="/servers/new" className="crud_icon">
-        <i className="fas fa-plus"></i>
-      </NavLink>
+      <Popup
+        trigger={open => (
+          <NavLink to="/servers/new" className="crud_icon">
+            <i className="fas fa-plus"></i>
+          </NavLink>
+        )}
+        position="right center"
+        closeOnDocumentClick
+        closeOnEscape
+        on={'hover'}
+      >
+        <p>Add a Server</p>
+      </Popup>
     </div>
   )
 }
