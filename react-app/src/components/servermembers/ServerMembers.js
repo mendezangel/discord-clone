@@ -22,7 +22,7 @@ const ServerMembers = ({ members }) => {
                             )}
                             position="left center"  
                             closeOnEscape
-                            on={'hover'}
+                            on={'click'}
                         >
                             <p>{name}</p>
                         </Popup>

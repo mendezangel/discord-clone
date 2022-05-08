@@ -25,7 +25,7 @@
 
 .members-list :hover {
     background-color: rgb(107, 107, 107);
-    border-radius: 2px;
+   
     cursor: pointer;
 }
 
