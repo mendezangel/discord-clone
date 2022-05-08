@@ -32,9 +32,9 @@ def getAllChannels():
   channels = Channel.query.all()
   return {'channels': [channel.to_dict() for channel in channels]}
 
-@channel_routes.route('/<int:id>/editchannel', methods=['PATCH'])
+@channel_routes.route('/<int:serverID>/<int:id>/editchannel', methods=['PATCH'])
 @login_required
-def editChannel(id):
+def editChannel(serverID, id):
   data = request.get_json()
 
   channel = Channel.query.get(id)
