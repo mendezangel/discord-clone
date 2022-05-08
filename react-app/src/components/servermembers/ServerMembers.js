@@ -20,11 +20,14 @@ const ServerMembers = ({ members }) => {
                                 <p>{name[0]}</p>
                             </div>
                             )}
-                            position="left center"  
+                            position="left top"  
                             closeOnEscape
                             on={'click'}
                         >
+                            <>
                             <p>{name}</p>
+                            <img className='members-image' src={member.profile_pic} height='100px' alt="user profile" />
+                            </>
                         </Popup>
                     )
                 })}
