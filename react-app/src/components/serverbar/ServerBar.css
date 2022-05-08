@@ -44,3 +44,24 @@
   color: #fff;
   background-color: #3ba55d;
 }
+
+
+.popup-content {
+  background: #2F3136;
+  color: rgb(0, 0, 0);
+}
+
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+[data-popup='tooltip'].popup-overlay {
+  background: transparent;
+}
+
+.popup-arrow {
+  color: rgb(0, 0, 0);
+}
+[role='tooltip'].popup-content {
+  width: 200px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+}
