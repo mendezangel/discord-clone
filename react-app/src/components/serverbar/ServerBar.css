@@ -39,6 +39,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s linear;
+  margin-top: 10px;
 }
 .crud_icon:hover {
   border-radius: 15px;
