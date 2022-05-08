@@ -7,7 +7,6 @@ const LogoutButton = () => {
   const onLogout = async (e) => {
     await dispatch(logout());
   };
-
   return <i class="fas fa-right-from-bracket" onClick={onLogout}></i>;
 };
 
