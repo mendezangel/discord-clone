@@ -24,13 +24,14 @@ const ServerBar = ({ servers }) => {
           return (
             <Popup
               trigger={open => (
-                <div className="server_icon"
+                <div className="server_icon home"
                   style={{ backgroundImage: `url(${server.image})` }}
                   key={server.id}
                   onClick={() => onMeClick()}>
                 </div>
               )}
               position="right center"
+              className="server_icon home"
               closeOnEscape
               on={'hover'}
             >
