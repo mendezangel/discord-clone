@@ -1,13 +1,13 @@
 # Strife Repo
 Welcome to the Strife Repo, this is a clone of Discord. This project is a web app in which you can create servers and channels where you can invite your friends and message them.
 
-This is the starter for the Flask React project.
+
 # Link to Live Site
 https://strife-app.herokuapp.com/
 
 
 # WikiLinks
-## [Wiki](https://github.com/mendezangel/discord-clone/wiki/Home/_edit)
+## [Wiki](https://github.com/mendezangel/discord-clone/wiki/Home)
 
 
 # Technologies Used
@@ -64,10 +64,9 @@ To see Strife live, click the live link above. To run Strife locally on your mac
    
   
 # Demo
+   
+   Log in as a demo user to get a feel for the site.
+   ![Animation](https://user-images.githubusercontent.com/55769045/167316186-6807e0d5-cc19-47b9-92c2-6c0d13430b96.gif)
 
-   
-   ![image](https://user-images.githubusercontent.com/55769045/167223011-2870abab-fc01-49f9-af7a-6633e678eccd.png)
-   
-   ![image](https://user-images.githubusercontent.com/55769045/167223166-46a9d1eb-4812-48bb-9ed7-8d41fa295465.png)
 
 
