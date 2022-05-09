@@ -14,6 +14,7 @@ const ChannelBar = ({ user }) => {
   const server = useSelector(state => state.server[server_id]);
   const channelState = useSelector(state => state.channel);
   const channels = channelState.channels;
+  // This is Not Great
   const dmChannels = useSelector(state => state.dms)
   let objdms = {}
   if (Array.isArray(dmChannels.dms)) {
@@ -22,6 +23,7 @@ const ChannelBar = ({ user }) => {
     })
   }
   objdms = Object.keys(objdms)
+
   const createDM = () => {
     history.push({
       pathname: '/dms/new',
@@ -59,7 +61,7 @@ const ChannelBar = ({ user }) => {
       <div className="channel-bar-top">
         {server_id === undefined && (
           <>
-            <h2 className='server-name-text' onClick={copy}>{user?.username}</h2>
+            <p className='server-name-text' onClick={copy}>{user?.username.split('#')[0]}</p>
 
             <div className='channel-bar-text'>
               <p className='channel-bar-p'>{server?.id}Direct Messages</p>
@@ -78,7 +80,7 @@ const ChannelBar = ({ user }) => {
         )}
         {server_id !== undefined && (
           <>
-            <h2 className='server-name-text' onClick={copy}>{server?.name}</h2>
+            <p className='server-name-text' onClick={copy}>{server?.name}</p>
             <div className='channel-bar-server-info'>
               <button onClick={onDelete} className="server-button">Delete</button>
               <button className="server-button" onClick={editButton} >Edit</button>

@@ -1,13 +1,49 @@
 .profile-container {
   display: flex;
   flex-direction: row;
-  align-self: flex-end;
   background-color: #292b2f;
   height: 53px;
-  width: 239px;
+  width: 100%;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 
+}
+
+.profile-pic {
+  height: 32px;
+  border-radius: 50%;
+}
+
+.main-name {
+  padding: 0;
+  margin: 0;
+}
+
+.name-tag {
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+}
+
+.profile-settings {
+  justify-items: flex-end;
+  padding-right: 8px;
+  cursor: pointer;
+}
+
+.profile-settings:hover {
+  color: #f55;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  padding-left: 6px;
+  gap: 7px;
+}
+
+.profile-bar-name {
+  cursor: pointer;
 }
 
 .profile-pic {

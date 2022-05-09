@@ -20,7 +20,6 @@ def createDM():
     dm = DMChannel( recipient_server_id = recipient_id )
     db.session.add(dm)
     db.session.commit()
-    print(f'\n\n\n\n{dm.to_dict()}\n\n\n\n')
 
     channel = Channel(
       name = data['name'],
@@ -32,7 +31,7 @@ def createDM():
 
     return { 'channel': channel.to_dict(), 'dm': dm.to_dict() }
   else:
-    return 'Validation'
+    return {'errors': form.errors}
 
 
 @dm_routes.route('/')

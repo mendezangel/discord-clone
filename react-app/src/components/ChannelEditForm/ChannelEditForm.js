@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { createChannel } from '../../store/channels'
+import { editChannel } from '../../store/channels'
 import '../ChannelForm/ChannelForm.css'
 
 
@@ -16,13 +16,15 @@ const ChannelEditForm = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const channel = {
+      id: window.location.pathname.split('/')[3],
       name,
-      server_id: location.server_id
+      server_id: location.state.server_id
     };
-    const newChannel = await dispatch(createChannel(channel));
+    const updatedChannel = await dispatch(editChannel(channel));
+    console.log('updatedChannel:', updatedChannel)
 
-    if (newChannel.errors) return setErrors(newChannel.errors.name);
-    history.push(`/channels/${location.server_id}/${newChannel.id}`);
+    if (updatedChannel.errors) return setErrors(updatedChannel.errors.name);
+    history.push(`/channels/${updatedChannel.server_id}/${updatedChannel.id}`);
   }
   const backButton = () => {
     history.goBack();
@@ -47,6 +49,7 @@ const ChannelEditForm = () => {
                 name='name'
                 value={name}
                 onChange={updateName}
+                required
               />
               {errors?.map(error => {
                 return (<p className="signup-error" key={error}>{error}</p>)
@@ -57,7 +60,7 @@ const ChannelEditForm = () => {
         </div>
         <div className='create-channel-buttons-container'>
           <button className='channel-form-button' onClick={backButton}>Back</button>
-          <button className='channel-form-button' onClick={onSubmit} type='submit'>Create</button>
+          <button className='channel-form-button' onClick={onSubmit} type='submit'>Edit</button>
         </div>
       </div>
     </div>

@@ -66,8 +66,8 @@ export const createChannel = (channel) => async dispatch => {
 }
 
 export const editChannel = (channel) => async dispatch => {
-  const { name, server_id } = channel;
-  const res = await fetch(`/api/channels/${channel.id}/editchannel`, {
+  const { name, server_id} = channel;
+  const res = await fetch(`/api/channels/${channel.server_id}/${channel.id}/editchannel`, {
     method: 'PATCH',
     body: JSON.stringify({ name, server_id }),
     headers: { 'Content-Type': 'application/json' }
