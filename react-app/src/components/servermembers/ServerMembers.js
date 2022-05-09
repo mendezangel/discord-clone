@@ -28,9 +28,9 @@ const ServerMembers = ({ members }) => {
                             <div className='modal-info'>
                                 <p>{name}</p>
                                 <img className='members-image' src={member.profile_pic} height='100px' width='100px' style={{margin: '20px'}} alt="user profile" />
-                                <button className='login-form-button'>
+                                {/* <button className='login-form-button'>
                                     Message {name}
-                                </button>
+                                </button> */}
                             </div>
                             </>
                         </Popup>

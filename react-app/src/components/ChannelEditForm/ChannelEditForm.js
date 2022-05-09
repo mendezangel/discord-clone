@@ -49,6 +49,7 @@ const ChannelEditForm = () => {
                 name='name'
                 value={name}
                 onChange={updateName}
+                required
               />
               {errors?.map(error => {
                 return (<p className="signup-error" key={error}>{error}</p>)
