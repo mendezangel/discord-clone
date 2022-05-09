@@ -3,17 +3,17 @@ from app.models import db, Channel
 
 
 def seed_channels():
-    leaf_general = Channel(name='General', server_id=16)
-    leaf_anbu = Channel(name='anbu black ops',server_id=16)
-    leaf_genin = Channel(name='genin chat',server_id=16)
-    leaf_chunin = Channel(name='chunin chat',server_id=16)
-    leaf_jonin = Channel(name='jonin chat',server_id=16)
-    aa_general = Channel(name='General', server_id=17)
-    aa_study = Channel(name='study chat',server_id=17)
-    aa_cheating = Channel(name='cheating',server_id=17)
-    group_general = Channel(name='General', server_id=18)
-    group_resources = Channel(name='resources',server_id=18)
-    test_general = Channel(name='General', server_id=19)
+    leaf_general = Channel(name='General', server_id=22)
+    leaf_anbu = Channel(name='anbu black ops',server_id=22)
+    leaf_genin = Channel(name='genin chat',server_id=22)
+    leaf_chunin = Channel(name='chunin chat',server_id=22)
+    leaf_jonin = Channel(name='jonin chat',server_id=22)
+    aa_general = Channel(name='General', server_id=23)
+    aa_study = Channel(name='study chat',server_id=23)
+    aa_cheating = Channel(name='cheating',server_id=23)
+    group_general = Channel(name='General', server_id=24)
+    group_resources = Channel(name='resources',server_id=24)
+    test_general = Channel(name='General', server_id=25)
 
     db.session.add(leaf_general)
     db.session.add(leaf_anbu)
