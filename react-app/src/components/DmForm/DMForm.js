@@ -35,7 +35,7 @@ const DMForm = () => {
     <div className='whole-page-div'>
       <div className="login-form-container">
         <div className="login-form-text-container">
-          <h1>Create a new Direct Message!</h1>
+          <h1>Add a another users username and tag numbers!</h1>
         </div>
         <div className="login-form-input">
           <form
