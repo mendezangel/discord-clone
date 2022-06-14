@@ -14,7 +14,6 @@ const ChannelBar = ({ user }) => {
   const server = useSelector(state => state.server[server_id]);
   const channelState = useSelector(state => state.channel);
   const channels = channelState.channels;
-  // This is Not Great
   const dmChannels = useSelector(state => state.dms)
   let objdms = {}
   if (Array.isArray(dmChannels.dms)) {
@@ -82,8 +81,15 @@ const ChannelBar = ({ user }) => {
           <>
             <p className='server-name-text' onClick={copy}>{server?.name}</p>
             <div className='channel-bar-server-info'>
-              <button onClick={onDelete} className="server-button">Delete</button>
-              <button className="server-button" onClick={editButton} >Edit</button>
+              {
+                user.id === server?.owner_id ?
+                <>
+                  <button onClick={onDelete} className="server-button">Delete</button>
+                  <button className="server-button" onClick={editButton} >Edit</button>
+                </>
+                :
+                null
+              }
             </ div>
             <div className='channel-bar-text'>
               <p className='channel-bar-p'>CHANNELS</p>
