@@ -100,13 +100,14 @@
 .technologies-used img {
   padding: 10px;
   align-self: center;
+  
 }
 
 .technologies-used {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #404EED;
+  margin-right: 200px;
 }
 
 .github-container {
