@@ -57,8 +57,8 @@ const DMForm = () => {
 
           </form>
         </div>
-        <div className='login-form-buttons-container'>
-          <button className='server-form-back-button' onClick={backButton}>Back</button>
+        <div className='login-form-buttons-container' style={{display: 'flex', width: '40%', justifyContent: "space-between"}}>
+          <button className='server-form-create-button' onClick={backButton}>Back</button>
           <button className='server-form-create-button' onClick={onSubmit} type='submit'>Create</button>
         </div>
       </div>

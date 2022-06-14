@@ -2,10 +2,13 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { delChannel } from '../../store/channels';
 import './Channel.css';
+import Popup from 'reactjs-popup';
+import { useState } from 'react';
 
 const Channel = ({ channel, server }) => {
   const history = useHistory()
   const dispatch = useDispatch()
+  const [open, setOpen] = useState(false)
 
   const editChannel = (e) => {
     e.stopPropagation()
@@ -17,6 +20,8 @@ const Channel = ({ channel, server }) => {
   const deleteChannel = () => {
     if(server.channels.length >1){
       dispatch(delChannel(channel.id));
+    } else {
+      window.alert("You need to keep at least one channel per server.")
     }
   }
 

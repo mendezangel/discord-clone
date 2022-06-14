@@ -1,14 +1,15 @@
 import './ServerBar.css'
 import { useSelector } from "react-redux"
-import { NavLink, useHistory } from 'react-router-dom'
+import { NavLink, useHistory, useParams } from 'react-router-dom'
 import Popup from 'reactjs-popup';
+import { useEffect } from 'react';
 
 
 
 const ServerBar = ({ servers }) => {
   const history = useHistory();
   const userServer = useSelector(state => state.session.user.me_server);
-
+  const params = useParams()
   const onServerClick = (server) => history.push(`/channels/${server.id}/${server.channels[0]?.id}`)
   const onMeClick = () => history.push(`/channels/@me`)
   const randomColor = () => {
@@ -16,6 +17,14 @@ const ServerBar = ({ servers }) => {
     let number = Math.floor(Math.random() * 5)
     return colors[number]
   }
+
+
+  useEffect(() => {
+    
+    console.log(params)
+
+  }, [])
+  
 
   return (
     <div className="server_bar">
@@ -25,7 +34,7 @@ const ServerBar = ({ servers }) => {
             <div className='home'>
               <Popup
                 trigger={open => (
-                  <div className="server_icon"
+                  <div className={params.me ? 'server_icon active' : "server_icon"}
                   style={{ backgroundImage: `url(${server.image})` }}
                   key={server.id}
                   onClick={() => onMeClick()}>
@@ -45,7 +54,7 @@ const ServerBar = ({ servers }) => {
             return (
               <Popup
                 trigger={open => (
-                  <div className="server_icon"
+                  <div className={params.server_id == server.id ? 'server_icon active' : "server_icon"}
                     style={{ backgroundImage: `url(${server.image})` }}
                     key={server.id}
                     onClick={() => onServerClick(server)}>
@@ -64,7 +73,7 @@ const ServerBar = ({ servers }) => {
             return (
               <Popup
                 trigger={open => (
-                  <div className="server_icon"
+                 <div className={params.server_id == server.id ? 'server_icon active' : "server_icon"}
                     style={{ backgroundColor: `${randomColor()}`, color: 'black' }}
                     key={server.id}
                     onClick={() => onServerClick(server)}>
