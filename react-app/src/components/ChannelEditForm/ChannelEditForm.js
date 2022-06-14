@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { editChannel } from '../../store/channels'
 import '../ChannelForm/ChannelForm.css'
@@ -9,7 +9,8 @@ const ChannelEditForm = () => {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
+  const currentChannel = useSelector(state => state.channel[window.location.pathname.split('/')[3]])
+  const [name, setName] = useState(`${currentChannel.name}`);
   const [errors, setErrors] = useState([]);
 
   const updateName = (e) => setName(e.target.value);
